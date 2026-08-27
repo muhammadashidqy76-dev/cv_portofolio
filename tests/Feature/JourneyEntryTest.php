@@ -169,4 +169,45 @@ class JourneyEntryTest extends TestCase
             'certificate_file_path' => 'certificates/bnsp_madya.pdf',
         ]);
     }
+
+    public function test_journey_section_renders_all_credential_types_correctly(): void
+    {
+        JourneyEntry::factory()->create([
+            'course_name' => 'Laravel Concurrency Mastery',
+            'credential_type' => 'course',
+            'source' => 'Laracasts',
+            'learned' => 'Database locking mechanisms',
+            'result' => 'Zero race conditions',
+            'status' => 'published',
+        ]);
+
+        JourneyEntry::factory()->create([
+            'course_name' => 'BNSP Backend Developer Certificate',
+            'credential_type' => 'certification',
+            'source' => 'BNSP Indonesia',
+            'certificate_file_path' => 'certs/bnsp.pdf',
+            'verification_url' => 'https://bnsp.go.id/cert/1234',
+            'status' => 'published',
+        ]);
+
+        JourneyEntry::factory()->create([
+            'course_name' => 'Sarjana Terapan Komputer',
+            'credential_type' => 'diploma',
+            'source' => 'Politeknik Negeri',
+            'certificate_file_path' => 'diplomas/ijazah.pdf',
+            'verification_url' => 'https://pddikti.kemdikbud.go.id/1234',
+            'status' => 'published',
+        ]);
+
+        $view = $this->blade('<x-journey-section />');
+
+        $view->assertSee('Laravel Concurrency Mastery');
+        $view->assertSee('BNSP Backend Developer Certificate');
+        $view->assertSee('Sarjana Terapan Komputer');
+        $view->assertSee('Certification');
+        $view->assertSee('Diploma');
+        $view->assertSee('Course');
+        $view->assertSee('Verifikasi Kredensial');
+        $view->assertSee('Lihat Dokumen');
+    }
 }
