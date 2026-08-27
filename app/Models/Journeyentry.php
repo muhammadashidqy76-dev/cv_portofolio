@@ -34,6 +34,16 @@ class JourneyEntry extends Model
         'display_order' => 'integer',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (JourneyEntry $entry) {
+            if ($entry->credential_type !== self::TYPE_COURSE) {
+                $entry->learned = $entry->learned ?? '';
+                $entry->result = $entry->result ?? '';
+            }
+        });
+    }
+
     public function appliedProject(): BelongsTo
     {
         return $this->belongsTo(Project::class, 'applied_project_id');
