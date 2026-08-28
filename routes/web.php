@@ -5,6 +5,7 @@ use App\Http\Controllers\LearningLogEntryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TechStackItemController;
+use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('tech-stack', TechStackItemController::class)
         ->names('tech-stack')
         ->parameters(['tech-stack' => 'techStackItem']);
+    Route::resource('work-experience', WorkExperienceController::class)
+        ->names('work-experience')
+        ->parameters(['work-experience' => 'workExperience']);
     Route::resource('journey', JourneyEntryController::class)
         ->names('journey')
         ->parameters(['journey' => 'journeyEntry']);

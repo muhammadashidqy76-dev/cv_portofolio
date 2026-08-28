@@ -7,12 +7,31 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Added
+- Mekanisme collapse/expand di level halaman utama untuk menyembunyikan section Journey & Learning Log secara default, dengan trigger toggle tunggal di antara section Experience dan Footer serta animasi staggered (Journey expand lebih dulu dan Learning Log menyusul; saat collapse Learning Log menutup lebih dulu sebelum Journey).
+- Feature tests `WorkExperienceTest.php`: validasi model, accessors (`duration_label`, badge classes), scopes (`published`, `current`, `chronological`), form requests, CRUD API endpoints, dan graceful frontend visibility pada welcome page.
+- `WorkExperienceSeeder`: seeder dengan 1 entri data dummy sementara untuk keperluan preview visual section Work Experience (perlu diganti data asli sebelum deploy).
+- Component `work-experience-section.blade.php`: section publik untuk pengalaman kerja & magang yang tersembunyi secara graceful jika belum ada entri berstatus published, terintegrasi pada `welcome.blade.php`.
+- `WorkExperienceController`: Resource Controller CRUD backend untuk data pengalaman kerja/magang (`index`, `store`, `show`, `update`, `destroy`) dan registrasi route resource `work-experience` di `routes/web.php`.
+- Form Requests `StoreWorkExperienceRequest` & `UpdateWorkExperienceRequest`: validasi `employment_type` (`in:internship,full_time,part_time,freelance`), `status` (`in:published,draft`), `start_date`, dan conditional validation untuk `end_date` (required jika `is_current` false).
+- Model `WorkExperience`: fillables, casts, constants (`TYPE_INTERNSHIP/FULL_TIME/PART_TIME/FREELANCE`, `STATUS_PUBLISHED/DRAFT`), scopes (`scopePublished`, `scopeCurrent`, `scopeChronological`), dan accessors (`duration_label`, `employment_type_badge_classes`, `employment_type_label`).
+- Migration `create_work_experiences_table`: membuat tabel `work_experiences` dengan kolom `company_name`, `position`, `employment_type` (default `internship`), `start_date`, `end_date`, `is_current`, `description`, `location`, `display_order`, dan `status` (default `draft`).
+- Asset placeholder SVG logo issuer (`laracasts.svg`, `udemy.svg`, `bnsp.svg`, `default.svg`) di `public/images/issuer-logos/` sebagai aset dummy sementara.
+- Model `JourneyEntry`: tambah accessor `getIssuerLogoAttribute()` untuk me-mapping nama `source` ke path asset logo SVG di `public/images/issuer-logos/` dengan fallback ke `default.svg`.
+- Favicon `public/images/logo-web.svg` diterapkan ke semua layout (`welcome.blade.php`, `layouts/app.blade.php`, `layouts/guest.blade.php`, `errors/layout.blade.php`) via `<link rel="icon" type="image/svg+xml">`.
+- Migration `add_credential_fields_to_journey_entries_table`: menambahkan kolom `credential_type` (default `course`), `certificate_file_path`, dan `verification_url`, serta mengubah kolom narasi `learned` dan `result` menjadi nullable.
+- Model `JourneyEntry`: tambah `credential_type`, `certificate_file_path`, dan `verification_url` ke `$fillable`, constants `TYPE_COURSE/CERTIFICATION/DIPLOMA`, accessor `has_narrative`, dan query scopes `scopeCourses()`, `scopeCertifications()`, `scopeDiplomas()`.
+- `JourneyEntryRequest`: tambah validasi `credential_type` (`in:course,certification,diploma`), jadikan `learned`, `result`, `applied_project_id` nullable, validasi format gambar/pdf `certificate_file_path`, dan format URL `verification_url`.
 - Migration `add_status_to_tech_stack_items_table`: menambahkan kolom `status` (constrained string, default `not_started`, nilai valid: `not_started`/`in_progress`/`finished`) ke tabel `tech_stack_items`.
 - Model `TechStackItem`: tambah `status` ke `$fillable`, constants `STATUS_FINISHED/IN_PROGRESS/NOT_STARTED`, accessor `getStatusColorClassAttribute()` (mapping ke Tailwind class emerald/amber/rose-400), dan scopes `scopeFinished()`, `scopeInProgress()`, `scopeNotStarted()`.
 - Model `TechStackItem`: tambah accessor `getStatusBadgeClassesAttribute()` — mengembalikan array `['text', 'bg', 'border']` berisi Tailwind class badge pill per status (emerald/amber/rose-400, opacity-10/20 untuk bg dan border).
 - `TechStackItemRequest`: tambah validasi `status` (`required`, `in:not_started,in_progress,finished`) — validasi di Form Request, bukan di level database, sesuai konvensi project.
 
+### Fixed
+- fix: seragamkan ukuran logo issuer di card Journey (`w-8 h-8`, `shrink-0`, `object-contain`, `rounded-md`) agar konsisten untuk semua tipe card dan resolusi gambar.
+
 ### Changed
+- `journey-section.blade.php`: menyederhanakan tampilan card untuk semua tipe kredensial (termasuk `course`) menjadi format ringkas 3-kolom grid (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`) sejajar (badge tipe, judul kredensial, issuer/source, tanggal, tombol dokumen/verifikasi) dan menghapus rendering blok narasi 3-kolom (Learned/Applied/Result) dari UI agar lebih cepat di-scan recruiter (perubahan visual saja, kolom data `learned`, `applied_project_id`, dan `result` tetap tersimpan aman di database).
+- `JourneyEntrySeeder.php` & `JourneyEntryFactory.php`: diperbarui untuk menyertakan `credential_type`, `certificate_file_path`, dan `verification_url` serta contoh data riwayat sertifikasi resmi (BNSP).
 - `tech-stack.blade.php`: badge pill kini fully dynamic — background, border, warna icon SVG, dan warna teks label semuanya dari `$item->status_badge_classes` (emerald=finished, amber=in_progress, rose=not_started). Radius, padding, dan spacing badge tidak berubah. Fallback aman ke rose array saat data dari placeholder.
 - Factories dan Seeders untuk Project, TechStackItem, JourneyEntry, dan LearningLogEntry serta konfigurasi DatabaseSeeder.
 - Resource Controllers, Form Requests, dan Resource Routes untuk CRUD backend (Project, TechStackItem, JourneyEntry, LearningLogEntry).
