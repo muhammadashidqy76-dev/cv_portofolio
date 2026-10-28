@@ -142,6 +142,7 @@
                                         : asset('images/issuer-logos/' . match(strtolower(trim($entry->source ?? ''))) {
                                             'laracasts' => 'laracasts.svg',
                                             'udemy' => 'udemy.svg',
+                                            'dicoding' => 'dicoding.png',
                                             'bnsp', 'badan nasional sertifikasi profesi (bnsp)', 'badan nasional sertifikasi profesi' => 'bnsp.svg',
                                             default => 'default.svg'
                                         });
