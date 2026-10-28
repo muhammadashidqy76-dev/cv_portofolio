@@ -33,29 +33,40 @@
         }
     }
 
-    $desiredOrder = ['Backend', 'Database', 'Frontend', 'Tools'];
+    $preferredOrder = ['Tools', 'Database', 'Backend', 'Frontend'];
+    $allCategories = $itemsGrouped->keys()->toArray();
+    $desiredOrder = array_values(array_unique(array_merge(
+        array_intersect($preferredOrder, $allCategories),
+        $allCategories
+    )));
+
+    $categoryDisplayNames = [
+        'Tools' => 'Cloud, DevOps & Tools',
+        'Database' => 'Database & In-Memory Cache',
+        'Backend' => 'Scripting & Application Runtime',
+        'Frontend' => 'Frontend & Templating',
+    ];
 
     $categoryMeta = [
-        'Backend' => [
-            'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>',
-            'color' => 'text-rose-400',
+        'Tools' => [
+            'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>',
+            'color' => 'text-cyan-400',
         ],
         'Database' => [
             'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>',
             'color' => 'text-emerald-400',
         ],
+        'Backend' => [
+            'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>',
+            'color' => 'text-amber-400',
+        ],
         'Frontend' => [
             'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>',
-            'color' => 'text-sky-400',
-        ],
-        'Tools' => [
-            'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>',
-            'color' => 'text-amber-400',
+            'color' => 'text-sky-300',
         ],
     ];
 
     // Hanya path SVG (tanpa warna) — warna icon & badge ditentukan di titik render
-    // dari $item->status_badge_classes (Eloquent) atau fallback array rose (placeholder).
     $techIconPaths = [
         'Laravel'          => '<path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>',
         'PHP'              => '<path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h10M7 16h10"/>',
@@ -72,32 +83,69 @@
         'Docker'           => '<path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>',
     ];
 
+    // Hitung total not_started di seluruh item
+    $totalNotStarted = 0;
+    foreach ($itemsGrouped as $group) {
+        foreach ($group as $it) {
+            $st = is_array($it) ? ($it['status'] ?? 'finished') : ($it->status ?? 'finished');
+            if ($st === 'not_started' || $st === \App\Models\TechStackItem::STATUS_NOT_STARTED) {
+                $totalNotStarted++;
+            }
+        }
+    }
+
     // Fallback path untuk tech yang belum punya icon spesifik
     $fallbackIconPath = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>';
 @endphp
 
-<section id="tech-stack" class="relative bg-[#0b0f19] text-slate-100 py-20 lg:py-28 overflow-hidden border-t border-slate-800/60">
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-red-600/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
-    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/3"></div>
-
+<section id="tech-stack" 
+         x-data="{ showNotStarted: false }"
+         class="relative bg-carbon-950/60 text-slate-100 py-20 lg:py-28 overflow-hidden border-b border-carbon-800/80">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <!-- ─── Section Header (Exact Match to Section 2) ─── -->
-        <div class="mb-12 max-w-2xl">
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-red-400 mb-3">
-                <span class="w-4 h-px bg-red-400/80 rounded"></span>
-                Tech Stack &amp; Tools
-            </span>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight tracking-tight">
-                Teknologi &amp; Tools Ekosistem
-            </h2>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">
-                Dikelompokkan secara terstruktur untuk gambaran arsitektur backend, database, frontend, dan workflow kerja.
-            </p>
+        <!-- ─── Section Header ─── -->
+        <div class="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div class="max-w-2xl">
+                <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-cyan-400 mb-3">
+                    <span class="w-3.5 h-px bg-cyan-500 rounded"></span>
+                    // {{ __('tech.tag') }}
+                </span>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
+                    {{ __('tech.title') }}
+                </h2>
+                <p class="mt-3 text-slate-400 text-sm leading-relaxed font-normal">
+                    {{ __('tech.subtitle') }}
+                </p>
+            </div>
+
+            @if($totalNotStarted > 0)
+                <!-- ─── Toggle Filter Button (Alpine.js) ─── -->
+                <div class="shrink-0">
+                    <button 
+                        @click="showNotStarted = !showNotStarted"
+                        type="button"
+                        class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg border text-xs font-mono transition-all duration-200 cursor-pointer select-none"
+                        :class="showNotStarted 
+                            ? 'bg-rose-500/10 border-rose-500/40 text-rose-300 hover:bg-rose-500/20 shadow-sm shadow-rose-950/50' 
+                            : 'bg-carbon-900 border-carbon-800 text-slate-400 hover:text-slate-200 hover:border-carbon-700'"
+                    >
+                        <span class="relative flex h-2 w-2">
+                            <span x-show="showNotStarted" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2" :class="showNotStarted ? 'bg-rose-400' : 'bg-slate-500'"></span>
+                        </span>
+                        <span x-show="!showNotStarted">
+                            {{ __('tech.toggle_show_roadmap', ['count' => $totalNotStarted]) }}
+                        </span>
+                        <span x-show="showNotStarted" x-cloak>
+                            {{ __('tech.toggle_hide_roadmap', ['count' => $totalNotStarted]) }}
+                        </span>
+                    </button>
+                </div>
+            @endif
         </div>
 
         <!-- ─── Cards Grid ─── -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             @foreach($desiredOrder as $cat)
                 @if(isset($itemsGrouped[$cat]) && count($itemsGrouped[$cat]) > 0)
                     @php
@@ -105,10 +153,18 @@
                             'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
                             'color' => 'text-slate-400',
                         ];
-                        $count = count($itemsGrouped[$cat]);
+                        $totalCatCount = count($itemsGrouped[$cat]);
+                        $activeCatCount = 0;
+                        foreach ($itemsGrouped[$cat] as $it) {
+                            $st = is_array($it) ? ($it['status'] ?? 'finished') : ($it->status ?? 'finished');
+                            if ($st !== 'not_started' && $st !== \App\Models\TechStackItem::STATUS_NOT_STARTED) {
+                                $activeCatCount++;
+                            }
+                        }
+                        $notStartedCatCount = $totalCatCount - $activeCatCount;
                     @endphp
 
-                    <div class="flex flex-col p-6 rounded-xl bg-[#0f1422]/90 border border-slate-800/80 hover:border-slate-700/80 transition-all duration-200 justify-between">
+                    <div class="flex flex-col p-6 rounded-xl bg-carbon-900 border border-carbon-800 hover:border-carbon-700/80 transition-all duration-200 justify-between h-full">
                         
                         <!-- Card Top Bar: Icon + Title on left, Badge on right -->
                         <div class="flex items-center justify-between mb-6">
@@ -117,31 +173,54 @@
                                     {!! $meta['icon'] !!}
                                 </svg>
                                 <h3 class="text-base font-bold text-white tracking-tight">
-                                    {{ $cat }}
+                                    {{ $categoryDisplayNames[$cat] ?? $cat }}
                                 </h3>
                             </div>
 
-                            <span class="font-mono text-xs text-rose-300/80 bg-slate-800/60 border border-slate-700/50 px-2.5 py-1 rounded-md">
-                                {{ $count }} {{ $count > 1 ? 'technologies' : 'technology' }}
+                            <span class="font-mono text-xs text-vermilion-400 bg-carbon-950 border border-carbon-800 px-2.5 py-1 rounded-md">
+                                @if($notStartedCatCount > 0)
+                                    <span x-text="showNotStarted ? '{{ $totalCatCount }}' : '{{ $activeCatCount }}'">{{ $activeCatCount }}</span> {{ $totalCatCount > 1 ? __('tech.technologies') : __('tech.technology') }}
+                                @else
+                                    {{ $totalCatCount }} {{ $totalCatCount > 1 ? __('tech.technologies') : __('tech.technology') }}
+                                @endif
                             </span>
                         </div>
 
                         <!-- Card Bottom: Tech Pills Horizontal Grid -->
-                        <div class="flex flex-wrap gap-2.5">
+                        <div class="flex flex-wrap gap-2.5 font-mono">
+                            @if($activeCatCount === 0 && $notStartedCatCount > 0)
+                                <div x-show="!showNotStarted" class="text-xs font-mono text-slate-500 py-1.5 flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-slate-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="text-[11px] leading-relaxed">{{ __('tech.roadmap_empty_state') }}</span>
+                                </div>
+                            @endif
+
                             @foreach($itemsGrouped[$cat] as $item)
                                 @php
                                     $name = is_array($item) ? $item['name'] : $item->name;
+                                    $status = is_array($item) ? ($item['status'] ?? 'finished') : ($item->status ?? 'finished');
+                                    $isNotStarted = ($status === 'not_started' || $status === \App\Models\TechStackItem::STATUS_NOT_STARTED);
 
-                                    // Badge classes: text + bg + border dinamis dari status.
-                                    // Fallback ke rose jika data berasal dari array placeholder
-                                    // (DB kosong) yang tidak punya accessor Eloquent.
                                     $badgeClasses = ($item instanceof \App\Models\TechStackItem)
                                         ? $item->status_badge_classes
-                                        : ['text' => 'text-rose-400', 'bg' => 'bg-rose-400/10', 'border' => 'border-rose-400/20'];
+                                        : ['text' => 'text-vermilion-400', 'bg' => 'bg-carbon-950', 'border' => 'border-carbon-800'];
 
                                     $iconPath = $techIconPaths[$name] ?? $fallbackIconPath;
                                 @endphp
-                                <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg {{ $badgeClasses['bg'] }} border {{ $badgeClasses['border'] }} text-xs font-mono font-medium transition-colors">
+                                <div 
+                                    @if($isNotStarted)
+                                        x-show="showNotStarted"
+                                        x-cloak
+                                        x-transition:enter="transition ease-out duration-200"
+                                        x-transition:enter-start="opacity-0 scale-95"
+                                        x-transition:enter-end="opacity-100 scale-100"
+                                        x-transition:leave="transition ease-in duration-150"
+                                        x-transition:leave-start="opacity-100 scale-100"
+                                        x-transition:leave-end="opacity-0 scale-95"
+                                    @endif
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg {{ $badgeClasses['bg'] }} border {{ $badgeClasses['border'] }} text-xs font-medium transition-colors">
                                     <span class="shrink-0">
                                         <svg class="w-3.5 h-3.5 {{ $badgeClasses['text'] }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                             {!! $iconPath !!}

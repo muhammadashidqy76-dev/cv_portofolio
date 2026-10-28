@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JourneyEntryController;
 use App\Http\Controllers\LearningLogEntryController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TechStackItemController;
@@ -23,9 +25,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// ─── Public Reading Pages ─────────────────────────────────────────────────────
+Route::get('/notes', [NoteController::class, 'index'])->name('notes.index');
+Route::get('/notes/{entry:slug}', [NoteController::class, 'show'])->name('notes.show');
+
+/*
+ * Language / Locale Switcher
+ * GET /lang/{locale} — menyimpan pilihan bahasa ke session & redirect kembali.
+ */
+Route::get('/lang/{locale}', function (string $locale) {
+    $supported = ['id', 'en'];
+    if (in_array($locale, $supported)) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back()->withHeaders([
+        'Cache-Control' => 'no-store',
+    ]);
+})->name('lang.switch')->where('locale', 'id|en');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

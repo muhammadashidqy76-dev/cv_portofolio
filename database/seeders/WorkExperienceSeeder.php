@@ -18,19 +18,17 @@ class WorkExperienceSeeder extends Seeder
      */
     public function run(): void
     {
-        WorkExperience::updateOrCreate(
-            // Key: seeder dapat di-run ulang tanpa insert duplikat
-            ['company_name' => 'PT Contoh Teknologi Indonesia', 'position' => 'Backend Developer Intern'],
-            [
-                'employment_type' => WorkExperience::TYPE_INTERNSHIP,
-                'start_date' => '2026-08-01',
-                'end_date' => null,
-                'is_current' => true,
-                'description' => 'Membantu pengembangan fitur backend menggunakan Laravel, termasuk optimasi query database dan implementasi RESTful API untuk kebutuhan internal perusahaan.',
-                'location' => 'Remote',
-                'display_order' => 1,
-                'status' => WorkExperience::STATUS_PUBLISHED,
-            ]
-        );
+        WorkExperience::create([
+            'company_name' => 'PT Contoh Teknologi Indonesia',
+            'position' => 'Backend Developer Intern',
+            'employment_type' => WorkExperience::TYPE_INTERNSHIP,
+            'start_date' => '2026-08-01',
+            'end_date' => null,
+            'is_current' => true,
+            'description' => 'Membantu pengembangan fitur backend menggunakan Laravel, termasuk optimasi query database dan implementasi RESTful API untuk kebutuhan internal perusahaan.',
+            'location' => 'Remote',
+            'display_order' => 1,
+            'status' => WorkExperience::STATUS_PUBLISHED,
+        ]);
     }
 }

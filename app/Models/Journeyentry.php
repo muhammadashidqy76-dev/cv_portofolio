@@ -37,7 +37,21 @@ class JourneyEntry extends Model
     protected $appends = [
         'has_narrative',
         'issuer_logo',
+        'certificate_url',
     ];
+
+    public function getCertificateUrlAttribute(): ?string
+    {
+        if (empty($this->certificate_file_path)) {
+            return null;
+        }
+
+        if (str_starts_with($this->certificate_file_path, 'http://') || str_starts_with($this->certificate_file_path, 'https://')) {
+            return $this->certificate_file_path;
+        }
+
+        return asset($this->certificate_file_path);
+    }
 
     public function appliedProject(): BelongsTo
     {

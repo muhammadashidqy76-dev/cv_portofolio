@@ -1,18 +1,41 @@
 <x-layout title="503 Service Unavailable">
-    <div class="error-code">503</div>
-    <h1 class="error-title">Under Maintenance</h1>
-    <p class="error-desc">The site is temporarily offline for scheduled maintenance. We'll be back shortly — thank you for your patience.</p>
-
-    <div class="code-hint">
-        <div><span class="prompt">$</span><span class="output">php artisan down --status=503</span></div>
-        <div style="margin-top:6px"><span class="output">  <span style="color:#fb923c">INFO</span>   Application is now in maintenance mode</span></div>
-        <div style="margin-top:4px"><span class="output">  Retry-After: <span class="accent">soon™</span></span></div>
+    <!-- Error Status Code Pill / Block -->
+    <div class="inline-flex items-center justify-center font-mono text-5xl sm:text-6xl font-black tracking-tight text-white mb-3">
+        <span class="text-sky-400">5</span>0<span class="text-sky-400">3</span>
     </div>
 
-    <a href="{{ url('/') }}" class="btn-home">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-        </svg>
-        Back to Home
-    </a>
+    <h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight mb-2">
+        Scheduled Maintenance
+    </h1>
+    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm mb-6">
+        The application is currently undergoing scheduled infrastructure updates or maintenance. Service will resume momentarily.
+    </p>
+
+    <!-- Terminal-style Telemetry Inspection Block -->
+    <div class="w-full rounded-lg bg-carbon-950 border border-carbon-800 p-3.5 sm:p-4 font-mono text-xs text-left mb-6 space-y-1.5 overflow-x-auto select-all">
+        <div class="flex items-center gap-2 text-slate-400">
+            <span class="text-sky-400 font-bold select-none">$</span>
+            <span>php artisan down --status=503</span>
+        </div>
+        <div class="flex items-center gap-2 text-slate-300">
+            <span class="text-sky-400 bg-sky-500/10 border border-sky-500/20 px-1.5 py-0.2 rounded text-[10px] font-bold">INFO</span>
+            <span>Maintenance mode active &bull; Retry-After: <span class="text-sky-300">soon</span></span>
+        </div>
+        <div class="text-slate-500 text-[11px] pl-6">
+            Database schema & deployment routines in progress.
+        </div>
+    </div>
+
+    <!-- Actions Group -->
+    <div class="flex items-center gap-3 flex-wrap justify-center font-mono">
+        <button onclick="window.location.reload()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-vermilion-500 hover:bg-vermilion-600 text-white text-xs font-semibold transition-all duration-200 shadow-lg shadow-vermilion-500/20 hover:-translate-y-0.5 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span>Check Status</span>
+        </button>
+        <a href="{{ url('/') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-carbon-950 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-all duration-200">
+            <span>Return Home</span>
+        </a>
+    </div>
 </x-layout>

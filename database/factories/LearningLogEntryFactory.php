@@ -22,10 +22,28 @@ class LearningLogEntryFactory extends Factory
                 LearningLogEntry::TAG_EXPLORING,
                 LearningLogEntry::TAG_PRODUCTION_READY,
             ]),
+            'category' => $this->faker->randomElement([
+                LearningLogEntry::CATEGORY_LARAVEL,
+                LearningLogEntry::CATEGORY_CLOUD,
+            ]),
             'related_project_id' => Project::factory(),
             'published_at' => $this->faker->date(),
             'status' => 'published',
         ];
+    }
+
+    public function laravel(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'category' => LearningLogEntry::CATEGORY_LARAVEL,
+        ]);
+    }
+
+    public function cloud(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'category' => LearningLogEntry::CATEGORY_CLOUD,
+        ]);
     }
 
     public function exploring(): static
