@@ -12,7 +12,7 @@
     "hero.connect": "Connect:",
     "hero.subtitle": "Fokus membangun backend Laravel yang scalable dan maintainable — dari query optimization sampai queue processing.",
     "hero.badge_title": "Klik untuk melihat bio & profil lengkap",
-    "hero.bio_arrow": "Bio →",
+    "hero.bio_arrow": "Bio",
 
     "bio.close": "Tutup modal bio",
     "bio.open_to_work": "Open to Work",
