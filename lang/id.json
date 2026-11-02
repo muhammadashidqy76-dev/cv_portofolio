@@ -60,6 +60,7 @@
     "tech.tag": "Tech Stack & Tools",
     "tech.title": "Teknologi & Tools Ekosistem",
     "tech.subtitle": "Dikelompokkan secara terstruktur untuk gambaran arsitektur backend, database, frontend, dan workflow kerja.",
+    "tech.view_roadmap": "Lihat Roadmap Lengkap",
     "tech.status.finished": "Finished",
     "tech.status.in_progress": "In Progress",
     "tech.status.not_started": "Not Started",

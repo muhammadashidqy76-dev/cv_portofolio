@@ -6,6 +6,7 @@ use App\Http\Controllers\LearningLogEntryController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RoadmapController;
 use App\Http\Controllers\TechStackItemController;
 use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::get('/', function () {
 });
 
 // ─── Public Reading Pages ─────────────────────────────────────────────────────
+Route::get('/roadmap', [RoadmapController::class, 'index'])->name('roadmap.index');
 Route::get('/notes', [NoteController::class, 'index'])->name('notes.index');
 Route::get('/notes/{entry:slug}', [NoteController::class, 'show'])->name('notes.show');
 

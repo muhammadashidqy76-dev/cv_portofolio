@@ -32,6 +32,14 @@ class TechStackItem extends Model
     }
 
     /**
+     * Accessor slug untuk tautan URL roadmap / filter.
+     */
+    public function getSlugAttribute(): string
+    {
+        return \Illuminate\Support\Str::slug($this->name);
+    }
+
+    /**
      * Mapping status ke Tailwind text-color class untuk warna icon SVG di komponen.
      * 'finished'    -> 'text-emerald-400'
      * 'in_progress' -> 'text-amber-400'

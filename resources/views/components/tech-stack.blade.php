@@ -4,36 +4,38 @@
     $itemsGrouped = $techStack;
 
     if (!$itemsGrouped) {
-        $all = \App\Models\TechStackItem::orderBy('display_order')->get();
+        $all = \App\Models\TechStackItem::finished()->orderBy('display_order')->get();
         if ($all->isNotEmpty()) {
             $itemsGrouped = $all->groupBy('category');
         } else {
-            $itemsGrouped = collect([
-                'Backend' => [
-                    ['name' => 'Laravel'],
-                    ['name' => 'PHP'],
-                    ['name' => 'RESTful API'],
-                ],
-                'Database' => [
-                    ['name' => 'MySQL'],
-                    ['name' => 'Redis'],
-                ],
-                'Frontend' => [
-                    ['name' => 'Blade Templating'],
-                    ['name' => 'Tailwind CSS'],
-                    ['name' => 'Alpine.js'],
-                ],
-                'Tools' => [
-                    ['name' => 'Git & GitHub'],
-                    ['name' => 'Composer'],
-                    ['name' => 'Postman'],
-                    ['name' => 'Docker'],
-                ],
-            ]);
+            $itemsGrouped = collect([]);
+        }
+    } else {
+        // Jika data di-pass manual, filter khusus status 'finished'
+        if ($itemsGrouped instanceof \Illuminate\Support\Collection) {
+            $itemsGrouped = $itemsGrouped->map(function ($items) {
+                return collect($items)->filter(function ($item) {
+                    if ($item instanceof \App\Models\TechStackItem) {
+                        return $item->status === \App\Models\TechStackItem::STATUS_FINISHED;
+                    }
+                    if (is_array($item)) {
+                        return ($item['status'] ?? null) === \App\Models\TechStackItem::STATUS_FINISHED;
+                    }
+                    return false;
+                });
+            })->filter(fn ($items) => count($items) > 0);
         }
     }
 
     $desiredOrder = ['Backend', 'Database', 'Frontend', 'Tools'];
+    $otherCategories = collect(array_keys($itemsGrouped ? $itemsGrouped->toArray() : []))
+        ->diff($desiredOrder)
+        ->values()
+        ->all();
+    $categoriesToDisplay = array_merge(
+        array_filter($desiredOrder, fn($cat) => isset($itemsGrouped[$cat]) && count($itemsGrouped[$cat]) > 0),
+        $otherCategories
+    );
 
     $categoryMeta = [
         'Backend' => [
@@ -79,76 +81,122 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <!-- ─── Section Header ─── -->
-        <div class="mb-12 max-w-2xl">
-            <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
-                <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
-                // {{ __('tech.tag') }}
-            </span>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
-                {{ __('tech.title') }}
-            </h2>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed font-normal">
-                {{ __('tech.subtitle') }}
-            </p>
+        <div class="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div class="max-w-2xl">
+                <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
+                    <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
+                    {{ __('tech.tag') }}
+                </span>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
+                    {{ __('tech.title') }}
+                </h2>
+                <p class="mt-3 text-slate-400 text-sm leading-relaxed font-normal">
+                    {{ __('tech.subtitle') }}
+                </p>
+            </div>
+
+            <div class="self-start sm:self-auto shrink-0">
+                <a href="{{ route('roadmap.index') }}" 
+                   class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-carbon-900 border border-carbon-800 hover:border-vermilion-500/50 hover:bg-carbon-850 text-slate-300 hover:text-white font-mono text-xs transition-all duration-200 group shadow-sm">
+                    <span>{{ __('tech.view_roadmap') }}</span>
+                    <svg class="w-3.5 h-3.5 text-vermilion-400 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </a>
+            </div>
         </div>
 
         <!-- ─── Cards Grid ─── -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-            @foreach($desiredOrder as $cat)
-                @if(isset($itemsGrouped[$cat]) && count($itemsGrouped[$cat]) > 0)
-                    @php
-                        $meta = $categoryMeta[$cat] ?? [
-                            'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
-                            'color' => 'text-slate-400',
-                        ];
-                        $count = count($itemsGrouped[$cat]);
-                    @endphp
+        @if(count($categoriesToDisplay) > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                @foreach($categoriesToDisplay as $cat)
+                    @if(isset($itemsGrouped[$cat]) && count($itemsGrouped[$cat]) > 0)
+                        @php
+                            $meta = $categoryMeta[$cat] ?? [
+                                'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                                'color' => 'text-slate-400',
+                            ];
+                            $count = count($itemsGrouped[$cat]);
+                        @endphp
 
-                    <div class="flex flex-col p-6 rounded-xl bg-carbon-900 border border-carbon-800 hover:border-carbon-700/80 transition-all duration-200 justify-between h-full">
-                        
-                        <!-- Card Top Bar: Icon + Title on left, Badge on right -->
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="flex items-center gap-2.5">
-                                <svg class="w-5 h-5 {{ $meta['color'] }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    {!! $meta['icon'] !!}
-                                </svg>
-                                <h3 class="text-base font-bold text-white tracking-tight">
-                                    {{ $cat }}
-                                </h3>
+                        <div class="flex flex-col p-6 rounded-xl bg-carbon-900 border border-carbon-800 hover:border-carbon-700/80 transition-all duration-200 justify-between h-full">
+                            
+                            <!-- Card Top Bar: Icon + Title on left, Badge on right -->
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-2.5">
+                                    <svg class="w-5 h-5 {{ $meta['color'] }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        {!! $meta['icon'] !!}
+                                    </svg>
+                                    <h3 class="text-base font-bold text-white tracking-tight">
+                                        {{ $cat }}
+                                    </h3>
+                                </div>
+
+                                <span class="font-mono text-xs text-vermilion-400 bg-carbon-950 border border-carbon-800 px-2.5 py-1 rounded-md">
+                                    {{ $count }} {{ $count > 1 ? __('tech.technologies') : __('tech.technology') }}
+                                </span>
                             </div>
 
-                            <span class="font-mono text-xs text-vermilion-400 bg-carbon-950 border border-carbon-800 px-2.5 py-1 rounded-md">
-                                {{ $count }} {{ $count > 1 ? __('tech.technologies') : __('tech.technology') }}
-                            </span>
-                        </div>
+                            <!-- Card Bottom: Tech Pills Horizontal Grid -->
+                            <div class="flex flex-wrap gap-2.5 font-mono">
+                                @foreach($itemsGrouped[$cat] as $item)
+                                    @php
+                                        $name = is_array($item) ? $item['name'] : $item->name;
 
-                        <!-- Card Bottom: Tech Pills Horizontal Grid -->
-                        <div class="flex flex-wrap gap-2.5 font-mono">
-                            @foreach($itemsGrouped[$cat] as $item)
-                                @php
-                                    $name = is_array($item) ? $item['name'] : $item->name;
+                                        $badgeClasses = ($item instanceof \App\Models\TechStackItem)
+                                            ? $item->status_badge_classes
+                                            : ['text' => 'text-emerald-400', 'bg' => 'bg-emerald-400/10', 'border' => 'border-emerald-400/20'];
 
-                                    $badgeClasses = ($item instanceof \App\Models\TechStackItem)
-                                        ? $item->status_badge_classes
-                                        : ['text' => 'text-vermilion-400', 'bg' => 'bg-carbon-950', 'border' => 'border-carbon-800'];
-
-                                    $iconPath = $techIconPaths[$name] ?? $fallbackIconPath;
-                                @endphp
-                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg {{ $badgeClasses['bg'] }} border {{ $badgeClasses['border'] }} text-xs font-medium transition-colors">
-                                    <span class="shrink-0">
-                                        <svg class="w-3.5 h-3.5 {{ $badgeClasses['text'] }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                                            {!! $iconPath !!}
+                                        $iconPath = $techIconPaths[$name] ?? $fallbackIconPath;
+                                        $techSlug = \Illuminate\Support\Str::slug($name);
+                                    @endphp
+                                    <a href="{{ route('roadmap.index', ['tech' => $techSlug]) }}#tech-{{ $techSlug }}"
+                                       title="Buka roadmap spesialisasi {{ $name }}"
+                                       class="group/pill inline-flex items-center gap-2 px-3 py-1.5 rounded-lg {{ $badgeClasses['bg'] }} border {{ $badgeClasses['border'] }} hover:border-emerald-400/60 hover:bg-emerald-400/20 hover:shadow-md hover:shadow-emerald-500/10 text-xs font-medium transition-all duration-150 cursor-pointer">
+                                        <span class="shrink-0 transition-transform duration-150 group-hover/pill:scale-110">
+                                            <svg class="w-3.5 h-3.5 {{ $badgeClasses['text'] }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                                {!! $iconPath !!}
+                                            </svg>
+                                        </span>
+                                        <span class="{{ $badgeClasses['text'] }}">{{ $name }}</span>
+                                        <svg class="w-3 h-3 text-emerald-400/40 group-hover/pill:text-emerald-400 group-hover/pill:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                         </svg>
-                                    </span>
-                                    <span class="{{ $badgeClasses['text'] }}">{{ $name }}</span>
-                                </div>
-                            @endforeach
-                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
 
-                    </div>
-                @endif
-            @endforeach
-        </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+
+            <!-- Footer indicator bar -->
+            <div class="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-carbon-900/60 border border-carbon-800 text-xs font-mono text-slate-400">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Menampilkan teknologi terverifikasi dengan status <strong class="text-emerald-400 font-semibold">Finished</strong>.</span>
+                </div>
+                <a href="{{ route('roadmap.index') }}" class="text-vermilion-400 hover:text-vermilion-300 transition-colors inline-flex items-center gap-1.5 self-start sm:self-auto">
+                    <span>Eksplorasi roadmap & status lainnya</span>
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </a>
+            </div>
+        @else
+            <div class="p-10 rounded-xl bg-carbon-900 border border-carbon-800 text-center space-y-3">
+                <div class="w-10 h-10 rounded-full bg-carbon-950 border border-carbon-800 mx-auto flex items-center justify-center text-slate-500">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <p class="font-mono text-xs text-slate-300">Belum ada teknologi dengan status <span class="text-emerald-400 font-semibold">Finished</span>.</p>
+                <a href="{{ route('roadmap.index') }}" class="inline-flex items-center gap-1.5 text-xs font-mono text-vermilion-400 hover:underline">
+                    <span>Lihat rencana roadmap & skill yang sedang dipelajari &rarr;</span>
+                </a>
+            </div>
+        @endif
 
     </div>
 </section>

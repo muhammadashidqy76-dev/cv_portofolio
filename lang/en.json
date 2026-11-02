@@ -60,6 +60,7 @@
     "tech.tag": "Tech Stack & Tools",
     "tech.title": "Technologies & Ecosystem Tools",
     "tech.subtitle": "Structured by categories for a clear overview of backend architecture, database, frontend, and workflow.",
+    "tech.view_roadmap": "View Complete Roadmap",
     "tech.status.finished": "Finished",
     "tech.status.in_progress": "In Progress",
     "tech.status.not_started": "Not Started",
