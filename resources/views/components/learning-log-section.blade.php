@@ -56,7 +56,7 @@
         <div class="mb-10 lg:mb-14 max-w-2xl">
             <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
                 <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
-                // {{ __('log.tag') }}
+                {{ __('log.tag') }}
             </span>
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
                 {{ __('log.title') }}
@@ -105,7 +105,7 @@
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
-                                <span class="font-mono text-[10px] uppercase font-bold text-vermilion-400 tracking-wider">// TRACK 01</span>
+                                <span class="font-mono text-[10px] uppercase font-bold text-vermilion-400 tracking-wider">TOPIK</span>
                             </div>
                             <h3 class="text-sm font-bold text-white tracking-tight">
                                 {{ __('log.track_laravel_title') }}
@@ -221,7 +221,7 @@
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
-                                <span class="font-mono text-[10px] uppercase font-bold text-cyan-400 tracking-wider">// TRACK 02</span>
+                                <span class="font-mono text-[10px] uppercase font-bold text-cyan-400 tracking-wider">TOPIK</span>
                             </div>
                             <h3 class="text-sm font-bold text-white tracking-tight">
                                 {{ __('log.track_cloud_title') }}

@@ -67,7 +67,7 @@
     "tech.technologies": "technologies",
     "tech.technology": "technology",
 
-    "journey.tag": "Learning Journey & Credentials",
+    "journey.tag": "Learning Journey",
     "journey.title": "Technical Skills & Certifications",
     "journey.subtitle": "Validate expertise through structured training, official professional certification, and application in real-world projects.",
     "journey.show": "Show Journey",
@@ -88,7 +88,7 @@
     "journey.doc": "Document",
     "journey.verify": "Verify",
 
-    "log.tag": "Learning Log & Technical Handbook",
+    "log.tag": "Learning Log",
     "log.title": "Exploration Notes & Technical Handbook",
     "log.subtitle": "A collection of architectural deep dives and technical notes written to test and deepen my understanding of backend and infrastructure.",
     "log.show": "Show Learning Log",
@@ -104,7 +104,7 @@
     "log.read_note": "Read Note",
     "log.empty_track": "No public notes in this pillar yet.",
 
-    "experience.tag": "Work Experience & Internships",
+    "experience.tag": "Work",
     "experience.title": "Work Experience & Internships",
     "experience.subtitle": "Track record of technical contributions and professional experience in backend system development.",
     "experience.present": "Present",
@@ -113,9 +113,9 @@
     "footer.built_with": "Built with",
     "footer.rights": "All rights reserved.",
 
-    "stage.show_journey": "Show Learning Journey & Credentials",
-    "stage.show_log": "Next: Show Learning Log & Technical Notes",
-    "stage.close_all": "Collapse History & Technical Notes",
+    "stage.show_journey": "Show Learning Journey",
+    "stage.show_log": "Show Learning Log",
+    "stage.close_all": "Close All",
 
     "lang.switch_to_en": "EN",
     "lang.switch_to_id": "ID",

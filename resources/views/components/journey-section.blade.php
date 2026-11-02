@@ -68,7 +68,7 @@
         <div class="mb-12 max-w-2xl">
             <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
                 <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
-                // {{ __('journey.tag') }}
+                {{ __('journey.tag') }}
             </span>
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
                 {{ __('journey.title') }}

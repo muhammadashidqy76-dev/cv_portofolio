@@ -67,7 +67,7 @@
     "tech.technologies": "teknologi",
     "tech.technology": "teknologi",
 
-    "journey.tag": "Learning Journey & Credentials",
+    "journey.tag": "Learning Journey",
     "journey.title": "Kompetensi & Sertifikasi Teknis",
     "journey.subtitle": "Validasi keahlian melalui pelatihan terstruktur, sertifikasi profesi resmi, dan penerapan pada proyek nyata.",
     "journey.show": "Tampilkan Journey",
@@ -88,7 +88,7 @@
     "journey.doc": "Dokumen",
     "journey.verify": "Verifikasi",
 
-    "log.tag": "Learning Log & Technical Handbook",
+    "log.tag": "Learning Log",
     "log.title": "Catatan Eksplorasi & Handbook Teknis",
     "log.subtitle": "Kumpulan catatan bedah konsep dan eksplorasi teknis yang saya tulis untuk menguji dan memperdalam pemahaman di dunia backend dan infrastruktur.",
     "log.show": "Tampilkan Learning Log",
@@ -104,7 +104,7 @@
     "log.read_note": "Baca Catatan",
     "log.empty_track": "Belum ada catatan publik untuk pilar ini.",
 
-    "experience.tag": "Work Experience & Internships",
+    "experience.tag": "WORK",
     "experience.title": "Pengalaman Kerja & Magang",
     "experience.subtitle": "Rekam jejak kontribusi teknis dan pengalaman profesional dalam pengembangan sistem backend.",
     "experience.present": "Sekarang",
@@ -113,9 +113,9 @@
     "footer.built_with": "Built with",
     "footer.rights": "All rights reserved.",
 
-    "stage.show_journey": "Tampilkan Learning Journey & Credentials",
-    "stage.show_log": "Lanjut: Tampilkan Learning Log & Technical Notes",
-    "stage.close_all": "Tutup Riwayat & Catatan Teknis",
+    "stage.show_journey": "Tampilkan Learning Journey",
+    "stage.show_log": "Tampilkan Learning Log",
+    "stage.close_all": "Tutup Semua",
 
     "lang.switch_to_en": "EN",
     "lang.switch_to_id": "ID",
