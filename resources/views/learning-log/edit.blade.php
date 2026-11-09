@@ -37,49 +37,7 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <form method="POST" action="{{ route('learning-log.update', $learningLogEntry) }}" class="space-y-6"
-                  x-data="{
-                      title: {!! json_encode(old('title', $learningLogEntry->title)) !!},
-                      slug: {!! json_encode(old('slug', $learningLogEntry->slug)) !!},
-                      autoSlug: false,
-                      bodyText: {!! json_encode(old('body', $learningLogEntry->body ?? '')) !!},
-                      wordCount: 0,
-                      readingTime: '1 min read',
-                      init() {
-                          this.updateMetrics();
-                      },
-                      generateSlug() {
-                          if (this.autoSlug) {
-                              this.slug = this.title.toLowerCase()
-                                  .replace(/[^a-z0-9 -]/g, '')
-                                  .replace(/\s+/g, '-')
-                                  .replace(/-+/g, '-');
-                          }
-                      },
-                      updateMetrics() {
-                          const words = this.bodyText.trim() ? this.bodyText.trim().split(/\s+/).length : 0;
-                          this.wordCount = words;
-                          const mins = Math.max(1, Math.ceil(words / 180));
-                          this.readingTime = `${mins} min read`;
-                      },
-                      insertMarkdown(syntax, placeholder = '') {
-                          const textarea = this.$refs.bodyEditor;
-                          const start = textarea.selectionStart;
-                          const end = textarea.selectionEnd;
-                          const selected = textarea.value.substring(start, end) || placeholder;
-                          let replacement = '';
-                          if (syntax === 'h2') replacement = `\n## ${selected}\n`;
-                          else if (syntax === 'h3') replacement = `\n### ${selected}\n`;
-                          else if (syntax === 'bold') replacement = `**${selected}**`;
-                          else if (syntax === 'code') replacement = `\n\`\`\`php\n${selected}\n\`\`\`\n`;
-                          else if (syntax === 'list') replacement = `\n- ${selected}\n`;
-                          else if (syntax === 'quote') replacement = `\n> ${selected}\n`;
-                          
-                          textarea.setRangeText(replacement, start, end, 'end');
-                          this.bodyText = textarea.value;
-                          this.updateMetrics();
-                          textarea.focus();
-                      }
-                  }">
+                  x-data="learningLogEditData()">
                 @csrf
                 @method('PUT')
 
@@ -101,6 +59,7 @@
                                           type="text" 
                                           name="title" 
                                           x-model="title"
+                                          :value="old('title', $learningLogEntry->title)"
                                           @input="generateSlug()"
                                           required 
                                           placeholder="mis. Arsitektur Redis Caching &amp; Invalidation Pattern di Laravel" />
@@ -124,6 +83,7 @@
                                        type="text" 
                                        name="slug" 
                                        x-model="slug"
+                                       :value="old('slug', $learningLogEntry->slug)"
                                        @input="autoSlug = false"
                                        required
                                        placeholder="arsitektur-redis-caching-laravel" 
@@ -420,7 +380,7 @@
                                   @input="updateMetrics()"
                                   rows="18" 
                                   placeholder="# Judul Artikel&#10;&#10;Tuliskan penjelasan teknis Anda menggunakan format Markdown...&#10;&#10;## Mengapa Hal Ini Penting?&#10;&#10;Jelaskan konteks masalah dan solusinya...&#10;&#10;```php&#10;public function handle()&#10;{&#10;    // Kode implementasi&#10;}&#10;```"
-                                  class="w-full bg-carbon-950 border border-carbon-800 text-slate-100 text-xs font-mono rounded-lg focus:border-vermilion-500 focus:ring-1 focus:ring-vermilion-500/30 transition-colors shadow-sm block p-4 leading-relaxed font-mono resize-y"></textarea>
+                                  class="w-full bg-carbon-950 border border-carbon-800 text-slate-100 text-xs font-mono rounded-lg focus:border-vermilion-500 focus:ring-1 focus:ring-vermilion-500/30 transition-colors shadow-sm block p-4 leading-relaxed font-mono resize-y">{{ old('body', $learningLogEntry->body) }}</textarea>
                         <x-input-error :messages="$errors->get('body')" />
                     </div>
                 </div>
@@ -440,4 +400,54 @@
 
         </div>
     </div>
+
+    <script>
+        function learningLogEditData() {
+            return {
+                title: @json(old('title', $learningLogEntry->title)),
+                slug: @json(old('slug', $learningLogEntry->slug)),
+                autoSlug: false,
+                bodyText: @json(old('body', $learningLogEntry->body ?? '')),
+                wordCount: 0,
+                readingTime: '1 min read',
+                init() {
+                    this.updateMetrics();
+                },
+                generateSlug() {
+                    if (this.autoSlug) {
+                        this.slug = (this.title || '').toLowerCase()
+                            .replace(/[^a-z0-9 -]/g, '')
+                            .replace(/\s+/g, '-')
+                            .replace(/-+/g, '-');
+                    }
+                },
+                updateMetrics() {
+                    const text = this.bodyText || '';
+                    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+                    this.wordCount = words;
+                    const mins = Math.max(1, Math.ceil(words / 180));
+                    this.readingTime = `${mins} min read`;
+                },
+                insertMarkdown(syntax, placeholder = '') {
+                    const textarea = this.$refs.bodyEditor;
+                    if (!textarea) return;
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    const selected = textarea.value.substring(start, end) || placeholder;
+                    let replacement = '';
+                    if (syntax === 'h2') replacement = '\n## ' + selected + '\n';
+                    else if (syntax === 'h3') replacement = '\n### ' + selected + '\n';
+                    else if (syntax === 'bold') replacement = '**' + selected + '**';
+                    else if (syntax === 'code') replacement = '\n```php\n' + selected + '\n```\n';
+                    else if (syntax === 'list') replacement = '\n- ' + selected + '\n';
+                    else if (syntax === 'quote') replacement = '\n> ' + selected + '\n';
+                    
+                    textarea.setRangeText(replacement, start, end, 'end');
+                    this.bodyText = textarea.value;
+                    this.updateMetrics();
+                    textarea.focus();
+                }
+            };
+        }
+    </script>
 </x-app-layout>

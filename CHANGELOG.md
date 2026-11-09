@@ -6,6 +6,9 @@ bukan per-commit (untuk itu lihat `git log`).
 
 ## [Unreleased]
 
+### Fixed
+- Blade `resources/views/learning-log/edit.blade.php` & `create.blade.php`: memisahkan Alpine component logic dari atribut inline `x-data="..."` ke fungsi `<script>` dedicated (`learningLogEditData()` & `learningLogCreateData()`), menyuntikkan data server-side via `@json` untuk menghindari HTML quote collision dan escaping error karakter `>` pada template literal Markdown snippet, menambahkan atribut `:value` eksplisit pada input title/slug untuk mencegah fallback ke `[object HTMLInputElement]`, serta menempatkan isi konten markdown `{{ old('body', $learningLogEntry->body) }}` langsung di dalam tag `<textarea>` agar catatan sebelumnya tidak kosong saat form dibuka.
+
 ### Added
 - Topik & Kategori baru `IT Support` (`it_support`) pada Learning Log & Technical Notes:
   - Model `LearningLogEntry`: penambahan konstanta `CATEGORY_IT_SUPPORT = 'it_support'` dan query scope `scopeItSupport()`.
