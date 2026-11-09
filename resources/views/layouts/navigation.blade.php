@@ -21,7 +21,7 @@
 
                         <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-vermilion-500/10 border border-vermilion-500/20 text-vermilion-400">
                             <span class="w-1.5 h-1.5 rounded-full bg-vermilion-400 animate-pulse"></span>
-                            cms
+                            CMS
                         </span>
                     </a>
                 </div>

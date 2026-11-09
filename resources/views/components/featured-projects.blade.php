@@ -188,14 +188,19 @@
 
                             <!-- Browser Frame Mockup Image / Placeholder -->
                             <div class="h-32 overflow-hidden relative bg-carbon-950">
-                                @if (!empty($previewImage))
+                               @if (!empty($previewImage))
                                     @php
-                                        $imageSrc = \Illuminate\Support\Str::startsWith($previewImage, [
-                                            'http://',
-                                            'https://',
-                                        ])
-                                            ? $previewImage
-                                            : asset($previewImage);
+                                        $isExternal = \Illuminate\Support\Str::startsWith($previewImage, ['http://', 'https://']);
+                                        
+                                        if ($isExternal) {
+                                            $imageSrc = $previewImage;
+                                        } elseif (\Illuminate\Support\Str::startsWith($previewImage, 'storage/')) {
+                                            // Jika path sudah terlanjur ada tulisan 'storage/' di depannya
+                                            $imageSrc = asset($previewImage);
+                                        } else {
+                                            // Jika path murni dari database (misal: projects/foto.jpg)
+                                            $imageSrc = asset('storage/' . ltrim($previewImage, '/'));
+                                        }
                                     @endphp
                                     <img src="{{ $imageSrc }}" alt="{{ $title }}"
                                         class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-300"

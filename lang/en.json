@@ -99,8 +99,11 @@
     "log.track_laravel_desc": "Architectural patterns, clean controllers, and Eloquent query optimization.",
     "log.track_cloud_title": "Cloud Engineering & Infrastructure",
     "log.track_cloud_desc": "Redis caching, Docker containerization, and backend server reliability.",
+    "log.track_itsupport_title": "IT Support & System Administration",
+    "log.track_itsupport_desc": "Hardware & software troubleshooting, network configuration, OS management, and helpdesk maintenance.",
     "log.tab_laravel": "Laravel",
     "log.tab_cloud": "Cloud Engineering",
+    "log.tab_itsupport": "IT Support",
     "log.read_note": "Read Note",
     "log.empty_track": "No public notes in this pillar yet.",
 

@@ -99,8 +99,11 @@
     "log.track_laravel_desc": "Pola arsitektur, clean controller, dan optimasi query Eloquent.",
     "log.track_cloud_title": "Cloud Engineering & Infrastruktur",
     "log.track_cloud_desc": "Redis caching, Docker containerization, dan keandalan server backend.",
+    "log.track_itsupport_title": "IT Support & Administrasi Sistem",
+    "log.track_itsupport_desc": "Troubleshooting perangkat keras & lunak, konfigurasi jaringan, manajemen OS, dan pemeliharaan helpdesk.",
     "log.tab_laravel": "Laravel",
     "log.tab_cloud": "Cloud Engineering",
+    "log.tab_itsupport": "IT Support",
     "log.read_note": "Baca Catatan",
     "log.empty_track": "Belum ada catatan publik untuk pilar ini.",
 

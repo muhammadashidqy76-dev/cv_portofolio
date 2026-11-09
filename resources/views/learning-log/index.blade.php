@@ -88,10 +88,10 @@
                         <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500">Pilar Utama</span>
                         <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
                     </div>
-                    <div class="text-2xl font-bold font-mono text-white">
-                        <span class="text-vermilion-400">{{ $stats['laravel'] }}</span> <span class="text-slate-600 font-normal">/</span> <span class="text-cyan-400">{{ $stats['cloud'] }}</span>
+                    <div class="text-xl sm:text-2xl font-bold font-mono text-white">
+                        <span class="text-vermilion-400">{{ $stats['laravel'] }}</span> <span class="text-slate-600 font-normal">/</span> <span class="text-cyan-400">{{ $stats['cloud'] }}</span> <span class="text-slate-600 font-normal">/</span> <span class="text-indigo-400">{{ $stats['it_support'] }}</span>
                     </div>
-                    <span class="text-[11px] font-mono text-slate-400">Laravel / Cloud &amp; DevOps</span>
+                    <span class="text-[10px] sm:text-[11px] font-mono text-slate-400">Laravel / Cloud / IT Support</span>
                 </div>
 
                 <!-- 3. Status Tag Kesiapan -->
@@ -136,6 +136,10 @@
                            class="px-3 py-1.5 rounded-lg text-xs font-mono transition-colors {{ $selectedCategory === 'cloud_engineering' ? 'bg-cyan-500/20 text-cyan-400 font-semibold border border-cyan-500/30' : 'text-slate-400 hover:text-white hover:bg-carbon-850' }}">
                             Cloud &amp; DevOps ({{ $stats['cloud'] }})
                         </a>
+                        <a href="{{ route('learning-log.index', ['category' => 'it_support']) }}" 
+                           class="px-3 py-1.5 rounded-lg text-xs font-mono transition-colors {{ $selectedCategory === 'it_support' ? 'bg-indigo-500/20 text-indigo-400 font-semibold border border-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-carbon-850' }}">
+                            IT Support ({{ $stats['it_support'] }})
+                        </a>
                         <span class="text-slate-700 hidden sm:inline">|</span>
                         <a href="{{ route('learning-log.index', ['tag' => 'production_ready']) }}" 
                            class="px-3 py-1.5 rounded-lg text-xs font-mono transition-colors {{ $selectedTag === 'production_ready' ? 'bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30' : 'text-slate-400 hover:text-white hover:bg-carbon-850' }}">
@@ -175,6 +179,8 @@
                         @php
                             $publishedFormatted = $item->published_at ? $item->published_at->format('d M Y') : 'Draft';
                             $isLaravel = $item->category === 'laravel';
+                            $isCloud = $item->category === 'cloud_engineering';
+                            $isItSupport = $item->category === 'it_support';
                             $isProd = $item->tag === 'production_ready';
                         @endphp
 
@@ -191,9 +197,19 @@
                                         </div>
                                         
                                         <!-- Category Badge -->
-                                        <span class="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded border {{ $isLaravel ? 'text-vermilion-400 bg-vermilion-500/10 border-vermilion-500/20' : 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20' }}">
-                                            {{ $isLaravel ? 'Laravel' : 'Cloud & DevOps' }}
-                                        </span>
+                                        @if($isLaravel)
+                                            <span class="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded border text-vermilion-400 bg-vermilion-500/10 border-vermilion-500/20">
+                                                Laravel
+                                            </span>
+                                        @elseif($isCloud)
+                                            <span class="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded border text-cyan-400 bg-cyan-500/10 border-cyan-500/20">
+                                                Cloud &amp; DevOps
+                                            </span>
+                                        @else
+                                            <span class="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded border text-indigo-400 bg-indigo-500/10 border-indigo-500/20">
+                                                IT Support
+                                            </span>
+                                        @endif
 
                                         <!-- Tag Badge -->
                                         <span class="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded border {{ $isProd ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' : 'text-amber-400 bg-amber-500/10 border-amber-500/20' }}">
@@ -263,7 +279,7 @@
                                     </a>
 
                                     <button type="button" 
-                                            @click="openDeleteModal('{{ route('learning-log.destroy', $item) }}', '{{ addslashes($item->title) }}', '{{ addslashes($item->category) }}', '{{ $item->tag }}', '{{ $item->slug }}')"
+                                            @click="openDeleteModal('{{ route('learning-log.destroy', $item) }}', '{{ addslashes($item->title) }}', '{{ $item->category === 'laravel' ? 'Laravel' : ($item->category === 'cloud_engineering' ? 'Cloud & DevOps' : 'IT Support') }}', '{{ $item->tag }}', '{{ $item->slug }}')"
                                             class="px-2.5 py-1 rounded-md bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 border border-rose-500/20 transition-colors cursor-pointer">
                                         Hapus
                                     </button>

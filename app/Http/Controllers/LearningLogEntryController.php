@@ -55,6 +55,7 @@ class LearningLogEntryController extends Controller
             'total'            => LearningLogEntry::count(),
             'laravel'          => LearningLogEntry::where('category', LearningLogEntry::CATEGORY_LARAVEL)->count(),
             'cloud'            => LearningLogEntry::where('category', LearningLogEntry::CATEGORY_CLOUD)->count(),
+            'it_support'       => LearningLogEntry::where('category', LearningLogEntry::CATEGORY_IT_SUPPORT)->count(),
             'production_ready' => LearningLogEntry::where('tag', LearningLogEntry::TAG_PRODUCTION_READY)->count(),
             'exploring'        => LearningLogEntry::where('tag', LearningLogEntry::TAG_EXPLORING)->count(),
             'published'        => LearningLogEntry::where('status', 'published')->count(),

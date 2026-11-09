@@ -81,6 +81,7 @@ class LearningLogEntryRequest extends FormRequest
                 Rule::in([
                     LearningLogEntry::CATEGORY_LARAVEL,
                     LearningLogEntry::CATEGORY_CLOUD,
+                    LearningLogEntry::CATEGORY_IT_SUPPORT,
                 ]),
             ],
             'related_project_id' => ['nullable', 'integer', 'exists:projects,id'],
@@ -96,7 +97,7 @@ class LearningLogEntryRequest extends FormRequest
             'slug.required'     => 'Slug URL wajib diisi.',
             'slug.unique'       => 'Slug URL ini sudah digunakan oleh artikel lain. Gunakan slug yang berbeda.',
             'tag.required'      => 'Status tag kesiapan wajib dipilih (Production-Ready atau Exploring).',
-            'category.required' => 'Pilar kategori wajib ditentukan (Laravel Backend atau Cloud Engineering).',
+            'category.required' => 'Pilar kategori wajib ditentukan (Laravel Backend, Cloud Engineering, atau IT Support).',
             'status.required'   => 'Status publikasi wajib dipilih (Published atau Draft).',
             'related_project_id.exists' => 'Proyek portofolio yang dipilih tidak ditemukan.',
         ];

@@ -38,10 +38,10 @@
 
             <form method="POST" action="{{ route('learning-log.update', $learningLogEntry) }}" class="space-y-6"
                   x-data="{
-                      title: '{{ addslashes(old('title', $learningLogEntry->title)) }}',
-                      slug: '{{ addslashes(old('slug', $learningLogEntry->slug)) }}',
+                      title: {!! json_encode(old('title', $learningLogEntry->title)) !!},
+                      slug: {!! json_encode(old('slug', $learningLogEntry->slug)) !!},
                       autoSlug: false,
-                      bodyText: `{{ addslashes(old('body', $learningLogEntry->body ?? '')) }}`,
+                      bodyText: {!! json_encode(old('body', $learningLogEntry->body ?? '')) !!},
                       wordCount: 0,
                       readingTime: '1 min read',
                       init() {
@@ -149,7 +149,7 @@
                         <!-- Pilar Kategori -->
                         <div>
                             <x-input-label :value="__('Pilar Utama (Category) *')" />
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1.5">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-1.5">
                                 
                                 <!-- Laravel Backend -->
                                 <label class="flex items-start gap-3 p-3.5 rounded-lg bg-carbon-950 border border-carbon-800 hover:border-vermilion-500/40 cursor-pointer transition-colors has-[:checked]:border-vermilion-500 has-[:checked]:bg-vermilion-500/5">
@@ -183,6 +183,24 @@
                                         </div>
                                         <span class="text-[11px] font-mono text-slate-400 block mt-0.5">
                                             Membahas Docker multi-stage, Linux Server, CI/CD, Nginx, dan AWS.
+                                        </span>
+                                    </div>
+                                </label>
+
+                                <!-- IT Support -->
+                                <label class="flex items-start gap-3 p-3.5 rounded-lg bg-carbon-950 border border-carbon-800 hover:border-indigo-500/40 cursor-pointer transition-colors has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-500/5">
+                                    <input type="radio" 
+                                           name="category" 
+                                           value="it_support" 
+                                           {{ old('category', $learningLogEntry->category) === 'it_support' ? 'checked' : '' }}
+                                           class="mt-0.5 text-indigo-500 bg-carbon-900 border-carbon-800 focus:ring-indigo-500/20">
+                                    <div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-mono text-xs font-bold text-white">IT Support</span>
+                                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                                        </div>
+                                        <span class="text-[11px] font-mono text-slate-400 block mt-0.5">
+                                            Membahas troubleshooting hardware/software, konfigurasi jaringan, OS, dan helpdesk.
                                         </span>
                                     </div>
                                 </label>

@@ -17,6 +17,7 @@ class LearningLogEntry extends Model
 
     public const CATEGORY_LARAVEL = 'laravel';
     public const CATEGORY_CLOUD = 'cloud_engineering';
+    public const CATEGORY_IT_SUPPORT = 'it_support';
 
     protected $fillable = [
         'title',
@@ -82,6 +83,11 @@ class LearningLogEntry extends Model
     public function scopeCloud(Builder $query): Builder
     {
         return $query->where('category', self::CATEGORY_CLOUD);
+    }
+
+    public function scopeItSupport(Builder $query): Builder
+    {
+        return $query->where('category', self::CATEGORY_IT_SUPPORT);
     }
 
     public function scopeCategory(Builder $query, string $category): Builder

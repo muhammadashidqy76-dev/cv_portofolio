@@ -253,10 +253,15 @@
                             <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"></span>
                             Laravel
                         </span>
-                    @else
+                    @elseif($entry->category === 'cloud_engineering')
                         <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
                             <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
                             Cloud
+                        </span>
+                    @else
+                        <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                            IT Support
                         </span>
                     @endif
 

@@ -43,7 +43,7 @@
                 <a href="{{ route('projects.index') }}" class="group rounded-xl bg-carbon-900/90 border border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-lg flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-400 transition-colors">01. Projects &nearrow;</span>
+                            <span class="group-hover:text-vermilion-400 transition-colors">01. Projects </span>
                             <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">Live</span>
                         </div>
                         <div class="text-2xl sm:text-3xl font-bold font-mono text-white">
@@ -60,7 +60,7 @@
                 <a href="{{ route('tech-stack.index') }}" class="group rounded-xl bg-carbon-900/90 border border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-lg flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-400 transition-colors">02. Tech Stack &nearrow;</span>
+                            <span class="group-hover:text-vermilion-400 transition-colors">02. Tech Stack </span>
                             <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">Live</span>
                         </div>
                         <div class="text-2xl sm:text-3xl font-bold font-mono text-white">
@@ -77,7 +77,7 @@
                 <a href="{{ route('work-experience.index') }}" class="group rounded-xl bg-carbon-900/90 border border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-lg flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-400 transition-colors">03. Experience &nearrow;</span>
+                            <span class="group-hover:text-vermilion-400 transition-colors">03. Experience </span>
                             <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">Live</span>
                         </div>
                         <div class="text-2xl sm:text-3xl font-bold font-mono text-white">
@@ -94,7 +94,7 @@
                 <a href="{{ route('journey.index') }}" class="group rounded-xl bg-carbon-900/90 border border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-lg flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-400 transition-colors">04. Journey &nearrow;</span>
+                            <span class="group-hover:text-vermilion-400 transition-colors">04. Journey </span>
                             <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">Live</span>
                         </div>
                         <div class="text-2xl sm:text-3xl font-bold font-mono text-white">
@@ -111,16 +111,17 @@
                 <a href="{{ route('learning-log.index') }}" class="group rounded-xl bg-carbon-900/90 border border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-lg flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-400 transition-colors">05. Tech Notes &nearrow;</span>
+                            <span class="group-hover:text-vermilion-400 transition-colors">05. Tech Notes </span>
                             <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">Live</span>
                         </div>
                         <div class="text-2xl sm:text-3xl font-bold font-mono text-white">
                             {{ $noteStats['total'] }}
                         </div>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-carbon-800/80 flex items-center justify-between text-xs font-mono">
+                    <div class="mt-4 pt-3 border-t border-carbon-800/80 flex items-center justify-between text-[11px] font-mono">
                         <span class="text-vermilion-400">{{ $noteStats['laravel'] }} Laravel</span>
                         <span class="text-cyan-400">{{ $noteStats['cloud'] }} Cloud</span>
+                        <span class="text-indigo-400">{{ $noteStats['it_support'] }} IT Support</span>
                     </div>
                 </a>
 
@@ -141,7 +142,7 @@
                                 </h3>
                             </div>
                             <a href="{{ url('/notes') }}" target="_blank" class="text-xs font-mono text-vermilion-400 hover:text-vermilion-300 transition-colors">
-                                Kelola Semua Catatan &nearrow;
+                                Kelola Semua Catatan 
                             </a>
                         </div>
 
@@ -150,7 +151,11 @@
                                 <div class="p-4 sm:p-5 hover:bg-carbon-950/40 transition-colors">
                                     <div class="flex items-center justify-between gap-2 mb-1.5">
                                         <div class="flex items-center gap-2">
-                                            @if ($note->category === 'cloud_engineering')
+                                            @if ($note->category === 'it_support')
+                                                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                                                    IT Support
+                                                </span>
+                                            @elseif ($note->category === 'cloud_engineering')
                                                 <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
                                                     Cloud Engineering
                                                 </span>
@@ -205,7 +210,7 @@
                                 </h3>
                             </div>
                             <a href="{{ route('projects.index') }}" class="text-xs font-mono text-vermilion-400 hover:text-vermilion-300 transition-colors">
-                                Kelola Semua Proyek &nearrow;
+                                Kelola Semua Proyek 
                             </a>
                         </div>
 

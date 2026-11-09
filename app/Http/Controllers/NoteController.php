@@ -21,7 +21,7 @@ class NoteController extends Controller
             ->with('relatedProject')
             ->latest('published_at');
 
-        if ($category && in_array($category, ['laravel', 'cloud_engineering'])) {
+        if ($category && in_array($category, ['laravel', 'cloud_engineering', 'it_support'])) {
             $query->where('category', $category);
         }
 
@@ -36,9 +36,10 @@ class NoteController extends Controller
 
         $laravelCount = LearningLogEntry::published()->where('category', 'laravel')->count();
         $cloudCount = LearningLogEntry::published()->where('category', 'cloud_engineering')->count();
-        $totalCount = $laravelCount + $cloudCount;
+        $itSupportCount = LearningLogEntry::published()->where('category', 'it_support')->count();
+        $totalCount = $laravelCount + $cloudCount + $itSupportCount;
 
-        return view('notes.index', compact('notes', 'category', 'search', 'laravelCount', 'cloudCount', 'totalCount'));
+        return view('notes.index', compact('notes', 'category', 'search', 'laravelCount', 'cloudCount', 'itSupportCount', 'totalCount'));
     }
 
     /**

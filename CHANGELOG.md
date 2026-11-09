@@ -7,6 +7,15 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Added
+- Topik & Kategori baru `IT Support` (`it_support`) pada Learning Log & Technical Notes:
+  - Model `LearningLogEntry`: penambahan konstanta `CATEGORY_IT_SUPPORT = 'it_support'` dan query scope `scopeItSupport()`.
+  - Form Request `LearningLogEntryRequest`: validasi pilar kategori kini mencakup `it_support`.
+  - Controller `NoteController`, `LearningLogEntryController`, dan `DashboardController`: penambahan filtering, routing, dan agregasi statistik untuk kategori `it_support`.
+  - Blade `resources/views/notes/index.blade.php`: penambahan tab filter kategori `IT Support`, pill statistik jumlah artikel, serta kartu catatan dengan badge beraksen indigo.
+  - Blade `resources/views/learning-log/create.blade.php` & `resources/views/learning-log/edit.blade.php`: penambahan selector radio pilar `IT Support` dengan grid 3-kolom responsif.
+  - Blade `resources/views/learning-log/index.blade.php`: penambahan filter pill `IT Support`, badge artikel dalam grid, dan metrik 3-pilar (Laravel / Cloud / IT Support).
+  - Blade `resources/views/dashboard.blade.php`: penambahan counter `IT Support` pada kartu ringkasan 05. Tech Notes dan badge visual pada feed catatan terkini.
+  - Blade `resources/views/notes/show.blade.php`: rendering badge navbar untuk artikel berkategori `IT Support`.
 - Route `/roadmap` dan Controller `RoadmapController`: mengelola halaman publik peta penguasaan teknologi & kurikulum developer roadmap dengan filter dinamis kategori/status, counter metrik penguasaan, checklist milestone kompetensi teknis, dokumentasi resmi, relasi implementasi proyek portofolio, serta penyorotan fokus teknologi aktif.
 - Blade `resources/views/roadmap/index.blade.php`: antarmuka visual kurikulum roadmap backend engineering bertema dark architectural carbon dengan integrasi data real-time `TechStackItem`, live filter status & pencarian Alpine.js, kartu metrik, serta auto-scroll ke anchor teknologi target `#tech-{slug}`.
 - Blade `resources/views/learning-log/index.blade.php`: antarmuka visual manajemen Learning Log & Technical Notes bertema dark carbon dengan 4 kartu statistik metrik (Total Catatan, Pilar Laravel, Pilar Cloud, Status Live), toolbar filter pills interaktif (Pilar, Tag Kesiapan, Status Publikasi, Pencarian kata kunci), grid card responsif bergaya window terminal dengan cuplikan excerpt, reading time, badge pilar/tag, dan tautan langsung ke artikel publik `/notes/{slug}`.

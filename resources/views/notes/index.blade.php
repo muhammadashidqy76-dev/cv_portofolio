@@ -65,9 +65,6 @@
 
                     <a href="/"
                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-carbon-900 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all text-xs group">
-                        <svg class="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5 text-vermilion-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
                         <span>Beranda</span>
                     </a>
                 </div>
@@ -82,13 +79,13 @@
             <div class="max-w-3xl mb-12">
                 <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
                     <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
-                    // TECHNICAL NOTES &amp; ARCHITECTURE LOG
+                    TECHNICAL NOTES
                 </span>
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
-                    Catatan Teknis, Arsitektur &amp; Eksperimen
+                    Catatan Pribadi &amp; Teknis
                 </h1>
                 <p class="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed font-normal">
-                    Dokumentasi mendalam mengenai eksplorasi arsitektur Laravel, clean controller pattern, database transactions &amp; locking, Redis caching, dan backend infrastructure.
+                    Dokumentasi terkait pengetahuan saya dalam dunia teknologi dan pengembangan berkaitan dengan backend, database, server, dan lain lain.
                 </p>
 
                 <!-- Stats summary pills -->
@@ -104,6 +101,10 @@
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
                         <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                         {{ $cloudCount }} Cloud Engineering
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                        {{ $itSupportCount }} IT Support
                     </span>
                 </div>
             </div>
@@ -128,6 +129,12 @@
                        class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap {{ $category === 'cloud_engineering' ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-bold shadow-sm' : 'text-slate-400 hover:text-cyan-400 hover:bg-carbon-850' }}">
                         <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                         Cloud Engineering ({{ $cloudCount }})
+                    </a>
+
+                    <a href="{{ route('notes.index', array_filter(['category' => 'it_support', 'q' => $search])) }}"
+                       class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap {{ $category === 'it_support' ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 font-bold shadow-sm' : 'text-slate-400 hover:text-indigo-400 hover:bg-carbon-850' }}">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                        IT Support ({{ $itSupportCount }})
                     </a>
                 </div>
 
@@ -167,10 +174,29 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                     @foreach($notes as $note)
                         @php
-                            $isLaravel = ($note->category ?? 'laravel') === 'laravel';
-                            $trackBorder = $isLaravel ? 'hover:border-rose-500/40 hover:shadow-rose-500/5' : 'hover:border-cyan-500/40 hover:shadow-cyan-500/5';
-                            $titleHover  = $isLaravel ? 'group-hover:text-rose-400' : 'group-hover:text-cyan-400';
-                            $readLinkCol = $isLaravel ? 'text-rose-400 hover:text-rose-300' : 'text-cyan-400 hover:text-cyan-300';
+                            $cat = $note->category ?? 'laravel';
+                            $isLaravel   = $cat === 'laravel';
+                            $isCloud     = $cat === 'cloud_engineering';
+                            $isItSupport = $cat === 'it_support';
+
+                            $trackBorder = $isLaravel 
+                                ? 'hover:border-rose-500/40 hover:shadow-rose-500/5' 
+                                : ($isCloud 
+                                    ? 'hover:border-cyan-500/40 hover:shadow-cyan-500/5' 
+                                    : 'hover:border-indigo-500/40 hover:shadow-indigo-500/5');
+
+                            $titleHover  = $isLaravel 
+                                ? 'group-hover:text-rose-400' 
+                                : ($isCloud 
+                                    ? 'group-hover:text-cyan-400' 
+                                    : 'group-hover:text-indigo-400');
+
+                            $readLinkCol = $isLaravel 
+                                ? 'text-rose-400 hover:text-rose-300' 
+                                : ($isCloud 
+                                    ? 'text-cyan-400 hover:text-cyan-300' 
+                                    : 'text-indigo-400 hover:text-indigo-300');
+
                             $dateStr     = $note->published_at ? $note->published_at->format('d M Y') : '—';
                         @endphp
 
@@ -187,10 +213,15 @@
                                                 <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
                                                 Laravel
                                             </span>
-                                        @else
+                                        @elseif($isCloud)
                                             <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
                                                 <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                                                 Cloud
+                                            </span>
+                                        @else
+                                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                                                IT Support
                                             </span>
                                         @endif
 
