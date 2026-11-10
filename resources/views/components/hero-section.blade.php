@@ -56,12 +56,6 @@
                     Moch Hasbi Ashidqy
                 </span>
 
-                <span class="text-vermilion-400 font-bold">•</span>
-
-                <span class="text-xs font-mono font-medium text-vermilion-400">
-                    IT Support, Cloud &amp; Backend Engineer
-                </span>
-
                 <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-300 transition-colors ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
@@ -346,11 +340,6 @@
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                     </div>
-
-                    <span
-                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-vermilion-500/10 border border-vermilion-500/20 text-vermilion-400 text-xs font-mono font-medium mb-1">
-                        {{ __('cv.title') }}
-                    </span>
                 </div>
             </div>
 
@@ -358,38 +347,11 @@
             <div class="px-6 pb-6 pt-9 relative flex-1 space-y-5 overflow-y-auto">
 
                 <!-- Title & Qualifications Header -->
-                <div>
+                <div class="text-center">
                     <h3 id="cv-modal-title" class="text-xl sm:text-2xl font-bold text-white tracking-tight">
                         {{ __('cv.title') }}
                     </h3>
-                    <p class="text-xs sm:text-sm font-medium text-slate-400 mt-0.5">
-                        {{ __('cv.candidate_sub') }}
-                    </p>
                 </div>
-
-                <!-- Quick Qualifications Checklist -->
-                <div
-                    class="p-4 rounded-lg bg-carbon-950 border border-carbon-800 text-xs sm:text-sm text-slate-300 space-y-2.5 font-mono">
-                    <div class="flex items-start gap-2.5">
-                        <span class="text-emerald-400 font-bold">✓</span>
-                        <span><strong
-                                class="text-white font-semibold font-sans">{{ __('cv.education_label') }}</strong>
-                            {{ __('cv.education_val') }}</span>
-                    </div>
-                    <div class="flex items-start gap-2.5">
-                        <span class="text-emerald-400 font-bold">✓</span>
-                        <span><strong
-                                class="text-white font-semibold font-sans">{{ __('cv.specialization_label') }}</strong>
-                            {{ __('cv.specialization_val') }}</span>
-                    </div>
-                    <div class="flex items-start gap-2.5">
-                        <span class="text-emerald-400 font-bold">✓</span>
-                        <span><strong
-                                class="text-white font-semibold font-sans">{{ __('cv.availability_label') }}</strong>
-                            {{ __('cv.availability_val') }}</span>
-                    </div>
-                </div>
-
                 <!-- Action Buttons -->
                 <div class="space-y-2.5 pt-1">
                     <!-- Line 1: Primary Action - Download CV -->
