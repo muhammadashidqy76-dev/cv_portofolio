@@ -10,6 +10,11 @@ bukan per-commit (untuk itu lihat `git log`).
 - Blade `resources/views/learning-log/edit.blade.php` & `create.blade.php`: memisahkan Alpine component logic dari atribut inline `x-data="..."` ke fungsi `<script>` dedicated (`learningLogEditData()` & `learningLogCreateData()`), menyuntikkan data server-side via `@json` untuk menghindari HTML quote collision dan escaping error karakter `>` pada template literal Markdown snippet, menambahkan atribut `:value` eksplisit pada input title/slug untuk mencegah fallback ke `[object HTMLInputElement]`, serta menempatkan isi konten markdown `{{ old('body', $learningLogEntry->body) }}` langsung di dalam tag `<textarea>` agar catatan sebelumnya tidak kosong saat form dibuka.
 
 ### Added
+- Setup Containerization Docker & AWS EC2 Deployment:
+  - Multi-stage `Dockerfile`: build frontend assets (Vite/Node 20), build dependensi PHP tanpa dev (Composer 2), dan image runtime akhir `php:8.2-fpm-alpine` yang ultra-ringan dengan ekstensi lengkap (`pdo_mysql`, `bcmath`, `pcntl`, `opcache`, `gd`, `zip`, `intl`, `redis`).
+  - `docker-compose.yml`: konfigurasi production untuk server AWS EC2 mencakup service `app`, web server `nginx:alpine` (reverse proxy, gzip, static caching, certbot SSL ready), database `mysql:8.0` dengan persistent volume terisolasi (port 3306 tidak terekspos keluar untuk keamanan), dan `redis:alpine` untuk cache/session.
+  - `docker-compose.dev.yml`: konfigurasi development untuk uji coba lokal dengan bind mount direktori real-time, port web `8080` dan port database `3307` sehingga aman dijalankan tanpa bentrok dengan XAMPP lokal.
+  - Konfigurasi pendukung: `docker/nginx/default.conf`, `docker/php/php.ini`, `docker/php/opcache.ini`, script permission & auto-cache `docker/entrypoint.sh`, `.dockerignore`, dan template `.env.docker.example`.
 - Topik & Kategori baru `IT Support` (`it_support`) pada Learning Log & Technical Notes:
   - Model `LearningLogEntry`: penambahan konstanta `CATEGORY_IT_SUPPORT = 'it_support'` dan query scope `scopeItSupport()`.
   - Form Request `LearningLogEntryRequest`: validasi pilar kategori kini mencakup `it_support`.

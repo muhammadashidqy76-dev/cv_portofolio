@@ -1,0 +1,86 @@
+services:
+  # ─── 1. Laravel Application Service (PHP 8.2-FPM Production) ─────────────────
+  app:
+    build:
+      context: .
+      target: production
+    image: cv-portfolio-app:latest
+    container_name: cv_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - storage_data:/var/www/html/storage
+    networks:
+      - portfolio-network
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  # ─── 2. Web Server (Nginx Reverse Proxy & Static Asset Serving) ─────────────
+  web:
+    image: nginx:alpine
+    container_name: cv_web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - storage_data:/var/www/html/storage:ro
+      - certbot_conf:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    networks:
+      - portfolio-network
+    depends_on:
+      - app
+
+  # ─── 3. Database (MySQL 8.0 on EC2 with Persistent Volume) ──────────────────
+  db:
+    image: mysql:8.0
+    container_name: cv_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-cv_portofolio}
+      MYSQL_USER: ${DB_USERNAME:-cv_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_secret}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - portfolio-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-root_secret}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ─── 4. In-Memory Cache & Session Store (Redis) ──────────────────────────────
+  redis:
+    image: redis:alpine
+    container_name: cv_redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - portfolio-network
+
+# ─── Networks & Persistent Storage Volumes ───────────────────────────────────
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local
+  storage_data:
+    driver: local
+  redis_data:
+    driver: local
+  certbot_conf:
+    driver: local
+  certbot_www:
+    driver: local
