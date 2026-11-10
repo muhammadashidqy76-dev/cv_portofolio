@@ -16,10 +16,9 @@
 
     "bio.close": "Close bio modal",
     "bio.open_to_work": "Open to Work",
-    "bio.grad_badge": "🎓 IT Graduate, UIN Malang",
+    "bio.grad_badge": "IT Graduate, UIN Malang",
     "bio.role": "Laravel Backend Developer",
-    "bio.intro_p1": "Hi! I'm <strong class=\"text-white font-semibold\">Moch Hasbi Ashidqy</strong>, a fresh graduate in <strong class=\"text-white font-semibold\">Informatics Engineering from UIN Maulana Malik Ibrahim Malang</strong>.",
-    "bio.intro_p2": "As a <span class=\"text-slate-200 font-medium\">self-taught backend developer</span>, I focus deeply on the <strong class=\"text-red-400 font-semibold\">PHP &amp; Laravel</strong> ecosystem &mdash; building clean RESTful APIs, modular architecture, strict database transaction handling, and asynchronous queue processing (<span class=\"text-slate-200 font-medium\">Redis queues</span>).",
+    "bio.intro_p1": "Hello! I am <strong class='text-white font-semibold'>Moch Hasbi Ashidqy</strong>, a fresh graduate with a Bachelor's degree in <strong class='text-white font-semibold'>Informatics Engineering from UIN Maulana Malik Ibrahim Malang</strong>. I have a deep interest and experience in independently exploring the <strong class='text-white font-semibold'>PHP & Laravel</strong> ecosystem, <strong class='text-white font-semibold'>AWS Cloud</strong> infrastructure management, and <strong class='text-white font-semibold'>IT Support</strong> operations. Accustomed to practically designing backend applications, database optimization, and <strong class='text-white font-semibold'>system troubleshooting</strong>.",
     "bio.social_title": "Contact & Social Media",
 
     "cv.title": "Curriculum Vitae",

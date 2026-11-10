@@ -18,8 +18,7 @@
     "bio.open_to_work": "Open to Work",
     "bio.grad_badge": "Teknik Informatika UIN Malang - 2026",
     "bio.role": "Laravel Backend Developer",
-    "bio.intro_p1": "Halo! Saya <strong class=\"text-white font-semibold\">Moch Hasbi Ashidqy</strong>, fresh graduate lulusan <strong class=\"text-white font-semibold\">Teknik Informatika UIN Maulana Malik Ibrahim Malang</strong>.",
-    "bio.intro_p2": "Sebagai <span class=\"text-slate-200 font-medium\">self-taught backend developer</span>, saya berfokus mendalam pada ekosistem <strong class=\"text-red-400 font-semibold\">PHP &amp; Laravel</strong> &mdash; membangun RESTful API yang bersih, arsitektur modular, penanganan transaksi database dengan locking ketat, serta pemrosesan antrean asinkron (<span class=\"text-slate-200 font-medium\">Redis queues</span>).",
+    "bio.intro_p1": "Halo! Saya <strong class='text-white font-semibold'>Moch Hasbi Ashidqy</strong>, fresh graduate lulusan <strong class='text-white font-semibold'>Teknik Informatika UIN Maulana Malik Ibrahim Malang</strong>. Memiliki ketertarikan mendalam dan terbiasa mengeksplorasi secara mandiri ekosistem <strong class='text-white font-semibold'>PHP & Laravel</strong>, pengelolaan infrastruktur <strong class='text-white font-semibold'>AWS Cloud</strong>, serta operasional <strong class='text-white font-semibold'>IT Support</strong>. Terbiasa merancang backend aplikasi, optimasi database, hingga <strong class='text-white font-semibold'>troubleshooting sistem</strong> secara praktis.",
     "bio.social_title": "Hubungi & Media Sosial",
 
     "cv.title": "Curriculum Vitae",
