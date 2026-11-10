@@ -211,7 +211,7 @@
                                     <!-- Delete Button — triggers custom modal -->
                                     <button type="button"
                                             @click="openDeleteModal('{{ route('work-experience.destroy', $item) }}', '{{ addslashes($item->position) }}', '{{ addslashes($item->company_name) }}', {{ $item->is_current ? 'true' : 'false' }})"
-                                            class="px-2.5 py-1 rounded-md bg-rose-500/10 hover:bg-rose-500/20 active:bg-rose-500/30 text-rose-400 hover:text-rose-300 border border-rose-500/20 transition-colors cursor-pointer">
+                                            class="inline-flex items-center gap-1 text-[11px] font-mono text-rose-400 hover:text-rose-300 active:text-rose-200 transition-colors cursor-pointer ml-1">
                                         Hapus
                                     </button>
                                 </div>

@@ -374,7 +374,7 @@
 
                 <!-- Action Buttons -->
                 <div class="flex items-center justify-between pt-2">
-                    <a href="{{ route('learning-log.index') }}" class="px-4 py-2 rounded-lg font-mono text-xs font-medium text-slate-400 hover:text-white transition-colors">
+                    <a href="{{ route('learning-log.index') }}" class="px-4 py-2 font-mono text-xs font-medium rounded-md bg-carbon-800 hover:bg-carbon-700 text-slate-200 hover:text-white transition-colors">
                         Batal &amp; Kembali
                     </a>
 
