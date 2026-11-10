@@ -27,3 +27,4 @@ fi
 
 # Execute CMD (default: php-fpm)
 exec "$@"
+
