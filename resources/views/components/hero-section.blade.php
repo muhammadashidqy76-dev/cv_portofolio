@@ -24,271 +24,132 @@
         setTimeout(() => { this.copied = false; }, 2000);
     }
 }" @keydown.escape.window="closeBioModal(); closeCvModal();"
-    class="relative min-h-[90vh] flex items-center justify-center bg-carbon-950/60 text-slate-100 overflow-hidden py-20 lg:py-28 border-b border-carbon-800/80">
+    class="relative min-h-[85vh] flex items-center justify-center bg-carbon-950/60 text-slate-100 overflow-hidden py-20 lg:py-28 border-b border-carbon-800/80">
 
-    <!-- Architectural Subtle Accent Line -->
-    <div
-        class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-vermilion-500/20 to-transparent pointer-events-none">
-    </div>
+    <!-- Architectural Subtle Ambient Glow & Accent Line -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-vermilion-500/20 to-transparent pointer-events-none"></div>
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 sm:w-[600px] h-96 sm:h-[400px] bg-vermilion-500/10 blur-[130px] rounded-full pointer-events-none"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+        <!-- ─── Centered Top-to-Bottom Stack ─── -->
+        <div class="flex flex-col items-center text-center space-y-6 sm:space-y-8">
 
-            <!-- Left Column: Content & CTAs -->
-            <div class="lg:col-span-7 flex flex-col items-start text-left">
-
-                <!-- 🌟 Engineering Telemetry Identity Badge Pill -> Triggers Bio Modal -->
-                <button type="button" @click="openBioModal()" title="{{ __('hero.badge_title') }}"
-                    class="group inline-flex items-center gap-2.5 p-1 pr-3.5 rounded-lg bg-carbon-900/90 hover:bg-carbon-850 border border-carbon-800 hover:border-vermilion-500/50 mb-8 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-vermilion-500/40">
-
-                    <!-- Mini Avatar (28px) -->
-                    <div
-                        class="relative w-7 h-7 rounded-md overflow-hidden ring-1 ring-carbon-800 group-hover:ring-vermilion-500/60 transition-all shrink-0 bg-carbon-950">
-                        <img src="{{ asset('images/Siakad.jpg') }}" alt="Moch Hasbi Ashidqy"
-                            class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
-                        <span
-                            class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-400 ring-1 ring-carbon-950"
-                            title="Open to Work"></span>
-                    </div>
-
-                    <!-- Identity & Role -->
-                    <span class="text-xs font-semibold text-slate-200 group-hover:text-white transition-colors">
-                        Moch Hasbi Ashidqy
-                    </span>
-
-                    <span class="w-1 h-1 rounded-full bg-slate-700"></span>
-
-                    <span class="text-xs font-mono font-medium text-vermilion-400 flex items-center gap-1.5">
-                        Laravel Backend Developer
-                    </span>
-
-                    <span
-                        class="text-[10px] text-slate-500 group-hover:text-slate-300 font-mono pl-1 border-l border-carbon-800 transition-colors hidden sm:inline-block">
-                        {{ __('hero.bio_arrow') }}
-                    </span>
-                </button>
-
-                <!-- Main Headline with Strong Typographic Hierarchy -->
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-                    Backend Developer
-                    <span class="block text-vermilion-500 mt-1 font-extrabold">
-                        Built with Laravel
-                    </span>
-                </h1>
-
-                <!-- Subtitle with High Readability -->
-                <p class="mt-6 text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed font-normal">
-                    {{ __('hero.subtitle') }}
-                </p>
-
-                <!-- CTAs (View Projects & Curriculum Vitae) -->
-                <div class="mt-8 flex flex-wrap items-center gap-4 sm:gap-4 w-full sm:w-auto">
-                    <!-- Primary CTA: View Projects -->
-                    <a href="#projects"
-                        class="w-full sm:w-auto text-center bg-vermilion-600 hover:bg-vermilion-500 text-white font-semibold px-6 py-3 rounded-lg border border-vermilion-500/40 hover:border-vermilion-400 shadow-md shadow-vermilion-600/20 hover:shadow-vermilion-500/30 transition-all duration-200 flex items-center justify-center gap-2 group">
-                        <span class="text-sm">{{ __('hero.view_projects') }}</span>
-                        <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </a>
-
-                    <!-- Secondary CTA: Curriculum Vitae -> Triggers CV Download Modal -->
-                    <button type="button" @click="openCvModal()"
-                        class="w-full sm:w-auto text-center text-slate-200 hover:text-white font-semibold px-5 py-3 rounded-lg border border-carbon-800 hover:border-slate-700 bg-carbon-900/90 hover:bg-carbon-850 transition-all duration-200 flex items-center justify-center gap-2.5 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-slate-600 text-sm">
-                        <svg class="w-4 h-4 text-vermilion-400 group-hover:scale-105 transition-transform"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <span>{{ __('hero.curriculum_vitae') }}</span>
-                    </button>
+            <!-- 1. Small Top Badge: Identity & Role Pill (Triggers Bio Modal) -->
+            <button type="button" @click="openBioModal()" title="Klik untuk melihat bio & profil lengkap"
+                class="group inline-flex items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-carbon-900/90 hover:bg-carbon-850 border border-carbon-800 hover:border-vermilion-500/50 transition-all duration-200 cursor-pointer shadow-sm shadow-carbon-950/50 focus:outline-none focus:ring-2 focus:ring-vermilion-500/40">
+                <!-- Mini Avatar with Live Dot Indicator -->
+                <div class="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-carbon-800 group-hover:ring-vermilion-500/60 transition-all shrink-0 bg-carbon-950">
+                    <img src="{{ asset('images/Siakad.jpg') }}" alt="Moch Hasbi Ashidqy"
+                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+                    <span class="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-emerald-400 ring-1 ring-carbon-950" title="Open to Work"></span>
                 </div>
 
-                <!-- Clean & Homogeneous Social Links Bar -->
-                <div class="mt-10 pt-7 border-t border-carbon-800/90 flex items-center gap-3 w-full">
-                    <span class="text-[11px] font-mono uppercase tracking-widest text-slate-500 font-semibold mr-1">
-                        {{ __('hero.connect') }}</span>
+                <span class="text-xs font-semibold text-slate-200 group-hover:text-white transition-colors">
+                    Moch Hasbi Ashidqy
+                </span>
+
+                <span class="w-1 h-1 rounded-full bg-vermilion-400"></span>
+
+                <span class="text-xs font-mono font-medium text-vermilion-400">
+                    IT Support, Cloud &amp; Backend Engineer
+                </span>
+
+                <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-300 transition-colors ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+
+            <!-- 2. Main Headline (Bold, Large, Strong Typography) -->
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12] max-w-4xl">
+                Infrastructure, Backend &amp;
+                <span class="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-vermilion-400 via-vermilion-500 to-rose-500 font-extrabold">
+                    System Reliability
+                </span>
+            </h1>
+
+            <!-- 3. Sub-headline / Deskripsi Singkat -->
+            <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl sm:max-w-3xl leading-relaxed font-normal">
+                Fokus membangun backend Laravel yang scalable, mengelola infrastruktur Cloud AWS, serta memastikan operasional IT Support dan troubleshooting sistem yang handal.
+            </p>
+
+            <!-- 4. Tombol Call-to-Action (CTA) Berdampingan di Tengah -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto pt-2">
+                <!-- Tombol Utama: Lihat Projek -->
+                <a href="#projects"
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-vermilion-600 hover:bg-vermilion-500 text-white font-semibold text-sm border border-vermilion-500/40 hover:border-vermilion-400 shadow-lg shadow-vermilion-600/25 hover:shadow-vermilion-500/35 transition-all duration-200 group cursor-pointer">
+                    <span>Lihat Projek</span>
+                    <svg class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </a>
+
+                <!-- Tombol Sekunder: Curriculum Vitae -->
+                <button type="button" @click="openCvModal()"
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-slate-200 hover:text-white font-semibold text-sm border border-carbon-800 hover:border-slate-700 bg-carbon-900/90 hover:bg-carbon-850 shadow-sm transition-all duration-200 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-slate-600">
+                    <svg class="w-4 h-4 text-vermilion-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>Curriculum Vitae</span>
+                </button>
+            </div>
+
+            <!-- 5. Bagian Bawah: Tech Stack Badges & Social Connect Tertata Rapi di Tengah -->
+            <div class="pt-8 sm:pt-10 border-t border-carbon-800/80 w-full max-w-3xl flex flex-col items-center gap-5 sm:gap-6">
+                <!-- 3 Pilar Utama: Laravel, AWS Cloud, IT Support Troubleshooting -->
+                <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+                    <!-- Laravel -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-carbon-900/90 border border-carbon-800 text-xs font-mono text-slate-300 shadow-sm">
+                        <svg class="w-4 h-4 text-rose-500 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                        <span class="font-semibold text-white">Laravel</span>
+                        <span class="text-[10px] text-slate-500">Backend</span>
+                    </div>
+
+                    <!-- AWS Cloud -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-carbon-900/90 border border-carbon-800 text-xs font-mono text-slate-300 shadow-sm">
+                        <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
+                        </svg>
+                        <span class="font-semibold text-white">AWS Cloud</span>
+                        <span class="text-[10px] text-slate-500">Infrastructure</span>
+                    </div>
+
+                    <!-- IT Support Troubleshooting -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-carbon-900/90 border border-carbon-800 text-xs font-mono text-slate-300 shadow-sm">
+                        <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span class="font-semibold text-white">IT Support</span>
+                        <span class="text-[10px] text-slate-500">Troubleshooting</span>
+                    </div>
+                </div>
+
+                <!-- Connect Social Bar -->
+                <div class="flex items-center justify-center gap-3 text-xs font-mono text-slate-400">
+                    <span class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">// CONNECT:</span>
 
                     <!-- GitHub -->
                     <a href="https://github.com/muhammadashidqy76-dev" target="_blank" rel="noopener noreferrer"
-                        class="text-slate-400 hover:text-white p-2 rounded-lg bg-carbon-900/80 border border-carbon-800 hover:border-slate-700 hover:bg-carbon-850 transition-all"
+                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-carbon-900/80 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all group"
                         aria-label="GitHub" title="GitHub Profile">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
                         </svg>
+                        <span>GitHub</span>
                     </a>
 
                     <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/in/moch-hasbi-ashidqy-ashidqy-960157130" target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-slate-400 hover:text-white p-2 rounded-lg bg-carbon-900/80 border border-carbon-800 hover:border-slate-700 hover:bg-carbon-850 transition-all"
+                    <a href="https://www.linkedin.com/in/moch-hasbi-ashidqy-ashidqy-960157130" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-carbon-900/80 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all group"
                         aria-label="LinkedIn" title="LinkedIn Profile">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2z" />
+                        <svg class="w-3.5 h-3.5 text-sky-400 group-hover:scale-105 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2z" />
                         </svg>
+                        <span>LinkedIn</span>
                     </a>
-                </div>
-            </div>
-
-            <!-- Right Column: High-Precision Code Inspector Window -->
-            <div class="lg:col-span-5 w-full">
-                <div class="relative">
-                    <!-- IDE Window Container -->
-                    <div
-                        class="relative rounded-xl bg-carbon-900 border border-carbon-800 shadow-xl overflow-hidden font-mono text-xs">
-
-                        <!-- IDE Header Bar -->
-                        <div
-                            class="px-4 py-2.5 bg-carbon-950 border-b border-carbon-800 flex items-center justify-between select-none">
-                            <div class="flex items-center gap-1.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/90 inline-block"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400/90 inline-block"></span>
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/90 inline-block"></span>
-                            </div>
-
-                            <div
-                                class="flex items-center gap-1.5 text-slate-300 bg-carbon-900 px-2.5 py-0.5 rounded border border-carbon-800 text-[11px]">
-                                <svg class="w-3.5 h-3.5 text-vermilion-400" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                                </svg>
-                                <span class="font-medium text-slate-200">Developer.php</span>
-                            </div>
-
-                            <div
-                                class="text-[10px] tracking-wider uppercase text-slate-400 font-semibold px-2 py-0.5 rounded bg-carbon-900 border border-carbon-800">
-                                PHP 8.2
-                            </div>
-                        </div>
-
-                        <!-- IDE Code Body -->
-                        <div class="p-4 sm:p-5 overflow-x-auto text-slate-300 leading-relaxed font-mono">
-                            <table class="border-collapse w-full">
-                                <tbody>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            1</td>
-                                        <td><span class="text-vermilion-400 font-semibold">&lt;?php</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            2</td>
-                                        <td><span class="text-slate-500 italic">/**</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            3</td>
-                                        <td><span class="text-slate-500 italic">&nbsp;* Hi, I'm Ashidqy 👋</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            4</td>
-                                        <td><span class="text-slate-500 italic">&nbsp;* Backend Developer specializing
-                                                in Laravel</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            5</td>
-                                        <td><span class="text-slate-500 italic">&nbsp;* Graduate of Informatics
-                                                Engineering, UIN Malang</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            6</td>
-                                        <td><span class="text-slate-500 italic">&nbsp;*/</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            7</td>
-                                        <td>&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            8</td>
-                                        <td>
-                                            <span class="text-vermilion-400 font-semibold">class</span>
-                                            <span class="text-amber-300 font-semibold">Developer</span>
-                                            <span class="text-vermilion-400 font-semibold">extends</span>
-                                            <span class="text-sky-300">BackendEngineer</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            9</td>
-                                        <td>{</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            10</td>
-                                        <td class="pl-4">
-                                            <span class="text-vermilion-400 font-semibold">protected</span>
-                                            <span class="text-sky-200">$stack</span>
-                                            <span class="text-slate-400">=</span>
-                                            [<span class="text-emerald-400">'Laravel'</span>, <span
-                                                class="text-emerald-400">'MySQL'</span>, <span
-                                                class="text-emerald-400">'Eloquent'</span>];
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            11</td>
-                                        <td>&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            12</td>
-                                        <td class="pl-4">
-                                            <span class="text-vermilion-400 font-semibold">public function</span>
-                                            <span class="text-amber-300 font-semibold">introduce</span>(): <span
-                                                class="text-sky-300">string</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            13</td>
-                                        <td class="pl-4">{</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            14</td>
-                                        <td class="pl-8">
-                                            <span class="text-vermilion-400 font-semibold">return</span>
-                                            <span class="text-emerald-400">"Building reliable backend systems, one API
-                                                at a time."</span>;
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            15</td>
-                                        <td class="pl-4">}</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="pr-4 text-slate-600 text-right select-none w-6 font-mono text-[11px]">
-                                            16</td>
-                                        <td>}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -356,7 +217,7 @@
                             {{ __('bio.grad_badge') }}
                         </span>
                         <span class="text-xs text-slate-400 font-medium">
-                            {{ __('bio.role') }}
+                            IT Support, Cloud &amp; Backend Engineer
                         </span>
                     </div>
                 </div>
@@ -370,14 +231,15 @@
                         <span
                             class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">Laravel</span>
                         <span
-                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">PHP</span>
+                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">AWS Cloud</span>
+                        <span
+                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">IT Support</span>
                         <span
                             class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">MySQL</span>
                         <span
                             class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">Redis</span>
                         <span
-                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">REST
-                            API</span>
+                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">REST API</span>
                     </div>
                 </div>
 
@@ -390,7 +252,7 @@
 
                     <div class="grid grid-cols-2 gap-2">
                         <!-- LinkedIn -->
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                        <a href="https://www.linkedin.com/in/moch-hasbi-ashidqy-ashidqy-960157130" target="_blank" rel="noopener noreferrer"
                             class="flex items-center gap-2 py-2 px-3 rounded-lg bg-carbon-950 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all text-xs font-semibold group">
                             <svg class="w-3.5 h-3.5 text-sky-400 group-hover:scale-105 transition-transform shrink-0"
                                 fill="currentColor" viewBox="0 0 24 24">
@@ -401,7 +263,7 @@
                         </a>
 
                         <!-- GitHub -->
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                        <a href="https://github.com/muhammadashidqy76-dev" target="_blank" rel="noopener noreferrer"
                             class="flex items-center gap-2 py-2 px-3 rounded-lg bg-carbon-950 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all text-xs font-semibold group">
                             <svg class="w-3.5 h-3.5 text-slate-400 group-hover:scale-105 transition-transform shrink-0"
                                 fill="currentColor" viewBox="0 0 24 24">
@@ -412,7 +274,7 @@
                         </a>
 
                         <!-- Email Direct -->
-                        <a href="mailto:contact@example.com"
+                        <a href="mailto:muhammadashidqy76@gmail.com"
                             class="flex items-center gap-2 py-2 px-3 rounded-lg bg-carbon-950 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all text-xs font-semibold group">
                             <svg class="w-3.5 h-3.5 text-emerald-400 group-hover:scale-105 transition-transform shrink-0"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
