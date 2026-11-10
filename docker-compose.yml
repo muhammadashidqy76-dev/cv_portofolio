@@ -44,15 +44,13 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_DATABASE:-cv_portofolio}
-      MYSQL_USER: ${DB_USERNAME:-cv_user}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_secret}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-${DB_ROOT_PASSWORD:-root_secret}}
     volumes:
       - db_data:/var/lib/mysql
     networks:
       - portfolio-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-root_secret}"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost --silent"]
       interval: 10s
       timeout: 5s
       retries: 5

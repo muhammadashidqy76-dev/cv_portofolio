@@ -7,6 +7,7 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Docker Compose: memperbaiki konfigurasi service database MySQL pada `docker-compose.yml` dan `docker-compose.dev.yml` agar tidak mendefinisikan `MYSQL_USER="root"` (yang menyebabkan kontainer crash karena image resmi MySQL melarang `MYSQL_USER` bernilai root), menambahkan `MYSQL_ALLOW_EMPTY_PASSWORD: "yes"` untuk mendukung password kosong bawaan environment XAMPP lokal, serta menyederhanakan healthcheck menggunakan `mysqladmin ping -h localhost --silent`.
 - Blade `resources/views/learning-log/edit.blade.php` & `create.blade.php`: memisahkan Alpine component logic dari atribut inline `x-data="..."` ke fungsi `<script>` dedicated (`learningLogEditData()` & `learningLogCreateData()`), menyuntikkan data server-side via `@json` untuk menghindari HTML quote collision dan escaping error karakter `>` pada template literal Markdown snippet, menambahkan atribut `:value` eksplisit pada input title/slug untuk mencegah fallback ke `[object HTMLInputElement]`, serta menempatkan isi konten markdown `{{ old('body', $learningLogEntry->body) }}` langsung di dalam tag `<textarea>` agar catatan sebelumnya tidak kosong saat form dibuka.
 
 ### Added

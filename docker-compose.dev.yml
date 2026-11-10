@@ -48,15 +48,14 @@ services:
       - "3307:3306"  # Akses lewat localhost:3307 (tidak bentrok dengan MySQL XAMPP)
     environment:
       MYSQL_DATABASE: ${DB_DATABASE:-cv_portofolio}
-      MYSQL_USER: ${DB_USERNAME:-cv_user}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_secret}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD:-}"
     volumes:
       - db_dev_data:/var/lib/mysql
     networks:
       - portfolio-dev-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-root_secret}"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost --silent"]
       interval: 10s
       timeout: 5s
       retries: 5
