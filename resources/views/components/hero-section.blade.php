@@ -2,6 +2,30 @@
     showBioModal: false,
     showCvModal: false,
     copied: false,
+    focusTrack: '{{ strtolower(request('focus', 'all')) }}',
+    init() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlFocus = urlParams.get('focus');
+        if (urlFocus) {
+            const val = urlFocus.toLowerCase();
+            if (['backend', 'laravel'].includes(val)) this.focusTrack = 'backend';
+            else if (['cloud', 'aws'].includes(val)) this.focusTrack = 'cloud';
+            else if (['it-support', 'it_support', 'itsupport'].includes(val)) this.focusTrack = 'it-support';
+        }
+    },
+    setFocus(track) {
+        if (this.focusTrack === track) {
+            this.focusTrack = 'all';
+            const url = new URL(window.location.href);
+            url.searchParams.delete('focus');
+            window.history.replaceState({}, '', url.pathname + (url.search ? url.search : '') + url.hash);
+        } else {
+            this.focusTrack = track;
+            const url = new URL(window.location.href);
+            url.searchParams.set('focus', track);
+            window.history.replaceState({}, '', url.pathname + url.search + url.hash);
+        }
+    },
     openBioModal() {
         this.showBioModal = true;
         document.body.classList.add('overflow-hidden');
@@ -95,37 +119,83 @@
                 </button>
             </div>
 
-            <!-- 5. Tech Stack Pills (Di Bawah CTA: Laravel Backend, AWS Cloud Infrastructure, IT Support Troubleshooting) -->
-            <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 pt-2">
-                <!-- Laravel Backend -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-sm shadow-sm transition-colors">
-                    <svg class="w-3.5 h-3.5 text-vermilion-500 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
-                    <span class="font-medium text-slate-200">Laravel Backend</span>
+            <!-- 5. Tech Stack Pills (Interactive Career Pillar Spotlight) -->
+            <div class="flex flex-col items-center gap-2 pt-2">
+                <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+                    <!-- Laravel Backend -->
+                    <button type="button" @click="setFocus('backend')"
+                        :title="focusTrack === 'backend' ? 'Klik untuk batalkan fokus' : 'Klik untuk memfokuskan pilar Laravel'"
+                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono backdrop-blur-sm transition-all duration-300 cursor-pointer focus:outline-none"
+                        :class="{
+                            'bg-vermilion-500/15 border border-vermilion-500/60 text-white shadow-[0_0_20px_rgba(255,51,75,0.25)] ring-1 ring-vermilion-500/40 scale-[1.03]': focusTrack === 'backend',
+                            'opacity-35 blur-[0.8px] grayscale-[40%] border border-dashed border-white/10 text-slate-400 hover:opacity-85 hover:blur-none hover:grayscale-0': focusTrack !== 'all' && focusTrack !== 'backend',
+                            'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-slate-300 shadow-sm': focusTrack === 'all'
+                        }">
+                        <!-- Active Pulsing Dot -->
+                        <span x-show="focusTrack === 'backend'" class="w-1.5 h-1.5 rounded-full bg-vermilion-400 animate-pulse shrink-0"></span>
+
+                        <svg class="w-3.5 h-3.5 text-vermilion-500 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                        <span class="font-medium" :class="focusTrack === 'backend' ? 'text-white' : 'text-slate-200'">Laravel</span>
+                    </button>
+
+                    <!-- AWS Cloud -->
+                    <button type="button" @click="setFocus('cloud')"
+                        :title="focusTrack === 'cloud' ? 'Klik untuk batalkan fokus' : 'Klik untuk memfokuskan pilar AWS Cloud'"
+                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono backdrop-blur-sm transition-all duration-300 cursor-pointer focus:outline-none"
+                        :class="{
+                            'bg-amber-500/15 border border-amber-500/60 text-white shadow-[0_0_20px_rgba(245,158,11,0.25)] ring-1 ring-amber-500/40 scale-[1.03]': focusTrack === 'cloud',
+                            'opacity-35 blur-[0.8px] grayscale-[40%] border border-dashed border-white/10 text-slate-400 hover:opacity-85 hover:blur-none hover:grayscale-0': focusTrack !== 'all' && focusTrack !== 'cloud',
+                            'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-slate-300 shadow-sm': focusTrack === 'all'
+                        }">
+                        <!-- Active Pulsing Dot -->
+                        <span x-show="focusTrack === 'cloud'" class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
+
+                        <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
+                        </svg>
+                        <span class="font-medium" :class="focusTrack === 'cloud' ? 'text-white' : 'text-slate-200'">AWS Cloud</span>
+                    </button>
+
+                    <!-- IT Support -->
+                    <button type="button" @click="setFocus('it-support')"
+                        :title="focusTrack === 'it-support' ? 'Klik untuk batalkan fokus' : 'Klik untuk memfokuskan pilar IT Support'"
+                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono backdrop-blur-sm transition-all duration-300 cursor-pointer focus:outline-none"
+                        :class="{
+                            'bg-indigo-500/15 border border-indigo-500/60 text-white shadow-[0_0_20px_rgba(99,102,241,0.25)] ring-1 ring-indigo-500/40 scale-[1.03]': focusTrack === 'it-support',
+                            'opacity-35 blur-[0.8px] grayscale-[40%] border border-dashed border-white/10 text-slate-400 hover:opacity-85 hover:blur-none hover:grayscale-0': focusTrack !== 'all' && focusTrack !== 'it-support',
+                            'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-slate-300 shadow-sm': focusTrack === 'all'
+                        }">
+                        <!-- Active Pulsing Dot -->
+                        <span x-show="focusTrack === 'it-support'" class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse shrink-0"></span>
+
+                        <svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span class="font-medium" :class="focusTrack === 'it-support' ? 'text-white' : 'text-slate-200'">IT Support</span>
+                    </button>
                 </div>
 
-                <!-- AWS Cloud Infrastructure -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-sm shadow-sm transition-colors">
-                    <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
-                    </svg>
-                    <span class="font-medium text-slate-200">AWS Cloud Infrastructure</span>
-                </div>
-
-                <!-- IT Support Troubleshooting -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-sm shadow-sm transition-colors">
-                    <svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span class="font-medium text-slate-200">IT Support Troubleshooting</span>
-                </div>
+                <!-- Reset Active Focus Indicator -->
+                <button type="button" 
+                    x-show="focusTrack !== 'all'"
+                    x-cloak
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 -translate-y-1"
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    @click="setFocus('all')"
+                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono text-slate-400 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-colors cursor-pointer mt-1"
+                    title="Klik untuk mereset dan menampilkan semua pilar">
+                    <span>Reset Fokus</span>
+                    <span class="text-slate-500 hover:text-white">✕</span>
+                </button>
             </div>
 
             <!-- 6. Footer Connect (// CONNECT: GitHub & LinkedIn) -->
             <div class="pt-6 sm:pt-8 border-t border-white/[0.08] w-full max-w-2xl flex items-center justify-center gap-3 text-xs font-mono text-slate-400">
-                <span class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">// CONNECT:</span>
+                <span class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">CONNECT:</span>
 
                 <!-- GitHub -->
                 <a href="https://github.com/muhammadashidqy76-dev" target="_blank" rel="noopener noreferrer"
@@ -222,28 +292,13 @@
                 <div
                     class="p-4 rounded-lg bg-carbon-950 border border-carbon-800 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-2.5">
                     <p>{!! __('bio.intro_p1') !!}</p>
-                    <p>{!! __('bio.intro_p2') !!}</p>
-                    <div class="flex flex-wrap gap-1.5 pt-1">
-                        <span
-                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">Laravel</span>
-                        <span
-                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">AWS Cloud</span>
-                        <span
-                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">IT Support</span>
-                        <span
-                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">MySQL</span>
-                        <span
-                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">Redis</span>
-                        <span
-                            class="text-[10px] font-mono px-2 py-0.5 rounded bg-carbon-900 text-slate-300 border border-carbon-800">REST API</span>
-                    </div>
                 </div>
 
                 <!-- Compact Media Sosial Grid -->
                 <div class="space-y-2 pt-1">
                     <span
                         class="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-semibold flex items-center gap-1.5">
-                        // {{ __('bio.social_title') }}
+                        {{ __('bio.social_title') }}
                     </span>
 
                     <div class="grid grid-cols-2 gap-2">
@@ -331,13 +386,10 @@
                 </div>
 
                 <!-- Header Icon & Status Badge -->
-                <div class="flex items-end justify-between translate-y-6 relative z-10">
-                    <div
-                        class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl ring-2 ring-carbon-800 border border-carbon-700 bg-carbon-950 flex items-center justify-center text-vermilion-400 shrink-0">
-                        <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="1.8">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <div class="flex items-center justify-center translate-y-6 relative z-10">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl ring-2 ring-carbon-800 border border-carbon-700 bg-carbon-950 flex items-center justify-center text-vermilion-400 shrink-0">
+                        <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                     </div>
                 </div>
