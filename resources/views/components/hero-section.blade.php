@@ -24,45 +24,35 @@
         setTimeout(() => { this.copied = false; }, 2000);
     }
 }" @keydown.escape.window="closeBioModal(); closeCvModal();"
-    class="relative min-h-[90vh] flex items-center justify-center bg-carbon-950 text-slate-100 overflow-hidden py-20 sm:py-28 lg:py-32 border-b border-carbon-800/80">
+    class="relative min-h-[88vh] flex items-center justify-center bg-[#0a0a0c] text-slate-100 overflow-hidden py-20 sm:py-28 lg:py-32 border-b border-white/[0.08]">
 
-    <!-- ─── Enterprise Server Rack Data Center Background (Deep Bokeh & Industrial Atmosphere) ─── -->
+    <!-- ─── Developer-Centric Background Canvas (Linear/Cursor Dot-Grid & Ambient Radial Depth) ─── -->
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        <!-- Background Image with Deep Blur (Bokeh Effect) -->
-        <img src="{{ asset('images/server-datacenter-bg.jpg') }}" 
-             alt="" 
-             role="presentation"
-             class="w-full h-full object-cover object-center filter blur-2xl md:blur-3xl scale-125 opacity-35 transform-gpu" />
+        <!-- Technical Dot-Grid Matrix with Smooth Center-Focused Radial Mask -->
+        <div class="absolute inset-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_65%_55%_at_50%_50%,#000_60%,transparent_100%)]"></div>
 
-        <!-- Deep Dark Carbon Layer to Preserve Perfect Contrast -->
-        <div class="absolute inset-0 bg-carbon-950/85"></div>
+        <!-- Ambient Radial Gradient Glow behind Hero text for subtle dimension -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] h-[350px] sm:h-[450px] bg-gradient-to-b from-vermilion-500/12 via-rose-600/5 to-transparent blur-[130px] rounded-full"></div>
 
-        <!-- Vertical Gradient Fade (top & bottom edges melt into page) -->
-        <div class="absolute inset-0 bg-gradient-to-b from-carbon-950 via-transparent to-carbon-950"></div>
-
-        <!-- Radial Vignette Mask -->
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#090c12_85%)]"></div>
-
-        <!-- Architectural Subtle Accent Line & Ambient Red Core Glow -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-vermilion-500/25 to-transparent pointer-events-none"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[350px] bg-vermilion-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+        <!-- Sleek Top Accent Line -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-px bg-gradient-to-r from-transparent via-vermilion-500/30 to-transparent"></div>
     </div>
 
-    <!-- ─── Content Container (Centered Alignment) ─── -->
+    <!-- ─── Main Content Container (Centered Alignment) ─── -->
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
         <div class="flex flex-col items-center text-center space-y-6 sm:space-y-8">
 
-            <!-- 1. Small Top Badge (White Text, Red Accent, Triggers Bio Modal) -->
+            <!-- 1. Small Top Badge (Pill with Thin Border & White/Red Text, Triggers Bio Modal) -->
             <button type="button" @click="openBioModal()" title="Klik untuk melihat bio & profil lengkap"
-                class="group inline-flex items-center gap-2 sm:gap-2.5 px-4 py-1.5 rounded-full bg-carbon-900/90 hover:bg-carbon-850 border border-carbon-800 hover:border-vermilion-500/50 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-lg shadow-black/40 focus:outline-none focus:ring-2 focus:ring-vermilion-500/40">
+                class="group inline-flex items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-vermilion-500/40 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-sm shadow-black/40 focus:outline-none focus:ring-1 focus:ring-vermilion-500/50">
                 <!-- Mini Avatar with Live Dot Indicator -->
-                <div class="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-carbon-700 group-hover:ring-vermilion-500/60 transition-all shrink-0 bg-carbon-950">
+                <div class="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-white/10 group-hover:ring-vermilion-500/60 transition-all shrink-0 bg-carbon-950">
                     <img src="{{ asset('images/Siakad.jpg') }}" alt="Moch Hasbi Ashidqy"
                         class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
                     <span class="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-emerald-400 ring-1 ring-carbon-950" title="Open to Work"></span>
                 </div>
 
-                <span class="text-xs font-medium text-white">
+                <span class="text-xs font-medium text-white tracking-tight">
                     Moch Hasbi Ashidqy
                 </span>
 
@@ -77,7 +67,7 @@
                 </svg>
             </button>
 
-            <!-- 2. Main Headline (Large, Bold, Pure White Typography) -->
+            <!-- 2. Main Headline (Large, Bold, Clean White Text) -->
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12] max-w-4xl">
                 Infrastructure, Backend &amp;
                 <span class="block mt-1 sm:mt-2 text-white font-extrabold">
@@ -85,16 +75,16 @@
                 </span>
             </h1>
 
-            <!-- 3. Sub-headline / Deskripsi Singkat (Abu-abu terang, Clean) -->
-            <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl sm:max-w-3xl leading-relaxed font-normal">
+            <!-- 3. Sub-headline / Deskripsi (Abu-abu Terang, Clean) -->
+            <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl sm:max-w-3xl leading-relaxed font-normal">
                 Fokus membangun backend Laravel yang scalable, mengelola infrastruktur Cloud AWS, serta memastikan operasional IT Support dan troubleshooting sistem yang handal.
             </p>
 
             <!-- 4. Tombol Call-to-Action (CTA) Berdampingan di Tengah -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto pt-1">
-                <!-- Tombol Utama: Lihat Projek (Warna aksen merah khas) -->
+                <!-- Tombol Utama: Lihat Projek (Aksen Warna Merah Khas) -->
                 <a href="#projects"
-                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-vermilion-600 hover:bg-vermilion-500 active:bg-vermilion-700 text-white font-semibold text-sm border border-vermilion-500/40 hover:border-vermilion-400 shadow-lg shadow-vermilion-600/30 hover:shadow-vermilion-500/40 transition-all duration-200 group cursor-pointer">
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-vermilion-600 hover:bg-vermilion-500 active:bg-vermilion-700 text-white font-semibold text-sm border border-vermilion-500/50 shadow-lg shadow-vermilion-600/20 hover:shadow-vermilion-500/30 transition-all duration-200 group cursor-pointer">
                     <span>Lihat Projek</span>
                     <svg class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -103,7 +93,7 @@
 
                 <!-- Tombol Sekunder: Curriculum Vitae -->
                 <button type="button" @click="openCvModal()"
-                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-slate-200 hover:text-white font-semibold text-sm border border-carbon-800 hover:border-slate-700 bg-carbon-900/90 hover:bg-carbon-850 backdrop-blur-sm shadow-md transition-all duration-200 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-slate-600">
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-slate-200 hover:text-white font-semibold text-sm border border-white/10 hover:border-white/20 bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-sm transition-all duration-200 group cursor-pointer focus:outline-none focus:ring-1 focus:ring-slate-500">
                     <svg class="w-4 h-4 text-vermilion-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
@@ -111,41 +101,41 @@
                 </button>
             </div>
 
-            <!-- 5. Tech Stack Pills (Di Bawah CTA: Laravel, AWS Cloud, IT Support) -->
+            <!-- 5. Tech Stack Pills (Di Bawah CTA: Laravel Backend, AWS Cloud Infrastructure, IT Support Troubleshooting) -->
             <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 pt-2">
-                <!-- Laravel (Icon Logo Laravel, Warna Khas) -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-carbon-900/85 hover:bg-carbon-850 border border-carbon-800 text-xs font-mono backdrop-blur-md text-slate-200 shadow-sm transition-colors">
+                <!-- Laravel Backend -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-sm shadow-sm transition-colors">
                     <svg class="w-3.5 h-3.5 text-vermilion-500 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                     </svg>
-                    <span class="font-medium text-white">Laravel</span>
+                    <span class="font-medium text-slate-200">Laravel Backend</span>
                 </div>
 
-                <!-- AWS Cloud (Icon AWS Cloud, Warna Khas) -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-carbon-900/85 hover:bg-carbon-850 border border-carbon-800 text-xs font-mono backdrop-blur-md text-slate-200 shadow-sm transition-colors">
+                <!-- AWS Cloud Infrastructure -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-sm shadow-sm transition-colors">
                     <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
                     </svg>
-                    <span class="font-medium text-white">AWS Cloud</span>
+                    <span class="font-medium text-slate-200">AWS Cloud Infrastructure</span>
                 </div>
 
-                <!-- IT Support (Icon Gear/Wrench, Warna Abu-abu) -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-carbon-900/85 hover:bg-carbon-850 border border-carbon-800 text-xs font-mono backdrop-blur-md text-slate-300 shadow-sm transition-colors">
-                    <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <!-- IT Support Troubleshooting -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-sm shadow-sm transition-colors">
+                    <svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span class="font-medium text-slate-300">IT Support</span>
+                    <span class="font-medium text-slate-200">IT Support Troubleshooting</span>
                 </div>
             </div>
 
             <!-- 6. Footer Connect (// CONNECT: GitHub & LinkedIn) -->
-            <div class="pt-6 sm:pt-8 border-t border-carbon-800/80 w-full max-w-2xl flex items-center justify-center gap-3 text-xs font-mono text-slate-400">
+            <div class="pt-6 sm:pt-8 border-t border-white/[0.08] w-full max-w-2xl flex items-center justify-center gap-3 text-xs font-mono text-slate-400">
                 <span class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">// CONNECT:</span>
 
                 <!-- GitHub -->
                 <a href="https://github.com/muhammadashidqy76-dev" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-carbon-900/80 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all group backdrop-blur-sm"
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all group backdrop-blur-sm"
                     aria-label="GitHub" title="GitHub Profile">
                     <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -156,7 +146,7 @@
 
                 <!-- LinkedIn -->
                 <a href="https://www.linkedin.com/in/moch-hasbi-ashidqy-ashidqy-960157130" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-carbon-900/80 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all group backdrop-blur-sm"
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all group backdrop-blur-sm"
                     aria-label="LinkedIn" title="LinkedIn Profile">
                     <svg class="w-3.5 h-3.5 text-sky-400 group-hover:scale-105 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2z" />
