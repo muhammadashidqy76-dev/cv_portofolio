@@ -190,266 +190,179 @@
                 </div>
             </div>
 
-            <!-- ── 00 // FEATURED HANDS-ON NETWORK LAB SIMULATION ── -->
-            <section class="rounded-2xl bg-carbon-900/90 border border-carbon-800 shadow-2xl overflow-hidden backdrop-blur-sm"
-                     x-data="{ labTab: 'topology' }">
-                <!-- Showcase Window Header -->
-                <div class="flex flex-wrap items-center justify-between gap-3 px-5 py-3 bg-carbon-950 border-b border-carbon-800 select-none">
-                    <div class="flex items-center gap-2.5">
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
-                        </div>
-                        <span class="h-3.5 w-px bg-carbon-800 hidden sm:block"></span>
-                        <div class="flex items-center gap-2 font-mono text-xs text-slate-300">
-                            <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <span class="font-bold text-white">packet_tracer_lab_01.pkt</span>
-                            <span class="text-slate-500 text-[11px] hidden md:inline">// Hands-On Network Simulation</span>
-                        </div>
-                    </div>
+            <!-- ── 00 // HANDS-ON LAB SIMULATION CARD (CLEAN & MAINTAINABLE) ── -->
+            <div class="rounded-2xl bg-carbon-900 border border-carbon-800 p-5 sm:p-6 shadow-xl relative overflow-hidden font-mono"
+                 x-data="{ labModalOpen: false }">
+                <!-- Subtle Ambient Glow -->
+                <div class="absolute -right-12 -top-12 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-                    <div class="flex items-center gap-2">
-                        <!-- View Switcher -->
-                        <div class="inline-flex p-0.5 rounded-lg bg-carbon-900 border border-carbon-800 font-mono text-[11px]">
-                            <button type="button"
-                                    @click="labTab = 'topology'"
-                                    :class="labTab === 'topology' ? 'bg-carbon-950 text-indigo-400 font-bold border border-carbon-800 shadow-xs' : 'text-slate-400 hover:text-white'"
-                                    class="px-2.5 py-1 rounded-md transition-all cursor-pointer flex items-center gap-1.5">
-                                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                </svg>
-                                <span>Topologi Visual</span>
-                            </button>
-                            <button type="button"
-                                    @click="labTab = 'cli'"
-                                    :class="labTab === 'cli' ? 'bg-carbon-950 text-emerald-400 font-bold border border-carbon-800 shadow-xs' : 'text-slate-400 hover:text-white'"
-                                    class="px-2.5 py-1 rounded-md transition-all cursor-pointer flex items-center gap-1.5">
-                                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                                <span>Output CLI &amp; Ping</span>
-                            </button>
-                        </div>
-
-                        <!-- Verified Status Badge -->
-                        <span class="inline-flex items-center gap-1.5 font-mono text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-md font-semibold">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>Verified 0% Loss</span>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Showcase Content Body -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-5 sm:p-7 items-stretch">
-
-                    <!-- Left: Interactive Visual Diagram / CLI Output (7 Cols) -->
-                    <div class="lg:col-span-7 flex flex-col justify-between rounded-xl bg-carbon-950/80 border border-carbon-800 p-5 relative overflow-hidden">
-                        
-                        <!-- VIEW 1: TOPOLOGY DIAGRAM -->
-                        <div x-show="labTab === 'topology'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="space-y-6">
-                            <div class="flex items-center justify-between text-xs font-mono text-slate-400 pb-3 border-b border-carbon-800/80">
-                                <span class="text-indigo-400 font-bold">TOPOLOGI: PEER-TO-PEER LOCAL LAN</span>
-                                <span class="text-[11px] text-slate-500">Cisco Packet Tracer v8.2</span>
-                            </div>
-
-                            <!-- Visual Diagram Schematics -->
-                            <div class="py-4 px-2 flex flex-col items-center justify-center gap-6 sm:gap-8 relative select-none">
-                                
-                                <!-- Central Switch Layer 2 -->
-                                <div class="flex flex-col items-center gap-2 relative z-10">
-                                    <div class="p-3.5 rounded-2xl bg-indigo-500/10 border-2 border-indigo-500/40 text-indigo-400 shadow-lg shadow-indigo-500/10 flex items-center justify-center group hover:scale-105 transition-transform">
-                                        <!-- Switch Icon (Layer 2 Packet Switch) -->
-                                        <svg class="w-8 h-8 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                            <rect x="2" y="6" width="20" height="12" rx="3" />
-                                            <path d="M6 10h4m-2-2l2 2-2 2" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M18 14h-4m2-2l-2 2 2 2" stroke-linecap="round" stroke-linejoin="round" />
-                                            <circle cx="7" cy="14" r="0.8" fill="currentColor" />
-                                            <circle cx="17" cy="10" r="0.8" fill="currentColor" />
-                                        </svg>
-                                    </div>
-                                    <div class="text-center font-mono">
-                                        <span class="text-xs font-bold text-white block">Switch-01</span>
-                                        <span class="text-[10px] text-indigo-400">Cisco Catalyst 2960-24TT</span>
-                                    </div>
-                                </div>
-
-                                <!-- Connecting Cable Spine Visual -->
-                                <div class="w-full max-w-md relative flex items-center justify-between">
-                                    <!-- Left Port Fa0/1 Label -->
-                                    <span class="font-mono text-[9px] text-slate-400 bg-carbon-900 border border-carbon-800 px-1.5 py-0.5 rounded shadow-sm">
-                                        Port Fa0/1 <span class="text-emerald-400 font-bold">● UP</span>
-                                    </span>
-
-                                    <!-- Link Status Line with LED Pulse -->
-                                    <div class="flex-1 mx-2 h-0.5 bg-gradient-to-r from-emerald-500/40 via-indigo-500 to-emerald-500/40 relative">
-                                        <div class="absolute left-1/2 -top-1 -translate-x-1/2 px-2 py-0.5 bg-carbon-950 border border-carbon-800 rounded font-mono text-[9px] text-slate-400 whitespace-nowrap">
-                                            Copper UTP T568B
-                                        </div>
-                                    </div>
-
-                                    <!-- Right Port Fa0/2 Label -->
-                                    <span class="font-mono text-[9px] text-slate-400 bg-carbon-900 border border-carbon-800 px-1.5 py-0.5 rounded shadow-sm">
-                                        Port Fa0/2 <span class="text-emerald-400 font-bold">● UP</span>
-                                    </span>
-                                </div>
-
-                                <!-- End Devices: Laptop-01 and Laptop-02 -->
-                                <div class="w-full flex items-center justify-around gap-4 pt-2">
-                                    
-                                    <!-- Laptop 01 -->
-                                    <div class="flex flex-col items-center gap-2 p-3 rounded-xl bg-carbon-900/90 border border-carbon-800 text-center w-40 sm:w-44 hover:border-slate-700 transition-colors">
-                                        <div class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300">
-                                            <!-- Laptop Icon -->
-                                            <svg class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                            </svg>
-                                        </div>
-                                        <div class="font-mono">
-                                            <span class="text-xs font-bold text-white block">Laptop-01</span>
-                                            <span class="text-[10px] text-emerald-400 font-semibold block">192.168.1.10/24</span>
-                                            <span class="text-[9px] text-slate-500 block truncate">MAC: 0001.9678.11AA</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Inter-device transfer indicator -->
-                                    <div class="flex flex-col items-center justify-center font-mono text-[10px] text-indigo-400 px-2">
-                                        <svg class="w-5 h-5 animate-pulse text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                                        </svg>
-                                        <span class="text-[9px] text-slate-400 mt-1">Single LAN</span>
-                                    </div>
-
-                                    <!-- Laptop 02 -->
-                                    <div class="flex flex-col items-center gap-2 p-3 rounded-xl bg-carbon-900/90 border border-carbon-800 text-center w-40 sm:w-44 hover:border-slate-700 transition-colors">
-                                        <div class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300">
-                                            <!-- Laptop Icon -->
-                                            <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                            </svg>
-                                        </div>
-                                        <div class="font-mono">
-                                            <span class="text-xs font-bold text-white block">Laptop-02</span>
-                                            <span class="text-[10px] text-emerald-400 font-semibold block">192.168.1.20/24</span>
-                                            <span class="text-[9px] text-slate-500 block truncate">MAC: 0001.9678.22BB</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <!-- Bottom Status Banner inside Left Box -->
-                            <div class="pt-3 border-t border-carbon-800/80 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-slate-400">
-                                <span class="flex items-center gap-1.5 text-slate-300">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                                    <span>Subnet: 192.168.1.0/24 (Broadcast Domain Bersama)</span>
-                                </span>
-                                <span class="text-indigo-400 font-semibold">Tipe: Peer-to-Peer via Switch</span>
-                            </div>
-                        </div>
-
-                        <!-- VIEW 2: CLI TERMINAL VERIFICATION -->
-                        <div x-show="labTab === 'cli'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="space-y-4" style="display: none;">
-                            <div class="flex items-center justify-between text-xs font-mono text-slate-400 pb-2 border-b border-carbon-800/80">
-                                <span class="text-emerald-400 font-bold">TERMINAL COMMAND PROMPT // LAPTOP-01</span>
-                                <span class="text-[11px] text-slate-500">ICMP Test &amp; Switch MAC Table</span>
-                            </div>
-
-                            <!-- Terminal Console Box -->
-                            <div class="p-4 rounded-lg bg-black/90 border border-carbon-800 text-xs font-mono text-slate-300 space-y-3 leading-relaxed overflow-x-auto">
-                                <div class="text-slate-400">
-                                    <span class="text-indigo-400">C:\Users\Laptop-01&gt;</span> <span class="text-white font-bold">ping 192.168.1.20</span>
-                                </div>
-                                <div class="text-slate-400 text-[11px] space-y-0.5">
-                                    <p>Pinging 192.168.1.20 with 32 bytes of data:</p>
-                                    <p class="text-emerald-400 font-semibold">Reply from 192.168.1.20: bytes=32 time&lt;1ms TTL=128</p>
-                                    <p class="text-emerald-400 font-semibold">Reply from 192.168.1.20: bytes=32 time&lt;1ms TTL=128</p>
-                                    <p class="text-emerald-400 font-semibold">Reply from 192.168.1.20: bytes=32 time&lt;1ms TTL=128</p>
-                                    <p class="text-emerald-400 font-semibold">Reply from 192.168.1.20: bytes=32 time&lt;1ms TTL=128</p>
-                                </div>
-                                <div class="pt-2 border-t border-carbon-800/80 text-[11px] text-slate-400">
-                                    <p>Ping statistics for 192.168.1.20:</p>
-                                    <p class="text-white">    Packets: Sent = 4, Received = 4, Lost = 0 <span class="text-emerald-400 font-bold">(0% loss)</span></p>
-                                    <p class="text-slate-400">Approximate round trip times in milli-seconds:</p>
-                                    <p class="text-white">    Minimum = 0ms, Maximum = 0ms, Average = 0ms</p>
-                                </div>
-                                <div class="pt-2 border-t border-carbon-800/80 text-slate-400">
-                                    <span class="text-indigo-400">Switch-01#</span> <span class="text-white font-bold">show mac address-table</span>
-                                    <div class="text-[11px] text-slate-300 mt-1 font-mono">
-                                        <p class="text-slate-500">Vlan    Mac Address       Type        Ports</p>
-                                        <p class="text-slate-500">----    -----------       --------    -----</p>
-                                        <p>   1    0001.9678.11aa    DYNAMIC     Fa0/1</p>
-                                        <p>   1    0001.9678.22bb    DYNAMIC     Fa0/2</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Right: Lab Objective, Architectural Decisions & Analysis (5 Cols) -->
-                    <div class="lg:col-span-5 flex flex-col justify-between space-y-4 font-mono">
-                        <div>
-                            <!-- Lab Badge -->
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="font-mono text-[10px] font-bold text-indigo-400 uppercase tracking-widest bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded">
-                                    LAB 01 // FOUNDATION
-                                </span>
-                                <span class="text-slate-500 text-[10px]">Cisco ITN Module 1 &bull; 2</span>
-                            </div>
-
-                            <h3 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">
-                                Local LAN Connectivity &amp; Switch Peer-to-Peer Transfer
-                            </h3>
-
-                            <p class="mt-2 text-xs text-slate-300 font-sans leading-relaxed">
-                                Simulasi komunikasi dua end-device kantor untuk pertukaran file data lokal dalam satu collision domain dan broadcast domain yang sama melalui Switch Layer 2 tanpa menggunakan router.
-                            </p>
-
-                            <!-- Key Specs Grid -->
-                            <div class="mt-4 p-3.5 rounded-xl bg-carbon-950 border border-carbon-800 space-y-2 text-xs">
-                                <div class="flex items-center justify-between text-[11px]">
-                                    <span class="text-slate-500">Subnet Target:</span>
-                                    <span class="text-slate-200 font-semibold">192.168.1.0/24 (Netmask 255.255.255.0)</span>
-                                </div>
-                                <div class="flex items-center justify-between text-[11px]">
-                                    <span class="text-slate-500">Media Fisik:</span>
-                                    <span class="text-slate-200 font-semibold">UTP Cat5e / Cat6 Straight-Through</span>
-                                </div>
-                                <div class="flex items-center justify-between text-[11px]">
-                                    <span class="text-slate-500">Proses Switching:</span>
-                                    <span class="text-emerald-400 font-semibold">Layer 2 MAC Forwarding</span>
-                                </div>
-                                <div class="flex items-center justify-between text-[11px]">
-                                    <span class="text-slate-500">Verifikasi Uji:</span>
-                                    <span class="text-emerald-400 font-semibold">ICMP Ping &bull; Latensi &lt;1ms</span>
-                                </div>
-                            </div>
-
-                            <!-- Technical Takeaway / Second Brain Note -->
-                            <div class="mt-3 p-3 rounded-lg bg-indigo-500/5 border border-indigo-500/20 text-[11px] text-slate-300 font-sans leading-relaxed">
-                                <strong class="font-mono text-indigo-400 text-xs block mb-1">Poin Analisis Teknis:</strong>
-                                Komunikasi sukses karena kedua laptop berada pada network ID yang identik (<code class="text-indigo-300">192.168.1.0</code>). Switch mempelajari MAC address pengirim secara dinamis pada saat frame pertama diterima, lalu meneruskan frame unicast secara langsung tanpa memodifikasi isi paket Layer 3.
-                            </div>
-                        </div>
-
-                        <!-- Footer Actions & Quick Navigation -->
-                        <div class="pt-3 border-t border-carbon-800 flex items-center justify-between gap-3 text-xs">
-                            <span class="text-[11px] text-slate-500">Simulator: Cisco Packet Tracer</span>
-                            <a href="#node-0"
-                               class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">
-                                <span>Lihat Kurikulum Terkait</span>
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-5 relative z-10">
+                    
+                    <!-- Left: Lab Info & Summary -->
+                    <div class="space-y-3 max-w-2xl">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[11px] font-bold uppercase tracking-wider">
                                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
-                            </a>
+                                <span>Hands-on Lab Simulation</span>
+                            </span>
+                            <span class="text-xs text-slate-500">&bull;</span>
+                            <span class="text-xs text-slate-400">Cisco Packet Tracer</span>
+                            <span class="inline-flex items-center gap-1 text-[11px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                <span>Verified 0% Loss</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-white tracking-tight leading-snug">
+                                Lab 01: Peer-to-Peer &amp; Local Switch Connectivity
+                            </h3>
+                            <p class="mt-1.5 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+                                Simulasi pengujian pertukaran file data antar dua workstation kantor melalui Cisco Catalyst 2960 Switch Layer 2 dalam satu subnet lokal (192.168.1.0/24) dengan verifikasi pengujian ICMP Ping tanpa packet loss.
+                            </p>
+                        </div>
+
+                        <!-- Tags / Meta -->
+                        <div class="flex flex-wrap items-center gap-2 text-[11px] text-slate-400 pt-0.5">
+                            <span class="px-2 py-0.5 rounded bg-carbon-950 border border-carbon-800 text-slate-300">
+                                Topologi: 2 End-Devices + Catalyst 2960
+                            </span>
+                            <span class="px-2 py-0.5 rounded bg-carbon-950 border border-carbon-800 text-slate-300">
+                                Subnet: 192.168.1.0/24
+                            </span>
+                            <span class="px-2 py-0.5 rounded bg-carbon-950 border border-carbon-800 text-emerald-400">
+                                Ping: &lt;1ms
+                            </span>
                         </div>
                     </div>
 
+                    <!-- Right: Action Buttons -->
+                    <div class="flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0 sm:w-auto md:w-52">
+                        <!-- Baca Summary Button (Triggers Modal) -->
+                        <button type="button"
+                                @click="labModalOpen = true"
+                                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-carbon-950 hover:bg-carbon-850 border border-carbon-700 hover:border-indigo-500/50 text-white font-semibold text-xs transition-all shadow-sm cursor-pointer group">
+                            <svg class="w-4 h-4 text-indigo-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <span>Baca Summary Lab</span>
+                        </button>
+
+                        <!-- Dokumentasi Lengkap Button -->
+                        <a href="{{ route('notes.index') }}"
+                           class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all shadow-md shadow-indigo-600/20 group">
+                            <span>Dokumentasi Teknis</span>
+                            <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+
                 </div>
-            </section>
+
+                <!-- ─── SUMMARY MODAL DIALOG (ALPINE.JS) ─── -->
+                <div x-show="labModalOpen" x-cloak
+                     class="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+                    <!-- Backdrop -->
+                    <div x-show="labModalOpen"
+                         x-transition:enter="ease-out duration-200"
+                         x-transition:enter-start="opacity-0"
+                         x-transition:enter-end="opacity-100"
+                         x-transition:leave="ease-in duration-150"
+                         x-transition:leave-start="opacity-100"
+                         x-transition:leave-end="opacity-0"
+                         @click="labModalOpen = false"
+                         class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"></div>
+
+                    <!-- Dialog Box -->
+                    <div class="min-h-screen px-4 text-center flex items-center justify-center py-8">
+                        <div x-show="labModalOpen"
+                             x-transition:enter="ease-out duration-300"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             x-transition:leave="ease-in duration-200"
+                             x-transition:leave-start="opacity-100 scale-100"
+                             x-transition:leave-end="opacity-0 scale-95"
+                             @click.stop
+                             class="inline-block w-full max-w-xl text-left align-middle transition-all transform bg-carbon-900 border border-carbon-800 rounded-2xl shadow-2xl overflow-hidden font-mono">
+                            
+                            <!-- Modal Header -->
+                            <div class="flex items-center justify-between px-6 py-4 bg-carbon-950 border-b border-carbon-800">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+                                    <span class="ml-2 text-xs font-bold text-white">Summary Lab Skenario</span>
+                                </div>
+                                <button type="button" @click="labModalOpen = false" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-carbon-800 transition-colors">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="p-6 space-y-5 text-xs text-slate-300 font-sans">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1.5 font-mono text-[10px] text-indigo-400 font-bold uppercase tracking-wider">
+                                        <span>LAB 01 &bull; CISCO PACKET TRACER</span>
+                                    </div>
+                                    <h4 class="text-base font-bold text-white font-mono">
+                                        Local LAN Connectivity &amp; Switch Peer-to-Peer Transfer
+                                    </h4>
+                                </div>
+
+                                <!-- Skenario & Objektif -->
+                                <div class="space-y-1.5">
+                                    <strong class="text-white font-mono text-xs block">1. Skenario &amp; Objektif:</strong>
+                                    <p class="text-slate-300 text-xs leading-relaxed">
+                                        Menghubungkan dua unit laptop workstation pada satu lantai kantor menggunakan Switch Cisco Catalyst 2960 untuk memungkinkan pertukaran file lokal secara langsung tanpa perlu melewati router gateway.
+                                    </p>
+                                </div>
+
+                                <!-- Parameter Konfigurasi -->
+                                <div class="space-y-1.5">
+                                    <strong class="text-white font-mono text-xs block">2. Parameter Konfigurasi:</strong>
+                                    <div class="p-3 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-[11px] space-y-1 text-slate-300">
+                                        <p>&bull; <strong>Laptop-01:</strong> IP 192.168.1.10 / Netmask 255.255.255.0 (/24)</p>
+                                        <p>&bull; <strong>Laptop-02:</strong> IP 192.168.1.20 / Netmask 255.255.255.0 (/24)</p>
+                                        <p>&bull; <strong>Perangkat Penghubung:</strong> Switch Cisco Catalyst 2960 (Port Fa0/1 &amp; Fa0/2)</p>
+                                        <p>&bull; <strong>Media Transmisi:</strong> UTP Cat5e/Cat6 Straight-Through (TIA/EIA-568B)</p>
+                                    </div>
+                                </div>
+
+                                <!-- Hasil Pengujian -->
+                                <div class="space-y-1.5">
+                                    <strong class="text-white font-mono text-xs block">3. Hasil Uji Verifikasi:</strong>
+                                    <p class="text-slate-300 text-xs leading-relaxed">
+                                        &bull; <strong>Tes Ping ICMP:</strong> 4 packets transmitted, 4 received, <strong>0% packet loss</strong>, latensi rata-rata &lt;1ms.<br>
+                                        &bull; <strong>Switch MAC Table:</strong> Switch sukses mencatat MAC address pengirim secara dinamis pada port masing-masing (Dynamic MAC Learning) dan meneruskan frame secara unicast.
+                                    </p>
+                                </div>
+
+                                <!-- Analisis Teknis Singkat -->
+                                <div class="p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-slate-300 text-[11px] leading-relaxed">
+                                    <strong class="text-indigo-400 font-mono block mb-1">Analisis Inti:</strong>
+                                    Komunikasi berhasil langsung di Layer 2 (Data Link) tanpa routing karena kedua host berada pada Network ID yang sama (<code class="text-indigo-300 font-mono">192.168.1.0/24</code>), sehingga switch hanya bertindak sebagai jembatan frame berbasis MAC address.
+                                </div>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="px-6 py-4 bg-carbon-950 border-t border-carbon-800 flex items-center justify-between gap-3 font-mono">
+                                <button type="button" @click="labModalOpen = false" class="px-4 py-2 rounded-lg bg-carbon-900 border border-carbon-800 text-slate-300 hover:text-white text-xs transition-colors cursor-pointer">
+                                    Tutup
+                                </button>
+                                <a href="{{ route('notes.index') }}" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-colors inline-flex items-center gap-1.5">
+                                    <span>Buka Catatan Teknis</span>
+                                    &rarr;
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- ── ROADMAP.SH TREE FLOW CANVAS ── -->
             <div class="relative pt-4 pb-12 space-y-16">
