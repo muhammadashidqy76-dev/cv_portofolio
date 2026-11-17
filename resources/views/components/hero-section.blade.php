@@ -178,6 +178,23 @@
                     </button>
                 </div>
 
+                <!-- Role Learning Path Quick Link (Khusus IT Support saat difokuskan) -->
+                <div x-show="focusTrack === 'it-support'"
+                    x-cloak
+                    x-transition:enter="transition ease-out duration-250"
+                    x-transition:enter-start="opacity-0 scale-95 -translate-y-1"
+                    x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                    class="pt-1">
+                    <a href="{{ route('roadmap.index', ['roleSlug' => 'it-support']) }}"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/50 hover:border-indigo-400 text-indigo-300 hover:text-white font-mono text-xs font-semibold shadow-lg shadow-indigo-500/10 transition-all duration-200 group">
+                        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                        <span>Buka Learning Path &amp; Checklist IT Support</span>
+                        <svg class="w-3.5 h-3.5 text-indigo-400 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                </div>
+
                 <!-- Reset Active Focus Indicator -->
                 <button type="button" 
                     x-show="focusTrack !== 'all'"
