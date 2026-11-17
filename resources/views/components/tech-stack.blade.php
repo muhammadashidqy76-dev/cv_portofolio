@@ -81,29 +81,17 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <!-- ─── Section Header ─── -->
-        <div class="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div class="max-w-2xl">
-                <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
-                    <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
-                    {{ __('tech.tag') }}
-                </span>
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
-                    {{ __('tech.title') }}
-                </h2>
-                <p class="mt-3 text-slate-400 text-sm leading-relaxed font-normal">
-                    {{ __('tech.subtitle') }}
-                </p>
-            </div>
-
-            <div class="self-start sm:self-auto shrink-0">
-                <a href="{{ route('roadmap.index') }}" 
-                   class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-carbon-900 border border-carbon-800 hover:border-vermilion-500/50 hover:bg-carbon-850 text-slate-300 hover:text-white font-mono text-xs transition-all duration-200 group shadow-sm">
-                    <span>{{ __('tech.view_roadmap') }}</span>
-                    <svg class="w-3.5 h-3.5 text-vermilion-400 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                    </svg>
-                </a>
-            </div>
+        <div class="mb-12 max-w-2xl">
+            <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
+                <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
+                {{ __('tech.tag') }}
+            </span>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
+                {{ __('tech.title') }}
+            </h2>
+            <p class="mt-3 text-slate-400 text-sm leading-relaxed font-normal">
+                {{ __('tech.subtitle') }}
+            </p>
         </div>
 
         <!-- ─── Cards Grid ─── -->
@@ -150,19 +138,14 @@
                                         $iconPath = $techIconPaths[$name] ?? $fallbackIconPath;
                                         $techSlug = \Illuminate\Support\Str::slug($name);
                                     @endphp
-                                    <a href="{{ route('roadmap.index', ['tech' => $techSlug]) }}#tech-{{ $techSlug }}"
-                                       title="Buka roadmap spesialisasi {{ $name }}"
-                                       class="group/pill inline-flex items-center gap-2 px-3 py-1.5 rounded-lg {{ $badgeClasses['bg'] }} border {{ $badgeClasses['border'] }} hover:border-emerald-400/60 hover:bg-emerald-400/20 hover:shadow-md hover:shadow-emerald-500/10 text-xs font-medium transition-all duration-150 cursor-pointer">
-                                        <span class="shrink-0 transition-transform duration-150 group-hover/pill:scale-110">
+                                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg {{ $badgeClasses['bg'] }} border {{ $badgeClasses['border'] }} text-xs font-medium select-none shadow-sm">
+                                        <span class="shrink-0">
                                             <svg class="w-3.5 h-3.5 {{ $badgeClasses['text'] }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                                 {!! $iconPath !!}
                                             </svg>
                                         </span>
                                         <span class="{{ $badgeClasses['text'] }}">{{ $name }}</span>
-                                        <svg class="w-3 h-3 text-emerald-400/40 group-hover/pill:text-emerald-400 group-hover/pill:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </a>
+                                    </div>
                                 @endforeach
                             </div>
 
@@ -172,17 +155,9 @@
             </div>
 
             <!-- Footer indicator bar -->
-            <div class="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-carbon-900/60 border border-carbon-800 text-xs font-mono text-slate-400">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>Menampilkan teknologi terverifikasi dengan status <strong class="text-emerald-400 font-semibold">Finished</strong>.</span>
-                </div>
-                <a href="{{ route('roadmap.index') }}" class="text-vermilion-400 hover:text-vermilion-300 transition-colors inline-flex items-center gap-1.5 self-start sm:self-auto">
-                    <span>Eksplorasi roadmap & status lainnya</span>
-                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                    </svg>
-                </a>
+            <div class="mt-8 flex items-center gap-2 p-4 rounded-xl bg-carbon-900/60 border border-carbon-800 text-xs font-mono text-slate-400">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Menampilkan teknologi terverifikasi dengan status <strong class="text-emerald-400 font-semibold">Finished</strong> (siap diterapkan di lingkungan produksi).</span>
             </div>
         @else
             <div class="p-10 rounded-xl bg-carbon-900 border border-carbon-800 text-center space-y-3">
@@ -192,9 +167,6 @@
                     </svg>
                 </div>
                 <p class="font-mono text-xs text-slate-300">Belum ada teknologi dengan status <span class="text-emerald-400 font-semibold">Finished</span>.</p>
-                <a href="{{ route('roadmap.index') }}" class="inline-flex items-center gap-1.5 text-xs font-mono text-vermilion-400 hover:underline">
-                    <span>Lihat rencana roadmap & skill yang sedang dipelajari &rarr;</span>
-                </a>
             </div>
         @endif
 
