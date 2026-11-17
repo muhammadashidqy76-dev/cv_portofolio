@@ -56,7 +56,7 @@ class RoadmapItSupportController extends Controller
     {
         $role = RoadmapRole::where('slug', 'it-support')->firstOrFail();
         $notes = LearningLogEntry::published()->orderBy('title')->get(['id', 'title', 'slug', 'category']);
-        $projects = Project::published()->orderBy('complexity_order')->get(['id', 'title']);
+        $projects = Project::published()->orderBy('complexity_order')->get();
 
         // Daftar fase yang sudah ada sebagai referensi
         $existingPhases = RoadmapCheckpoint::where('roadmap_role_id', $role->id)
@@ -103,7 +103,7 @@ class RoadmapItSupportController extends Controller
         $checkpoint = $roadmap_it_support;
         $role = $checkpoint->role;
         $notes = LearningLogEntry::published()->orderBy('title')->get(['id', 'title', 'slug', 'category']);
-        $projects = Project::published()->orderBy('complexity_order')->get(['id', 'title']);
+        $projects = Project::published()->orderBy('complexity_order')->get();
 
         $existingPhases = RoadmapCheckpoint::where('roadmap_role_id', $checkpoint->roadmap_role_id)
             ->distinct()

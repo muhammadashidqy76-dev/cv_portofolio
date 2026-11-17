@@ -191,18 +191,18 @@
             </div>
 
             <!-- ── ROADMAP.SH TREE FLOW CANVAS ── -->
-            <div class="relative pt-4 pb-12 space-y-14">
+            <div class="relative pt-4 pb-12 space-y-16">
 
-                <!-- Central Spine Line (Garis Alur Vertikal Tengah) -->
+                <!-- Central Spine Line (Garis Alur Vertikal Tengah Presisi) -->
                 <div class="absolute left-6 md:left-1/2 top-8 bottom-4 w-0.5 -translate-x-1/2 bg-gradient-to-b from-indigo-500/60 via-carbon-700 to-indigo-500/30 pointer-events-none z-0"></div>
 
                 @php $phaseIndex = 0; @endphp
                 @foreach ($phases as $phaseName => $items)
                     @php $phaseIndex++; @endphp
-                    <div class="relative z-10 space-y-6">
+                    <div class="relative z-10 space-y-8">
 
                         <!-- Milestone Phase Box (Node Utama di Tengah Alur) -->
-                        <div class="flex items-center md:justify-center pl-12 md:pl-0">
+                        <div class="flex items-center justify-start md:justify-center pl-12 md:pl-0">
                             <div class="relative group">
                                 <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300"></div>
                                 
@@ -221,92 +221,208 @@
                             </div>
                         </div>
 
-                        <!-- Topics Branch Grid (Alternating Left/Right Tree Blocks) -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 pt-2">
+                        <!-- Checkpoints Rhythm Tree (Seirama, Presisi, Simetris) -->
+                        <div class="space-y-4 md:space-y-6">
                             @foreach ($items as $idx => $item)
                                 @php
-                                    $isEven = ($idx % 2 === 0);
+                                    $isLeft = ($idx % 2 === 0);
                                 @endphp
 
                                 <div x-show="matchesFilter('{{ $item->id }}')"
                                      x-transition:enter="transition ease-out duration-150"
                                      x-transition:enter-start="opacity-0 scale-98"
                                      x-transition:enter-end="opacity-100 scale-100"
-                                     class="relative flex items-center {{ $isEven ? 'md:justify-end' : 'md:justify-start md:col-start-2' }} pl-12 md:pl-0">
+                                     class="relative flex items-center w-full">
 
-                                    <!-- Connector Horizontal Line to Central Spine -->
-                                    <div class="absolute left-0 md:left-auto {{ $isEven ? 'md:right-0 md:translate-x-full' : 'md:left-0 md:-translate-x-full' }} top-1/2 -translate-y-1/2 w-8 md:w-4 h-px border-t border-dashed border-carbon-700 pointer-events-none hidden md:block"></div>
+                                    <!-- ── DESKTOP ALTERNATING ROW (SEIRAMA & SIMETRIS) ── -->
+                                    <div class="hidden md:flex items-center w-full justify-between">
+                                        
+                                        <!-- LEFT COLUMN -->
+                                        <div class="w-1/2 flex items-center justify-end">
+                                            @if ($isLeft)
+                                                <button type="button"
+                                                        @click="openDrawer({{ $item->id }})"
+                                                        :class="getNodeClasses('{{ $item->id }}')"
+                                                        class="w-full max-w-md p-3.5 rounded-xl border transition-all duration-200 text-left flex items-start justify-between gap-3 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/40 relative shadow-md">
+                                                    
+                                                    <!-- Left Icon & Topic Title -->
+                                                    <div class="flex items-start gap-2.5 min-w-0">
+                                                        <div class="mt-0.5 shrink-0">
+                                                            @if ($item->status === \App\Models\RoadmapCheckpoint::STATUS_FINISHED)
+                                                                <div class="w-5 h-5 rounded-md bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-sm shadow-emerald-500/20">
+                                                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                                                    </svg>
+                                                                </div>
+                                                            @elseif ($item->status === \App\Models\RoadmapCheckpoint::STATUS_IN_PROGRESS)
+                                                                <div class="w-5 h-5 rounded-md bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
+                                                                    <svg class="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                                                    </svg>
+                                                                </div>
+                                                            @else
+                                                                <div class="w-5 h-5 rounded-md bg-carbon-950 border border-carbon-800 flex items-center justify-center text-slate-500 group-hover:border-slate-600">
+                                                                    <div class="w-1.5 h-1.5 rounded-full bg-slate-600"></div>
+                                                                </div>
+                                                            @endif
+                                                        </div>
 
-                                    <!-- Node Connector Dot on Central Spine -->
-                                    <div class="absolute left-[-24px] md:left-auto {{ $isEven ? 'md:right-[-17px]' : 'md:left-[-17px]' }} top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border border-carbon-700 bg-carbon-950 pointer-events-none hidden md:block"></div>
+                                                        <div class="space-y-1 min-w-0">
+                                                            <div class="text-xs sm:text-sm font-semibold tracking-tight leading-snug group-hover:text-white transition-colors {{ $item->status === 'finished' ? 'text-emerald-200' : ($item->status === 'in_progress' ? 'text-amber-200' : 'text-slate-300') }}">
+                                                                {{ $item->title }}
+                                                            </div>
+                                                            @if ($item->source_reference)
+                                                                <div class="text-[10px] font-mono text-slate-500 truncate" title="{{ $item->source_reference }}">
+                                                                    {{ $item->source_reference }}
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
 
-                                    <!-- Node Card Button (Roadmap.sh Block Style) -->
-                                    <button type="button"
-                                            @click="openDrawer({{ $item->id }})"
-                                            :class="getNodeClasses('{{ $item->id }}')"
-                                            class="w-full md:max-w-md p-3.5 rounded-xl border transition-all duration-200 text-left flex items-start justify-between gap-3 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/40 relative">
-
-                                        <!-- Left Icon & Topic Title -->
-                                        <div class="flex items-start gap-2.5 min-w-0">
-                                            <!-- Status Icon -->
-                                            <div class="mt-0.5 shrink-0">
-                                                @if ($item->status === \App\Models\RoadmapCheckpoint::STATUS_FINISHED)
-                                                    <div class="w-5 h-5 rounded-md bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-sm shadow-emerald-500/20">
-                                                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                                    <!-- Indicators -->
+                                                    <div class="flex items-center gap-1.5 shrink-0 font-mono text-[10px]">
+                                                        @if ($item->note)
+                                                            <span class="px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 text-indigo-400" title="Catatan Teknis">Note</span>
+                                                        @elseif ($item->external_url)
+                                                            <span class="px-1.5 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400" title="Referensi Terkurasi">Blog</span>
+                                                        @endif
+                                                        @if ($item->project)
+                                                            <span class="px-1.5 py-0.5 rounded bg-vermilion-500/10 border border-vermilion-500/30 text-vermilion-400" title="Proyek Riil">Proj</span>
+                                                        @endif
+                                                        <svg class="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                                         </svg>
                                                     </div>
-                                                @elseif ($item->status === \App\Models\RoadmapCheckpoint::STATUS_IN_PROGRESS)
-                                                    <div class="w-5 h-5 rounded-md bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
-                                                        <svg class="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                                </button>
+
+                                                <!-- Horizontal Connector Line (Left side) -->
+                                                <div class="w-8 h-px border-t border-dashed border-carbon-600 shrink-0"></div>
+                                            @else
+                                                <div class="w-full max-w-md"></div>
+                                            @endif
+                                        </div>
+
+                                        <!-- CENTER NODE DOT (PADA SUMBU TULANG BELAKANG) -->
+                                        <div class="shrink-0 flex items-center justify-center w-8 z-10">
+                                            @if ($item->status === \App\Models\RoadmapCheckpoint::STATUS_FINISHED)
+                                                <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 ring-4 ring-emerald-500/20 border-2 border-carbon-950 shadow-sm shadow-emerald-500/50"></span>
+                                            @elseif ($item->status === \App\Models\RoadmapCheckpoint::STATUS_IN_PROGRESS)
+                                                <span class="w-3.5 h-3.5 rounded-full bg-amber-400 ring-4 ring-amber-500/20 border-2 border-carbon-950 animate-pulse"></span>
+                                            @else
+                                                <span class="w-3 h-3 rounded-full bg-slate-600 ring-2 ring-carbon-800 border-2 border-carbon-950"></span>
+                                            @endif
+                                        </div>
+
+                                        <!-- RIGHT COLUMN -->
+                                        <div class="w-1/2 flex items-center justify-start">
+                                            @if (!$isLeft)
+                                                <!-- Horizontal Connector Line (Right side) -->
+                                                <div class="w-8 h-px border-t border-dashed border-carbon-600 shrink-0"></div>
+
+                                                <button type="button"
+                                                        @click="openDrawer({{ $item->id }})"
+                                                        :class="getNodeClasses('{{ $item->id }}')"
+                                                        class="w-full max-w-md p-3.5 rounded-xl border transition-all duration-200 text-left flex items-start justify-between gap-3 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/40 relative shadow-md">
+                                                    
+                                                    <!-- Left Icon & Topic Title -->
+                                                    <div class="flex items-start gap-2.5 min-w-0">
+                                                        <div class="mt-0.5 shrink-0">
+                                                            @if ($item->status === \App\Models\RoadmapCheckpoint::STATUS_FINISHED)
+                                                                <div class="w-5 h-5 rounded-md bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-sm shadow-emerald-500/20">
+                                                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                                                    </svg>
+                                                                </div>
+                                                            @elseif ($item->status === \App\Models\RoadmapCheckpoint::STATUS_IN_PROGRESS)
+                                                                <div class="w-5 h-5 rounded-md bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
+                                                                    <svg class="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                                                    </svg>
+                                                                </div>
+                                                            @else
+                                                                <div class="w-5 h-5 rounded-md bg-carbon-950 border border-carbon-800 flex items-center justify-center text-slate-500 group-hover:border-slate-600">
+                                                                    <div class="w-1.5 h-1.5 rounded-full bg-slate-600"></div>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+
+                                                        <div class="space-y-1 min-w-0">
+                                                            <div class="text-xs sm:text-sm font-semibold tracking-tight leading-snug group-hover:text-white transition-colors {{ $item->status === 'finished' ? 'text-emerald-200' : ($item->status === 'in_progress' ? 'text-amber-200' : 'text-slate-300') }}">
+                                                                {{ $item->title }}
+                                                            </div>
+                                                            @if ($item->source_reference)
+                                                                <div class="text-[10px] font-mono text-slate-500 truncate" title="{{ $item->source_reference }}">
+                                                                    {{ $item->source_reference }}
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Indicators -->
+                                                    <div class="flex items-center gap-1.5 shrink-0 font-mono text-[10px]">
+                                                        @if ($item->note)
+                                                            <span class="px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 text-indigo-400" title="Catatan Teknis">Note</span>
+                                                        @elseif ($item->external_url)
+                                                            <span class="px-1.5 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400" title="Referensi Terkurasi">Blog</span>
+                                                        @endif
+                                                        @if ($item->project)
+                                                            <span class="px-1.5 py-0.5 rounded bg-vermilion-500/10 border border-vermilion-500/30 text-vermilion-400" title="Proyek Riil">Proj</span>
+                                                        @endif
+                                                        <svg class="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                                         </svg>
                                                     </div>
-                                                @else
-                                                    <div class="w-5 h-5 rounded-md bg-carbon-950 border border-carbon-800 flex items-center justify-center text-slate-500 group-hover:border-slate-600">
-                                                        <div class="w-1.5 h-1.5 rounded-full bg-slate-600"></div>
-                                                    </div>
-                                                @endif
-                                            </div>
+                                                </button>
+                                            @else
+                                                <div class="w-full max-w-md"></div>
+                                            @endif
+                                        </div>
 
-                                            <!-- Title & Reference Pill -->
-                                            <div class="space-y-1 min-w-0">
-                                                <div class="text-xs sm:text-sm font-semibold tracking-tight leading-snug group-hover:text-white transition-colors {{ $item->status === 'finished' ? 'text-emerald-200' : ($item->status === 'in_progress' ? 'text-amber-200' : 'text-slate-300') }}">
+                                    </div>
+
+                                    <!-- ── MOBILE ROW (< md) PRESISE CONNECTOR ── -->
+                                    <div class="flex md:hidden items-center w-full pl-6">
+                                        <!-- Node dot on left vertical line -->
+                                        <div class="absolute left-6 -translate-x-1/2 z-10">
+                                            @if ($item->status === \App\Models\RoadmapCheckpoint::STATUS_FINISHED)
+                                                <span class="w-3 h-3 block rounded-full bg-emerald-400 ring-2 ring-emerald-500/30 border border-carbon-950"></span>
+                                            @elseif ($item->status === \App\Models\RoadmapCheckpoint::STATUS_IN_PROGRESS)
+                                                <span class="w-3 h-3 block rounded-full bg-amber-400 ring-2 ring-amber-500/30 border border-carbon-950"></span>
+                                            @else
+                                                <span class="w-2.5 h-2.5 block rounded-full bg-slate-600 border border-carbon-950"></span>
+                                            @endif
+                                        </div>
+
+                                        <!-- Connector line to card -->
+                                        <div class="w-6 h-px border-t border-dashed border-carbon-700 shrink-0"></div>
+
+                                        <!-- Card Button Mobile -->
+                                        <button type="button"
+                                                @click="openDrawer({{ $item->id }})"
+                                                :class="getNodeClasses('{{ $item->id }}')"
+                                                class="flex-1 p-3 rounded-xl border transition-all duration-200 text-left flex items-start justify-between gap-2.5 group">
+                                            <div class="space-y-0.5 min-w-0">
+                                                <div class="text-xs font-semibold {{ $item->status === 'finished' ? 'text-emerald-300' : ($item->status === 'in_progress' ? 'text-amber-300' : 'text-slate-300') }}">
                                                     {{ $item->title }}
                                                 </div>
-
                                                 @if ($item->source_reference)
-                                                    <div class="text-[10px] font-mono text-slate-500 truncate" title="{{ $item->source_reference }}">
-                                                        {{ $item->source_reference }}
-                                                    </div>
+                                                    <div class="text-[9px] font-mono text-slate-500 truncate">{{ $item->source_reference }}</div>
                                                 @endif
                                             </div>
-                                        </div>
 
-                                        <!-- Right Indicators (Note / Proj pill & chevron) -->
-                                        <div class="flex items-center gap-1.5 shrink-0 font-mono text-[10px]">
-                                            @if ($item->note)
-                                                <span class="px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 text-indigo-400" title="Catatan Teknis Saya">
-                                                    Note
-                                                </span>
-                                            @elseif ($item->external_url)
-                                                <span class="px-1.5 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400" title="Referensi Terkurasi">
-                                                    Blog
-                                                </span>
-                                            @endif
+                                            <div class="flex items-center gap-1 shrink-0 font-mono text-[9px]">
+                                                @if ($item->note)
+                                                    <span class="px-1 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">Note</span>
+                                                @elseif ($item->external_url)
+                                                    <span class="px-1 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400">Blog</span>
+                                                @endif
+                                                <svg class="w-3 h-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </div>
+                                        </button>
+                                    </div>
 
-                                            @if ($item->project)
-                                                <span class="px-1.5 py-0.5 rounded bg-vermilion-500/10 border border-vermilion-500/30 text-vermilion-400" title="Proyek Riil">
-                                                    Proj
-                                                </span>
-                                            @endif
-
-                                            <svg class="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </div>
-
-                                    </button>
                                 </div>
                             @endforeach
                         </div>
