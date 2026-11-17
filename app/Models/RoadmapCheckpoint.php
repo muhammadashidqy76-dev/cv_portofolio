@@ -22,6 +22,8 @@ class RoadmapCheckpoint extends Model
         'description',
         'status',
         'source_reference',
+        'external_url',
+        'external_url_title',
         'learning_log_entry_id',
         'project_id',
         'display_order',

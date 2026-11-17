@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JourneyEntry;
 use App\Models\LearningLogEntry;
 use App\Models\Project;
+use App\Models\RoadmapCheckpoint;
 use App\Models\TechStackItem;
 use App\Models\WorkExperience;
 use Illuminate\View\View;
@@ -64,6 +65,16 @@ class DashboardController extends Controller
             ->take(4)
             ->get();
 
+        // 6. IT Support Roadmap Stats
+        $roadmapTotal = RoadmapCheckpoint::count();
+        $roadmapFinished = RoadmapCheckpoint::where('status', RoadmapCheckpoint::STATUS_FINISHED)->count();
+        $roadmapStats = [
+            'total'       => $roadmapTotal,
+            'finished'    => $roadmapFinished,
+            'in_progress' => RoadmapCheckpoint::where('status', RoadmapCheckpoint::STATUS_IN_PROGRESS)->count(),
+            'percentage'  => $roadmapTotal > 0 ? round(($roadmapFinished / $roadmapTotal) * 100) : 0,
+        ];
+
         return view('dashboard', compact(
             'projectStats',
             'recentProjects',
@@ -71,7 +82,8 @@ class DashboardController extends Controller
             'experienceStats',
             'journeyStats',
             'noteStats',
-            'recentNotes'
+            'recentNotes',
+            'roadmapStats'
         ));
     }
 }

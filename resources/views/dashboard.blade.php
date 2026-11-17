@@ -37,7 +37,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
             <!-- ─── Metric Cards Grid ─────────────────────────────────────────────── -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
                 
                 <!-- 1. Featured Projects -->
                 <a href="{{ route('projects.index') }}" class="group rounded-xl bg-carbon-900/90 border border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-lg flex flex-col justify-between">
@@ -121,7 +121,24 @@
                     <div class="mt-4 pt-3 border-t border-carbon-800/80 flex items-center justify-between text-[11px] font-mono">
                         <span class="text-vermilion-400">{{ $noteStats['laravel'] }} Laravel</span>
                         <span class="text-cyan-400">{{ $noteStats['cloud'] }} Cloud</span>
-                        <span class="text-indigo-400">{{ $noteStats['it_support'] }} IT Support</span>
+                        <span class="text-indigo-400">{{ $noteStats['it_support'] }} IT</span>
+                    </div>
+                </a>
+
+                <!-- 6. IT Support Roadmap -->
+                <a href="{{ route('roadmap-it-support.index') }}" class="group rounded-xl bg-carbon-900/90 border border-carbon-800 p-4 sm:p-5 hover:border-indigo-500/50 transition-all shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                            <span class="group-hover:text-indigo-400 transition-colors">06. IT Roadmap </span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">Live</span>
+                        </div>
+                        <div class="text-2xl sm:text-3xl font-bold font-mono text-white">
+                            {{ $roadmapStats['total'] }}
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-carbon-800/80 flex items-center justify-between text-[11px] font-mono">
+                        <span class="text-emerald-400">{{ $roadmapStats['finished'] }} Clear</span>
+                        <span class="text-indigo-400 font-semibold">{{ $roadmapStats['percentage'] }}% Mastered</span>
                     </div>
                 </a>
 

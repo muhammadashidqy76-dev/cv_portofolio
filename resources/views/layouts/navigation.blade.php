@@ -57,6 +57,11 @@
                     <x-nav-link :href="route('learning-log.index')" :active="request()->routeIs('learning-log.*')">
                         {{ __('Notes') }}
                     </x-nav-link>
+
+                    <!-- 7. Roadmap IT Support (Active) -->
+                    <x-nav-link :href="route('roadmap-it-support.index')" :active="request()->routeIs('roadmap-it-support.*')">
+                        {{ __('Roadmap IT') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -137,6 +142,10 @@
 
             <x-responsive-nav-link :href="route('learning-log.index')" :active="request()->routeIs('learning-log.*')">
                 {{ __('Notes & Learning Log (Active)') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('roadmap-it-support.index')" :active="request()->routeIs('roadmap-it-support.*')">
+                {{ __('Roadmap IT Support (Active)') }}
             </x-responsive-nav-link>
         </div>
 

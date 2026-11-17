@@ -7,6 +7,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoadmapController;
+use App\Http\Controllers\RoadmapItSupportController;
 use App\Http\Controllers\TechStackItemController;
 use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,6 @@ Route::get('/', function () {
 
 // ─── Public Reading Pages ─────────────────────────────────────────────────────
 Route::get('/roadmap/{roleSlug?}', [RoadmapController::class, 'index'])->name('roadmap.index');
-Route::patch('/roadmap/checkpoint/{checkpoint}', [RoadmapController::class, 'updateCheckpointStatus'])->name('roadmap.checkpoint.update');
 Route::get('/notes', [NoteController::class, 'index'])->name('notes.index');
 Route::get('/notes/{entry:slug}', [NoteController::class, 'show'])->name('notes.show');
 
@@ -69,6 +69,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('learning-log', LearningLogEntryController::class)
         ->names('learning-log')
         ->parameters(['learning-log' => 'learningLogEntry']);
+    Route::resource('roadmap-it-support', RoadmapItSupportController::class)
+        ->names('roadmap-it-support');
+    Route::patch('roadmap-it-support/{checkpoint}/toggle-status', [RoadmapItSupportController::class, 'toggleStatus'])
+        ->name('roadmap-it-support.toggle-status');
 });
 
 require __DIR__.'/auth.php';
