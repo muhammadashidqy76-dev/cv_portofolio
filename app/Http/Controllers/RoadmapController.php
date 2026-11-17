@@ -61,4 +61,42 @@ class RoadmapController extends Controller
             'stats'
         ));
     }
+
+    /**
+     * Update status checkpoint secara langsung (AJAX/Fetch) agar bisa di-update 'clear' / selesai.
+     * Route: PATCH /roadmap/checkpoint/{checkpoint}
+     */
+    public function updateCheckpointStatus(Request $request, RoadmapCheckpoint $checkpoint)
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:finished,in_progress,not_started',
+        ]);
+
+        $checkpoint->update(['status' => $validated['status']]);
+
+        // Hitung ulang stats untuk role ini
+        $roleId = $checkpoint->roadmap_role_id;
+        $total = RoadmapCheckpoint::where('roadmap_role_id', $roleId)->count();
+        $finished = RoadmapCheckpoint::where('roadmap_role_id', $roleId)->where('status', RoadmapCheckpoint::STATUS_FINISHED)->count();
+        $inProgress = RoadmapCheckpoint::where('roadmap_role_id', $roleId)->where('status', RoadmapCheckpoint::STATUS_IN_PROGRESS)->count();
+        $notStarted = RoadmapCheckpoint::where('roadmap_role_id', $roleId)->where('status', RoadmapCheckpoint::STATUS_NOT_STARTED)->count();
+        $percentage = $total > 0 ? round(($finished / $total) * 100) : 0;
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Status checkpoint berhasil diperbarui.',
+            'checkpoint' => [
+                'id' => $checkpoint->id,
+                'status' => $checkpoint->status,
+                'badge' => $checkpoint->status_badge_classes,
+            ],
+            'stats' => [
+                'total' => $total,
+                'finished' => $finished,
+                'in_progress' => $inProgress,
+                'not_started' => $notStarted,
+                'percentage' => $percentage,
+            ],
+        ]);
+    }
 }

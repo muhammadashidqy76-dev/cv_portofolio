@@ -34,3 +34,4 @@ class RoadmapRole extends Model
         return $query->where('status', 'published');
     }
 }
+

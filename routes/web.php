@@ -28,6 +28,7 @@ Route::get('/', function () {
 
 // ─── Public Reading Pages ─────────────────────────────────────────────────────
 Route::get('/roadmap/{roleSlug?}', [RoadmapController::class, 'index'])->name('roadmap.index');
+Route::patch('/roadmap/checkpoint/{checkpoint}', [RoadmapController::class, 'updateCheckpointStatus'])->name('roadmap.checkpoint.update');
 Route::get('/notes', [NoteController::class, 'index'])->name('notes.index');
 Route::get('/notes/{entry:slug}', [NoteController::class, 'show'])->name('notes.show');
 
