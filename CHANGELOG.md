@@ -11,6 +11,8 @@ bukan per-commit (untuk itu lihat `git log`).
 - Blade `resources/views/learning-log/edit.blade.php` & `create.blade.php`: memisahkan Alpine component logic dari atribut inline `x-data="..."` ke fungsi `<script>` dedicated (`learningLogEditData()` & `learningLogCreateData()`), menyuntikkan data server-side via `@json` untuk menghindari HTML quote collision dan escaping error karakter `>` pada template literal Markdown snippet, menambahkan atribut `:value` eksplisit pada input title/slug untuk mencegah fallback ke `[object HTMLInputElement]`, serta menempatkan isi konten markdown `{{ old('body', $learningLogEntry->body) }}` langsung di dalam tag `<textarea>` agar catatan sebelumnya tidak kosong saat form dibuka.
 
 ### Added
+- Model & Migration `RoadmapRole` dan `RoadmapCheckpoint`: arsitektur basis data relasional untuk sistem Learning Path Tracker berbasis role pekerjaan (CMS-ready), mencakup pengelompokan modul per fase, indikator status penguasaan kompetensi (Finished, In Progress, Planned), referensi sumber kurikulum (seperti Cisco Networking Academy / CCNA), serta tautan relasi langsung ke artikel Catatan Teknis (`learning_log_entries`) dan Featured Project (`projects`).
+- Seeder `RoadmapSeeder`: kurikulum awal untuk role `IT Support & Systems` yang mencakup 3 fase terapan: 01. Dasar Jaringan Komputer (OSI/TCP-IP, IPv4 Subnetting, DHCP, DNS), 02. Hardware PC & Pemecahan Masalah OS Windows, dan 03. Studi Kasus In-House Kantor (Pengkabelan LAN UTP Cat6, Network Printer Sharing & Centralized Access, serta Backup Data 3-2-1).
 - Setup Containerization Docker & AWS EC2 Deployment:
   - Multi-stage `Dockerfile`: build frontend assets (Vite/Node 20), build dependensi PHP tanpa dev (Composer 2), dan image runtime akhir `php:8.2-fpm-alpine` yang ultra-ringan dengan ekstensi lengkap (`pdo_mysql`, `bcmath`, `pcntl`, `opcache`, `gd`, `zip`, `intl`, `redis`).
   - `docker-compose.yml`: konfigurasi production untuk server AWS EC2 mencakup service `app`, web server `nginx:alpine` (reverse proxy, gzip, static caching, certbot SSL ready), database `mysql:8.0` dengan persistent volume terisolasi (port 3306 tidak terekspos keluar untuk keamanan), dan `redis:alpine` untuk cache/session.
@@ -90,6 +92,8 @@ bukan per-commit (untuk itu lihat `git log`).
 - Blade `resources/views/notes/show.blade.php`: upgrade header ke reader-mode lengkap (branding `<Ashidqy/>`, tombol kembali ke beranda, judul artikel fade-in saat scroll melewati header artikel, tombol salin link dengan feedback tooltip), penambahan Author Card mini profil di akhir artikel, dan upgrade footer lengkap dengan navigasi quick links, info built with, copyright, dan social media links.
 
 ### Added
+- Model & Migration `RoadmapRole` dan `RoadmapCheckpoint`: arsitektur basis data relasional untuk sistem Learning Path Tracker berbasis role pekerjaan (CMS-ready), mencakup pengelompokan modul per fase, indikator status penguasaan kompetensi (Finished, In Progress, Planned), referensi sumber kurikulum (seperti Cisco Networking Academy / CCNA), serta tautan relasi langsung ke artikel Catatan Teknis (`learning_log_entries`) dan Featured Project (`projects`).
+- Seeder `RoadmapSeeder`: kurikulum awal untuk role `IT Support & Systems` yang mencakup 3 fase terapan: 01. Dasar Jaringan Komputer (OSI/TCP-IP, IPv4 Subnetting, DHCP, DNS), 02. Hardware PC & Pemecahan Masalah OS Windows, dan 03. Studi Kasus In-House Kantor (Pengkabelan LAN UTP Cat6, Network Printer Sharing & Centralized Access, serta Backup Data 3-2-1).
 - Route publik `GET /notes` → `NoteController::index` dan Blade `resources/views/notes/index.blade.php`: halaman arsip & katalog penuh untuk seluruh catatan teknis, dilengkapi filter kategori (Semua, Laravel, Cloud Engineering), pencarian judul/konten, grid card responsif 3-kolom, dan pagination.
 - Component `learning-log-section.blade.php`: tombol Call-to-Action "Lihat Semua Catatan & Eksperimen" di bagian bawah section beranda yang mengarah langsung ke `/notes`.
 - Migration `add_slug_and_body_to_learning_log_entries_table`: menambahkan kolom `slug` (unique) dan `body` (longText, Markdown penuh) ke tabel `learning_log_entries`. Kolom `content` tetap sebagai excerpt di card homepage.
@@ -173,6 +177,8 @@ Template entry (pindahkan ke atas [Unreleased] jadi versi baru saat rilis/milest
 
 ## [x.y.z] - YYYY-MM-DD
 ### Added
+- Model & Migration `RoadmapRole` dan `RoadmapCheckpoint`: arsitektur basis data relasional untuk sistem Learning Path Tracker berbasis role pekerjaan (CMS-ready), mencakup pengelompokan modul per fase, indikator status penguasaan kompetensi (Finished, In Progress, Planned), referensi sumber kurikulum (seperti Cisco Networking Academy / CCNA), serta tautan relasi langsung ke artikel Catatan Teknis (`learning_log_entries`) dan Featured Project (`projects`).
+- Seeder `RoadmapSeeder`: kurikulum awal untuk role `IT Support & Systems` yang mencakup 3 fase terapan: 01. Dasar Jaringan Komputer (OSI/TCP-IP, IPv4 Subnetting, DHCP, DNS), 02. Hardware PC & Pemecahan Masalah OS Windows, dan 03. Studi Kasus In-House Kantor (Pengkabelan LAN UTP Cat6, Network Printer Sharing & Centralized Access, serta Backup Data 3-2-1).
 - Fitur/model/route baru yang ditambahkan
 
 ### Changed

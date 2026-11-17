@@ -23,11 +23,12 @@ class DatabaseSeeder extends Seeder
         // 2. Attach Tech Stack Items to Featured Projects (Pivot Table)
         $this->attachTechStackItemsToProjects();
 
-        // 3. Seed Work Experience, Journey Entries & Learning Log Entries (FK to Projects)
+        // 3. Seed Work Experience, Journey Entries, Learning Log Entries & Role Roadmaps
         $this->call([
             WorkExperienceSeeder::class,
             JourneyEntrySeeder::class,
             LearningLogEntrySeeder::class,
+            RoadmapSeeder::class,
         ]);
     }
 
