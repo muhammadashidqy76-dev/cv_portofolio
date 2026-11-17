@@ -34,11 +34,11 @@
                 'published_at' => \Carbon\Carbon::parse('2026-06-01'),
             ],
             (object)[
-                'title' => 'Containerization PHP 8.3 & Nginx dengan Docker Multi-Stage Build',
-                'content' => 'Bedah optimasi ukuran Docker image untuk Laravel. Memisahkan tahapan composer install dengan production image berbasis Alpine Linux, memangkas ukuran dari 800MB menjadi 135MB siap rilis.',
-                'tag' => 'exploring',
-                'category' => 'cloud_engineering',
-                'relatedProject' => (object)['title' => 'Portfolio CMS'],
+                'title' => 'Troubleshooting Jaringan & Implementasi In-House Print Server',
+                'content' => 'Konfigurasi reservasi IP statis pada printer kantor, sharing driver jaringan lintas Windows via Standard TCP/IP Port, serta manajemen antrean cetak untuk kestabilan operasional kantor.',
+                'tag' => 'production_ready',
+                'category' => 'it_support',
+                'relatedProject' => null,
                 'published_at' => \Carbon\Carbon::parse('2026-09-02'),
             ],
         ]);
@@ -46,7 +46,7 @@
 
     // Limit to latest 2 entries per track for a clean, focused homepage showcase
     $laravelItems = $items->filter(fn($item) => ($item->category ?? 'laravel') === 'laravel')->take(2);
-    $cloudItems = $items->filter(fn($item) => ($item->category ?? '') === 'cloud_engineering')->take(2);
+    $cloudItems = $items->filter(fn($item) => in_array($item->category ?? '', ['cloud_engineering', 'it_support']))->take(2);
 @endphp
 
 <section id="learning-log" class="relative bg-carbon-950/60 text-slate-100 py-20 lg:py-28 overflow-hidden border-b border-carbon-800/80">
@@ -207,21 +207,21 @@
                 </div>
             </div>
 
-            <!-- ═════ TRACK 2: CLOUD ENGINEERING & INFRASTRUCTURE ═════ -->
+            <!-- ═════ TRACK 2: CLOUD ENGINEERING & IT SUPPORT ═════ -->
             <div class="flex-col gap-5"
                  :class="activeMobileTrack === 'cloud' ? 'flex' : 'hidden lg:flex'">
                 <!-- Track Pillar Header -->
                 <div class="flex items-center justify-between p-4 rounded-xl bg-carbon-900/90 border border-carbon-800 backdrop-blur-sm">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
-                            <!-- Cloud / Server Cluster Icon -->
+                        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500/10 to-indigo-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+                            <!-- Cloud / Server & Infrastructure Icon -->
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
                             </svg>
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
-                                <span class="font-mono text-[10px] uppercase font-bold text-cyan-400 tracking-wider">TOPIK</span>
+                                <span class="font-mono text-[10px] uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400 tracking-wider">TOPIK</span>
                             </div>
                             <h3 class="text-sm font-bold text-white tracking-tight">
                                 {{ __('log.track_cloud_title') }}
@@ -253,9 +253,10 @@
                                 $min = max(1, (int) ceil($words / 180));
                                 return "{$min} min read";
                             })($log->content);
+                            $isItSupport = ($log->category ?? '') === 'it_support';
                         @endphp
 
-                        <article class="group flex flex-col justify-between rounded-xl bg-carbon-900 border border-carbon-800 hover:border-cyan-500/40 transition-all duration-200 hover:-translate-y-0.5 overflow-hidden">
+                        <article class="group flex flex-col justify-between rounded-xl bg-carbon-900 border border-carbon-800 {{ $isItSupport ? 'hover:border-indigo-500/40' : 'hover:border-cyan-500/40' }} transition-all duration-200 hover:-translate-y-0.5 overflow-hidden">
                             <div>
                                 <!-- Window Mockup Header Bar -->
                                 <div class="flex items-center justify-between px-4 py-2.5 bg-carbon-950 border-b border-carbon-800 select-none">
@@ -264,7 +265,16 @@
                                         <span class="w-2 h-2 rounded-full bg-amber-400/80"></span>
                                         <span class="w-2 h-2 rounded-full bg-emerald-400/80"></span>
                                     </div>
-                                    <div>
+                                    <div class="flex items-center gap-2">
+                                        @if($isItSupport)
+                                            <span class="font-mono text-[9px] font-bold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                                                IT Support
+                                            </span>
+                                        @else
+                                            <span class="font-mono text-[9px] font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded uppercase tracking-wider">
+                                                Cloud
+                                            </span>
+                                        @endif
                                         <!-- Medium-Style Reading Time Pill -->
                                         <span class="font-mono text-[10px] font-semibold text-slate-300 bg-carbon-900 border border-carbon-800 px-2 py-0.5 rounded inline-flex items-center gap-1.5 select-none">
                                             <svg class="w-3 h-3 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -279,12 +289,12 @@
                                 <div class="p-5 flex flex-col gap-2.5">
                                     @if(!empty($log->slug))
                                         <a href="{{ route('notes.show', $log->slug) }}" class="block">
-                                            <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-cyan-400 transition-colors leading-snug">
+                                            <h4 class="text-sm sm:text-base font-bold text-white {{ $isItSupport ? 'group-hover:text-indigo-400' : 'group-hover:text-cyan-400' }} transition-colors leading-snug">
                                                 {{ $log->title }}
                                             </h4>
                                         </a>
                                     @else
-                                        <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-cyan-400 transition-colors leading-snug">
+                                        <h4 class="text-sm sm:text-base font-bold text-white {{ $isItSupport ? 'group-hover:text-indigo-400' : 'group-hover:text-cyan-400' }} transition-colors leading-snug">
                                             {{ $log->title }}
                                         </h4>
                                     @endif
@@ -307,7 +317,7 @@
                                     @endif
                                     @if(!empty($log->slug))
                                         <a href="{{ route('notes.show', $log->slug) }}"
-                                           class="inline-flex items-center gap-1 text-[10px] font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">
+                                           class="inline-flex items-center gap-1 text-[10px] font-semibold {{ $isItSupport ? 'text-indigo-400 hover:text-indigo-300' : 'text-cyan-400 hover:text-cyan-300' }} transition-colors">
                                             Baca
                                             <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                                         </a>
