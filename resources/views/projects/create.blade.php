@@ -213,18 +213,42 @@
 
                     <div class="p-6 space-y-5">
                         
-                        <!-- Demo URL -->
-                        <div>
-                            <x-input-label for="demo_url" :value="__('Demo URL (Tautan Live Proyek / Swagger Docs)')" />
-                            <x-text-input id="demo_url" 
-                                          type="url" 
-                                          name="demo_url" 
-                                          :value="old('demo_url')" 
-                                          placeholder="https:|stockguard-demo.example.com" />
-                            <p class="text-[11px] font-mono text-slate-500 mt-1">
-                                Tautan eksternal yang dapat diuji langsung oleh recruiter.
-                            </p>
-                            <x-input-error :messages="$errors->get('demo_url')" />
+                        <!-- Demo URL & Custom Button Label -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                            <div class="md:col-span-2">
+                                <x-input-label for="demo_url" :value="__('URL Demo / Tautan Proyek (GitHub / Live App / Swagger)')" />
+                                <x-text-input id="demo_url" 
+                                              type="url" 
+                                              name="demo_url" 
+                                              :value="old('demo_url')" 
+                                              placeholder="https://github.com/username/cisco-packet-tracer-lab" />
+                                <p class="text-[11px] font-mono text-slate-500 mt-1">
+                                    Tautan eksternal yang dapat diakses oleh recruiter (Repo GitHub, Live Website, Dokumentasi, atau Video).
+                                </p>
+                                <x-input-error :messages="$errors->get('demo_url')" />
+                            </div>
+
+                            <div>
+                                <x-input-label for="demo_url_label" :value="__('Label Tombol Tautan (Opsional)')" />
+                                <x-text-input id="demo_url_label" 
+                                              type="text" 
+                                              name="demo_url_label" 
+                                              :value="old('demo_url_label')" 
+                                              list="demo_labels"
+                                              placeholder="Default: Live Demo" />
+                                <datalist id="demo_labels">
+                                    <option value="GitHub Repo">
+                                    <option value="GitHub Repository">
+                                    <option value="Lab & File .pkt">
+                                    <option value="Live Demo">
+                                    <option value="Dokumentasi Lab">
+                                    <option value="Video Walkthrough">
+                                </datalist>
+                                <p class="text-[11px] font-mono text-slate-500 mt-1">
+                                    Kosongkan untuk otomatis ("GitHub Repo" jika link github, atau "Live Demo").
+                                </p>
+                                <x-input-error :messages="$errors->get('demo_url_label')" />
+                            </div>
                         </div>
 
                         <!-- Thumbnail Image Upload & Path -->

@@ -25,6 +25,7 @@ class Project extends Model
         'impact_metric',
         'preview_image_path',
         'demo_url',
+        'demo_url_label',
         'status',
     ];
 
@@ -123,6 +124,30 @@ class Project extends Model
         }
 
         return asset('storage/' . ltrim($this->preview_image_path, '/'));
+    }
+
+    /**
+     * Label tombol aksi live demo / repository yang fleksibel.
+     */
+    public function getDemoUrlButtonLabelAttribute(): string
+    {
+        if (!empty($this->demo_url_label)) {
+            return $this->demo_url_label;
+        }
+
+        if (!empty($this->demo_url) && str_contains(strtolower($this->demo_url), 'github.com')) {
+            return 'GitHub Repo';
+        }
+
+        return __('projects.live_demo');
+    }
+
+    /**
+     * Deteksi apakah link demo mengarah ke GitHub.
+     */
+    public function getIsGithubDemoAttribute(): bool
+    {
+        return !empty($this->demo_url) && str_contains(strtolower($this->demo_url), 'github.com');
     }
 
     public function techStackItems(): BelongsToMany

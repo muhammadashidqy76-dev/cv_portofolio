@@ -13,6 +13,10 @@ bukan per-commit (untuk itu lihat `git log`).
 - Blade `resources/views/learning-log/edit.blade.php` & `create.blade.php`: memisahkan Alpine component logic dari atribut inline `x-data="..."` ke fungsi `<script>` dedicated (`learningLogEditData()` & `learningLogCreateData()`), menyuntikkan data server-side via `@json` untuk menghindari HTML quote collision dan escaping error karakter `>` pada template literal Markdown snippet, menambahkan atribut `:value` eksplisit pada input title/slug untuk mencegah fallback ke `[object HTMLInputElement]`, serta menempatkan isi konten markdown `{{ old('body', $learningLogEntry->body) }}` langsung di dalam tag `<textarea>` agar catatan sebelumnya tidak kosong saat form dibuka.
 
 ### Added
+- Fitur Label Tombol Aksi Fleksibel untuk Featured Projects (`demo_url_label`):
+  - Migration `2026_11_20_151027_add_demo_url_label_to_projects_table.php` & Model `Project`: menambahkan kolom `demo_url_label` (nullable) dan accessor dinamis `demo_url_button_label` serta `is_github_demo`.
+  - Form Admin `resources/views/projects/create.blade.php` & `edit.blade.php`: input kustom label tombol tautan proyek lengkap dengan datalist preset opsi cepat (`GitHub Repo`, `Lab & File .pkt`, `Live Demo`, `Dokumentasi Lab`, dll).
+  - Blade `resources/views/components/featured-projects.blade.php`: tombol aksi pada mini card dan modal detail kini dinamis mengikuti label kustom dan otomatis menampilkan icon SVG GitHub jika URL/label mengarah ke repositori GitHub.
 - Tech Stack & Kategori Baru `Networking & Simulation`:
   - `TechStackItemController`: menambahkan preset kategori `Networking & Simulation` pada form pembuatan dan pengeditan item teknologi CMS.
   - Blade `resources/views/components/tech-stack.blade.php`: menambahkan kartu kategori `Networking & Simulation` dengan metadata icon topologi jaringan (aksen indigo) dan SVG icon khusus untuk `Cisco Packet Tracer`, `GNS3`, dan `Wireshark` di section Tech Stack homepage.

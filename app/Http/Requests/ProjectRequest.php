@@ -72,6 +72,7 @@ class ProjectRequest extends FormRequest
             'preview_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:4096'],
             'preview_image_path' => ['nullable', 'string', 'max:500'],
             'demo_url' => ['nullable', 'url', 'max:500'],
+            'demo_url_label' => ['nullable', 'string', 'max:100'],
             'status' => ['required', 'string', Rule::in(['draft', 'published'])],
             'tech_stack_items' => ['nullable', 'array'],
             'tech_stack_items.*' => ['integer', 'exists:tech_stack_items,id'],
