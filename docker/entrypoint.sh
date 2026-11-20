@@ -20,6 +20,7 @@ fi
 # In production mode, optimize configurations
 if [ "$APP_ENV" = "production" ]; then
     echo "Optimizing Laravel for Production..."
+    php artisan package:discover --ansi || true
     php artisan config:cache || true
     php artisan route:cache || true
     php artisan view:cache || true

@@ -7,6 +7,10 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Dockerfile & Docker Deployment:
+  - Memperbaiki kegagalan build `composer dump-autoload` pada stage `composer_base` dengan menambahkan flag `--no-scripts` dan menyalin berkas `artisan`, mencegah pemanggilan prematur `@php artisan package:discover` sebelum runtime container terbentuk.
+  - Memperbaiki ketidaksesuaian kapitalisasi nama berkas model pada Git index (`JourneyEntry.php`, `LearningLogEntry.php`, `TechStackItem.php`) agar mematuhi standar PSR-4 di sistem operasi Linux/Ubuntu (AWS EC2) yang bersifat case-sensitive.
+  - `docker/entrypoint.sh`: menambahkan perintah `php artisan package:discover --ansi` secara otomatis sebelum proses caching konfigurasi saat container production pertama kali dijalankan.
 - Controller `RoadmapItSupportController`: memperbaiki query error SQL 500 (`Unknown column 'title' in 'field list'`) pada method `create()` dan `edit()` dengan menghapus pembatasan kolom mentah `get(['id', 'title'])` pada model `Project` (karena judul proyek menggunakan dynamic accessor multi-bahasa `title_id` / `title_en`).
 - Blade `resources/views/roadmap/index.blade.php`: menyelaraskan struktur node connector alur roadmap (Roadmap.sh Style) menjadi baris simetris teratur (`grid-cols-[1fr_auto_1fr]` di desktop & linear connector di mobile) dengan node dot yang menancap presisi di sumbu garis alur vertikal tengah dan ketinggian Y yang selalu seirama dengan kotak topik.
 - Docker Compose: memperbaiki konfigurasi service database MySQL pada `docker-compose.yml` dan `docker-compose.dev.yml` agar tidak mendefinisikan `MYSQL_USER="root"` (yang menyebabkan kontainer crash karena image resmi MySQL melarang `MYSQL_USER` bernilai root), menambahkan `MYSQL_ALLOW_EMPTY_PASSWORD: "yes"` untuk mendukung password kosong bawaan environment XAMPP lokal, serta menyederhanakan healthcheck menggunakan `mysqladmin ping -h localhost --silent`.

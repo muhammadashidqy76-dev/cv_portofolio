@@ -28,8 +28,9 @@ COPY config ./config
 COPY database ./database
 COPY routes ./routes
 COPY lang ./lang
+COPY artisan ./artisan
 
-RUN composer dump-autoload --optimize --no-dev --classmap-authoritative
+RUN composer dump-autoload --optimize --no-dev --classmap-authoritative --no-scripts
 
 # ==============================================================================
 # STAGE 3: Base PHP 8.2-FPM Runtime with Extensions
