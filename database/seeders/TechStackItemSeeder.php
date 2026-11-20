@@ -22,6 +22,10 @@ class TechStackItemSeeder extends Seeder
             ['name' => 'Composer', 'category' => 'Tools', 'display_order' => 2],
             ['name' => 'Postman', 'category' => 'Tools', 'display_order' => 3],
             ['name' => 'Docker', 'category' => 'Tools', 'display_order' => 4],
+            // Networking & Simulation
+            ['name' => 'Cisco Packet Tracer', 'category' => 'Networking & Simulation', 'display_order' => 1],
+            ['name' => 'GNS3', 'category' => 'Networking & Simulation', 'display_order' => 2],
+            ['name' => 'Wireshark', 'category' => 'Networking & Simulation', 'display_order' => 3],
             // Frontend
             ['name' => 'Blade Templating', 'category' => 'Frontend', 'display_order' => 1],
             ['name' => 'Tailwind CSS', 'category' => 'Frontend', 'display_order' => 2],

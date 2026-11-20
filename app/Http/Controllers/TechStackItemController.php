@@ -60,7 +60,7 @@ class TechStackItemController extends Controller
             ->pluck('category')
             ->toArray();
 
-        $presetCategories = ['Backend', 'Database', 'Tools', 'Frontend', 'Cloud & DevOps'];
+        $presetCategories = ['Backend', 'Database', 'Networking & Simulation', 'Tools', 'Frontend', 'Cloud & DevOps'];
         $categories = array_values(array_unique(array_merge($presetCategories, $existingCategories)));
 
         $selectedCategory = $request->query('category', 'Backend');
@@ -121,7 +121,7 @@ class TechStackItemController extends Controller
             ->pluck('category')
             ->toArray();
 
-        $presetCategories = ['Backend', 'Database', 'Tools', 'Frontend', 'Cloud & DevOps'];
+        $presetCategories = ['Backend', 'Database', 'Networking & Simulation', 'Tools', 'Frontend', 'Cloud & DevOps'];
         $categories = array_values(array_unique(array_merge($presetCategories, $existingCategories)));
 
         $projects = Project::orderBy('complexity_order')->get();

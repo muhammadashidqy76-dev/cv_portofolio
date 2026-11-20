@@ -27,7 +27,7 @@
         }
     }
 
-    $desiredOrder = ['Backend', 'Database', 'Frontend', 'Tools'];
+    $desiredOrder = ['Backend', 'Database', 'Networking & Simulation', 'Tools', 'Frontend'];
     $otherCategories = collect(array_keys($itemsGrouped ? $itemsGrouped->toArray() : []))
         ->diff($desiredOrder)
         ->values()
@@ -46,6 +46,10 @@
             'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>',
             'color' => 'text-emerald-400',
         ],
+        'Networking & Simulation' => [
+            'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a2 2 0 100-4 2 2 0 000 4zM5 9a2 2 0 100-4 2 2 0 000 4zM19 9a2 2 0 100-4 2 2 0 000 4zM12 17v-4m-7-6l5 4m9-4l-5 4"/>',
+            'color' => 'text-indigo-400',
+        ],
         'Frontend' => [
             'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>',
             'color' => 'text-sky-300',
@@ -58,19 +62,22 @@
 
     // Hanya path SVG (tanpa warna) — warna icon & badge ditentukan di titik render
     $techIconPaths = [
-        'Laravel'          => '<path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>',
-        'PHP'              => '<path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h10M7 16h10"/>',
-        'RESTful API'      => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>',
-        'MySQL'            => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>',
-        'Redis'            => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 2l9 4.9v9.8L12 22l-9-4.9V6.9L12 2z"/>',
-        'Blade Templating' => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4z"/>',
-        'Blade'            => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4z"/>',
-        'Tailwind CSS'     => '<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
-        'Alpine.js'        => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>',
-        'Git & GitHub'     => '<path stroke-linecap="round" stroke-linejoin="round" d="M8 7h8M8 12h8M8 17h8"/>',
-        'Composer'         => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 12h14M5 16h14"/>',
-        'Postman'          => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>',
-        'Docker'           => '<path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>',
+        'Laravel'             => '<path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>',
+        'PHP'                 => '<path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h10M7 16h10"/>',
+        'RESTful API'         => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>',
+        'MySQL'               => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>',
+        'Redis'               => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 2l9 4.9v9.8L12 22l-9-4.9V6.9L12 2z"/>',
+        'Blade Templating'    => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4z"/>',
+        'Blade'               => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4z"/>',
+        'Tailwind CSS'        => '<path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+        'Alpine.js'           => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>',
+        'Git & GitHub'        => '<path stroke-linecap="round" stroke-linejoin="round" d="M8 7h8M8 12h8M8 17h8"/>',
+        'Composer'            => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 12h14M5 16h14"/>',
+        'Postman'             => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>',
+        'Docker'              => '<path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>',
+        'Cisco Packet Tracer' => '<path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+        'GNS3'                => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a2 2 0 100-4 2 2 0 000 4zM5 9a2 2 0 100-4 2 2 0 000 4zM19 9a2 2 0 100-4 2 2 0 000 4zM12 17v-4m-7-6l5 4m9-4l-5 4"/>',
+        'Wireshark'           => '<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/>',
     ];
 
     // Fallback path untuk tech yang belum punya icon spesifik
