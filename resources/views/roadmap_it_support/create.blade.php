@@ -110,29 +110,74 @@
                     @enderror
                 </div>
 
-                <!-- 6. Link External Resources (Jika belum ada Note internal) -->
-                <div class="p-4 rounded-xl bg-carbon-950 border border-carbon-800/80 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-200 uppercase tracking-wider">
-                            Tautan Sumber / Blog Eksternal (Opsional)
-                        </span>
-                        <span class="text-[10px] text-slate-500">Dipakai jika belum ada artikel catatan teknis sendiri</span>
+                <!-- 6. Tautan Sumber & Bahan Bacaan (Mendukung Banyak Sumber / Internet & Catatan Sendiri) -->
+                <div class="p-4 sm:p-5 rounded-xl bg-carbon-950 border border-carbon-800/80 space-y-4"
+                     x-data="{
+                         resources: {{ Js::from(old('external_resources', [['title' => old('external_url_title', ''), 'url' => old('external_url', '')]])) }},
+                         addResource() {
+                             this.resources.push({ title: '', url: '' });
+                         },
+                         removeResource(index) {
+                             if (this.resources.length > 1) {
+                                 this.resources.splice(index, 1);
+                             } else {
+                                 this.resources = [{ title: '', url: '' }];
+                             }
+                         }
+                     }">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-carbon-800 pb-3">
+                        <div>
+                            <span class="text-xs font-bold text-slate-200 uppercase tracking-wider block">
+                                Tautan Sumber Bacaan &amp; Referensi Eksternal
+                            </span>
+                            <span class="text-[11px] text-slate-500 font-sans">
+                                Cantumkan beberapa sumber bacaan internet (Cisco Docs, Cloudflare, Web) atau referensi catatan materi.
+                            </span>
+                        </div>
+                        <button type="button" @click="addResource()"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 font-mono text-xs transition-colors cursor-pointer self-start sm:self-auto shrink-0">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                            <span>+ Tambah Sumber</span>
+                        </button>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label for="external_url_title" class="block text-[11px] text-slate-400 mb-1">Nama Sumber / Blog</label>
-                            <input type="text" name="external_url_title" id="external_url_title" value="{{ old('external_url_title') }}"
-                                   placeholder="Contoh: Cloudflare Learning / Cisco Doc"
-                                   class="w-full bg-carbon-900 border border-carbon-800 rounded-lg px-3 py-2 text-xs text-white focus:border-indigo-500">
-                        </div>
-                        <div>
-                            <label for="external_url" class="block text-[11px] text-slate-400 mb-1">URL Sumber Lengkap</label>
-                            <input type="url" name="external_url" id="external_url" value="{{ old('external_url') }}"
-                                   placeholder="https://www.cloudflare.com/learning/..."
-                                   class="w-full bg-carbon-900 border border-carbon-800 rounded-lg px-3 py-2 text-xs text-white focus:border-indigo-500">
-                        </div>
+                    <!-- Dynamic Resources Repeater -->
+                    <div class="space-y-3">
+                        <template x-for="(res, index) in resources" :key="index">
+                            <div class="p-3 rounded-lg bg-carbon-900 border border-carbon-800 space-y-2">
+                                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
+                                    <span class="text-indigo-400 font-semibold" x-text="`Sumber #${index + 1}`"></span>
+                                    <button type="button" @click="removeResource(index)"
+                                            class="text-rose-400 hover:text-rose-300 text-[11px] transition-colors flex items-center gap-1 cursor-pointer">
+                                        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        <span>Hapus</span>
+                                    </button>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-[11px] text-slate-400 mb-1">Nama Sumber / Judul Bacaan</label>
+                                        <input type="text" :name="`external_resources[${index}][title]`" x-model="res.title"
+                                               placeholder="Contoh: Cisco Networking Academy / Cloudflare DNS"
+                                               class="w-full bg-carbon-950 border border-carbon-800 rounded-lg px-3 py-2 text-xs text-white focus:border-indigo-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] text-slate-400 mb-1">URL Sumber Lengkap</label>
+                                        <input type="url" :name="`external_resources[${index}][url]`" x-model="res.url"
+                                               placeholder="https://..."
+                                               class="w-full bg-carbon-950 border border-carbon-800 rounded-lg px-3 py-2 text-xs text-white focus:border-indigo-500">
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
                     </div>
+
+                    @error('external_resources.*.url')
+                        <p class="text-xs text-rose-400">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- 7. Integrasi Catatan Teknis (Note Internal) & Proyek -->

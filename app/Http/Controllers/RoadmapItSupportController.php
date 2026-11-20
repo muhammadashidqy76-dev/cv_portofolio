@@ -75,17 +75,47 @@ class RoadmapItSupportController extends Controller
         $role = RoadmapRole::where('slug', 'it-support')->firstOrFail();
 
         $validated = $request->validate([
-            'phase_name'            => 'required|string|max:255',
-            'title'                 => 'required|string|max:255',
-            'description'           => 'nullable|string',
-            'status'                => 'required|in:finished,in_progress,not_started',
-            'source_reference'      => 'nullable|string|max:255',
-            'external_url'          => 'nullable|url|max:255',
-            'external_url_title'    => 'nullable|string|max:255',
-            'learning_log_entry_id' => 'nullable|exists:learning_log_entries,id',
-            'project_id'            => 'nullable|exists:projects,id',
-            'display_order'         => 'required|integer|min:0',
+            'phase_name'                 => 'required|string|max:255',
+            'title'                      => 'required|string|max:255',
+            'description'                => 'nullable|string',
+            'status'                     => 'required|in:finished,in_progress,not_started',
+            'source_reference'           => 'nullable|string|max:255',
+            'external_resources'         => 'nullable|array',
+            'external_resources.*.title' => 'nullable|string|max:255',
+            'external_resources.*.url'   => 'nullable|url|max:500',
+            'external_url'               => 'nullable|url|max:500',
+            'external_url_title'         => 'nullable|string|max:255',
+            'learning_log_entry_id'      => 'nullable|exists:learning_log_entries,id',
+            'project_id'                 => 'nullable|exists:projects,id',
+            'display_order'              => 'required|integer|min:0',
         ]);
+
+        $cleanedResources = [];
+        if (!empty($request->input('external_resources')) && is_array($request->input('external_resources'))) {
+            foreach ($request->input('external_resources') as $item) {
+                $url = trim($item['url'] ?? '');
+                $title = trim($item['title'] ?? '');
+                if (!empty($url)) {
+                    $cleanedResources[] = [
+                        'title' => $title ?: 'Bahan Bacaan & Referensi',
+                        'url'   => $url,
+                    ];
+                }
+            }
+        }
+        $validated['external_resources'] = $cleanedResources;
+
+        // Auto-sync backward compatibility fields:
+        if (!empty($cleanedResources)) {
+            $validated['external_url'] = $cleanedResources[0]['url'];
+            $validated['external_url_title'] = $cleanedResources[0]['title'];
+        } elseif (!empty($request->input('external_url'))) {
+            $validated['external_url'] = $request->input('external_url');
+            $validated['external_url_title'] = $request->input('external_url_title');
+        } else {
+            $validated['external_url'] = null;
+            $validated['external_url_title'] = null;
+        }
 
         $validated['roadmap_role_id'] = $role->id;
 
@@ -121,17 +151,47 @@ class RoadmapItSupportController extends Controller
         $checkpoint = $roadmap_it_support;
 
         $validated = $request->validate([
-            'phase_name'            => 'required|string|max:255',
-            'title'                 => 'required|string|max:255',
-            'description'           => 'nullable|string',
-            'status'                => 'required|in:finished,in_progress,not_started',
-            'source_reference'      => 'nullable|string|max:255',
-            'external_url'          => 'nullable|url|max:255',
-            'external_url_title'    => 'nullable|string|max:255',
-            'learning_log_entry_id' => 'nullable|exists:learning_log_entries,id',
-            'project_id'            => 'nullable|exists:projects,id',
-            'display_order'         => 'required|integer|min:0',
+            'phase_name'                 => 'required|string|max:255',
+            'title'                      => 'required|string|max:255',
+            'description'                => 'nullable|string',
+            'status'                     => 'required|in:finished,in_progress,not_started',
+            'source_reference'           => 'nullable|string|max:255',
+            'external_resources'         => 'nullable|array',
+            'external_resources.*.title' => 'nullable|string|max:255',
+            'external_resources.*.url'   => 'nullable|url|max:500',
+            'external_url'               => 'nullable|url|max:500',
+            'external_url_title'         => 'nullable|string|max:255',
+            'learning_log_entry_id'      => 'nullable|exists:learning_log_entries,id',
+            'project_id'                 => 'nullable|exists:projects,id',
+            'display_order'              => 'required|integer|min:0',
         ]);
+
+        $cleanedResources = [];
+        if (!empty($request->input('external_resources')) && is_array($request->input('external_resources'))) {
+            foreach ($request->input('external_resources') as $item) {
+                $url = trim($item['url'] ?? '');
+                $title = trim($item['title'] ?? '');
+                if (!empty($url)) {
+                    $cleanedResources[] = [
+                        'title' => $title ?: 'Bahan Bacaan & Referensi',
+                        'url'   => $url,
+                    ];
+                }
+            }
+        }
+        $validated['external_resources'] = $cleanedResources;
+
+        // Auto-sync backward compatibility fields:
+        if (!empty($cleanedResources)) {
+            $validated['external_url'] = $cleanedResources[0]['url'];
+            $validated['external_url_title'] = $cleanedResources[0]['title'];
+        } elseif (!empty($request->input('external_url'))) {
+            $validated['external_url'] = $request->input('external_url');
+            $validated['external_url_title'] = $request->input('external_url_title');
+        } else {
+            $validated['external_url'] = null;
+            $validated['external_url_title'] = null;
+        }
 
         $checkpoint->update($validated);
 

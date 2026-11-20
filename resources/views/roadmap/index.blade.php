@@ -283,8 +283,9 @@
                                                     <div class="flex items-center gap-1.5 shrink-0 font-mono text-[10px]">
                                                         @if ($item->note)
                                                             <span class="px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 text-indigo-400" title="Catatan Teknis">Note</span>
-                                                        @elseif ($item->external_url)
-                                                            <span class="px-1.5 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400" title="Referensi Terkurasi">Blog</span>
+                                                        @endif
+                                                        @if (!empty($item->external_resources) || $item->external_url)
+                                                            <span class="px-1.5 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400" title="Referensi Terkurasi">Ref</span>
                                                         @endif
                                                         @if ($item->project)
                                                             <span class="px-1.5 py-0.5 rounded bg-vermilion-500/10 border border-vermilion-500/30 text-vermilion-400" title="Proyek Riil">Proj</span>
@@ -362,8 +363,9 @@
                                                     <div class="flex items-center gap-1.5 shrink-0 font-mono text-[10px]">
                                                         @if ($item->note)
                                                             <span class="px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 text-indigo-400" title="Catatan Teknis">Note</span>
-                                                        @elseif ($item->external_url)
-                                                            <span class="px-1.5 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400" title="Referensi Terkurasi">Blog</span>
+                                                        @endif
+                                                        @if (!empty($item->external_resources) || $item->external_url)
+                                                            <span class="px-1.5 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400" title="Referensi Terkurasi">Ref</span>
                                                         @endif
                                                         @if ($item->project)
                                                             <span class="px-1.5 py-0.5 rounded bg-vermilion-500/10 border border-vermilion-500/30 text-vermilion-400" title="Proyek Riil">Proj</span>
@@ -413,8 +415,9 @@
                                             <div class="flex items-center gap-1 shrink-0 font-mono text-[9px]">
                                                 @if ($item->note)
                                                     <span class="px-1 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">Note</span>
-                                                @elseif ($item->external_url)
-                                                    <span class="px-1 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400">Blog</span>
+                                                @endif
+                                                @if (!empty($item->external_resources) || $item->external_url)
+                                                    <span class="px-1 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-400">Ref</span>
                                                 @endif
                                                 <svg class="w-3 h-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -559,47 +562,82 @@
                             <span>Materi Pembelajaran &amp; Referensi</span>
                         </div>
 
-                        <!-- 1. JIKA ADA NOTE TEKNIS INTERNAL (PRIORITAS UTAMA) -->
+                        <!-- 1. JIKA ADA NOTE TEKNIS INTERNAL -->
                         <template x-if="activeCheckpoint?.note">
-                            <a :href="`/notes/${activeCheckpoint.note.slug}`"
-                               class="flex items-center justify-between p-4 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/40 text-white transition-all group shadow-lg shadow-indigo-500/10">
-                                <div class="space-y-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-indigo-500 text-white">
-                                            Catatan Teknis Saya
-                                        </span>
-                                        <span class="text-xs text-indigo-300 font-mono" x-text="activeCheckpoint.note.reading_time || 'Artikel Lengkap'"></span>
+                            <div class="space-y-1.5">
+                                <span class="text-[10px] font-mono uppercase tracking-wider text-indigo-400 block font-semibold">
+                                    Dokumentasi / Catatan Mandiri:
+                                </span>
+                                <a :href="`/notes/${activeCheckpoint.note.slug}`"
+                                   class="flex items-center justify-between p-4 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/40 text-white transition-all group shadow-lg shadow-indigo-500/10">
+                                    <div class="space-y-1">
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-indigo-500 text-white">
+                                                Catatan Teknis Saya
+                                            </span>
+                                            <span class="text-xs text-indigo-300 font-mono" x-text="activeCheckpoint.note.reading_time || 'Artikel Lengkap'"></span>
+                                        </div>
+                                        <h4 class="text-sm font-bold text-white group-hover:text-indigo-200 transition-colors" x-text="activeCheckpoint.note.title"></h4>
+                                        <p class="text-xs text-slate-400 line-clamp-1" x-text="activeCheckpoint.note.content"></p>
                                     </div>
-                                    <h4 class="text-sm font-bold text-white group-hover:text-indigo-200 transition-colors" x-text="activeCheckpoint.note.title"></h4>
-                                    <p class="text-xs text-slate-400 line-clamp-1" x-text="activeCheckpoint.note.content"></p>
-                                </div>
-                                <svg class="w-5 h-5 text-indigo-400 group-hover:translate-x-1 transition-transform shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </a>
+                                    <svg class="w-5 h-5 text-indigo-400 group-hover:translate-x-1 transition-transform shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </a>
+                            </div>
                         </template>
 
-                        <!-- 2. JIKA BELUM ADA NOTE INTERNAL -> PAKAI BLOG LAIN / EXTERNAL RESOURCES -->
-                        <template x-if="!activeCheckpoint?.note && activeCheckpoint?.external_url">
-                            <a :href="activeCheckpoint.external_url" target="_blank" rel="noopener noreferrer"
-                               class="flex items-center justify-between p-4 rounded-xl bg-carbon-950 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-white transition-all group">
-                                <div class="space-y-1">
-                                    <div class="flex items-center gap-2 font-mono">
-                                        <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-sky-500/20 border border-sky-500/30 text-sky-300">
-                                            Official / Terkurasi
-                                        </span>
-                                        <span class="text-xs text-slate-400" x-text="activeCheckpoint.external_url_title || 'Dokumentasi Resmi'"></span>
-                                    </div>
-                                    <h4 class="text-sm font-semibold text-white group-hover:text-sky-300 transition-colors flex items-center gap-1.5">
-                                        <span x-text="activeCheckpoint.external_url_title || 'Baca Panduan Lengkap'"></span>
-                                        <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                        </svg>
-                                    </h4>
-                                    <p class="text-xs text-slate-500 font-mono truncate max-w-sm" x-text="activeCheckpoint.external_url"></p>
+                        <!-- 2. DAFTAR SUMBER BACAAN & REFERENSI EKSTERNAL (BISA BANYAK) -->
+                        <template x-if="activeCheckpoint?.external_resources && activeCheckpoint.external_resources.length > 0">
+                            <div class="space-y-2 pt-2">
+                                <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
+                                    Sumber Bacaan &amp; Referensi Eksternal:
+                                </span>
+                                <div class="space-y-2">
+                                    <template x-for="(res, idx) in activeCheckpoint.external_resources" :key="idx">
+                                        <a :href="res.url" target="_blank" rel="noopener noreferrer"
+                                           class="flex items-center justify-between p-3.5 rounded-xl bg-carbon-950 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-white transition-all group">
+                                            <div class="space-y-0.5 min-w-0 pr-3">
+                                                <div class="flex items-center gap-2 font-mono">
+                                                    <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-sky-500/20 border border-sky-500/30 text-sky-300">
+                                                        Referensi
+                                                    </span>
+                                                    <span class="text-xs font-semibold text-white group-hover:text-sky-300 transition-colors truncate" x-text="res.title || 'Dokumentasi / Materi Terkait'"></span>
+                                                </div>
+                                                <p class="text-[11px] text-slate-500 font-mono truncate max-w-sm" x-text="res.url"></p>
+                                            </div>
+                                            <div class="flex items-center gap-1 text-xs font-mono text-slate-400 group-hover:text-white shrink-0">
+                                                <span>Buka</span>
+                                                <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                </svg>
+                                            </div>
+                                        </a>
+                                    </template>
                                 </div>
-                                <span class="text-xs font-mono text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all">Buka &rarr;</span>
-                            </a>
+                            </div>
+                        </template>
+
+                        <!-- Fallback jika hanya ada legacy external_url dan belum ada array external_resources -->
+                        <template x-if="(!activeCheckpoint?.external_resources || activeCheckpoint.external_resources.length === 0) && activeCheckpoint?.external_url">
+                            <div class="space-y-2 pt-2">
+                                <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
+                                    Sumber Bacaan Eksternal:
+                                </span>
+                                <a :href="activeCheckpoint.external_url" target="_blank" rel="noopener noreferrer"
+                                   class="flex items-center justify-between p-3.5 rounded-xl bg-carbon-950 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-white transition-all group">
+                                    <div class="space-y-0.5 min-w-0 pr-3">
+                                        <div class="flex items-center gap-2 font-mono">
+                                            <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-sky-500/20 border border-sky-500/30 text-sky-300">
+                                                Referensi
+                                            </span>
+                                            <span class="text-xs font-semibold text-white group-hover:text-sky-300 transition-colors truncate" x-text="activeCheckpoint.external_url_title || 'Dokumentasi Resmi'"></span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 font-mono truncate max-w-sm" x-text="activeCheckpoint.external_url"></p>
+                                    </div>
+                                    <span class="text-xs font-mono text-slate-400 group-hover:text-white group-hover:translate-x-0.5 transition-all">Buka &rarr;</span>
+                                </a>
+                            </div>
                         </template>
 
                         <!-- 3. JIKA ADA PROYEK TERAPAN -->

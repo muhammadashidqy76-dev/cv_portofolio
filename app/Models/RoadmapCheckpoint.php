@@ -24,10 +24,52 @@ class RoadmapCheckpoint extends Model
         'source_reference',
         'external_url',
         'external_url_title',
+        'external_resources',
         'learning_log_entry_id',
         'project_id',
         'display_order',
     ];
+
+    protected $casts = [
+        'external_resources' => 'array',
+    ];
+
+    /**
+     * Pastikan external_resources selalu mengembalikan array list sumber referensi.
+     * Mendukung fallback dari legacy external_url jika kolom external_resources kosong.
+     */
+    public function getExternalResourcesAttribute($value): array
+    {
+        if (!empty($value)) {
+            $decoded = is_string($value) ? json_decode($value, true) : $value;
+            if (is_array($decoded) && count($decoded) > 0) {
+                return $decoded;
+            }
+        }
+
+        if (!empty($this->attributes['external_url'])) {
+            return [
+                [
+                    'title' => $this->attributes['external_url_title'] ?: 'Bahan Bacaan & Referensi',
+                    'url'   => $this->attributes['external_url'],
+                ]
+            ];
+        }
+
+        return [];
+    }
+
+    /**
+     * Helper untuk pre-populate form edit (minimal 1 baris).
+     */
+    public function getExternalResourcesListAttribute(): array
+    {
+        $resources = $this->external_resources;
+        if (empty($resources)) {
+            return [['title' => '', 'url' => '']];
+        }
+        return $resources;
+    }
 
     public function role(): BelongsTo
     {
