@@ -9,21 +9,21 @@
 @endphp
 
 @if($items && $items->isNotEmpty())
-<section id="experience" class="py-20 lg:py-28 bg-carbon-950/60 text-slate-100 border-b border-carbon-800/80 relative overflow-hidden">
+<section id="experience" class="py-20 lg:py-28 bg-slate-50/70 dark:bg-carbon-950/60 text-slate-800 dark:text-slate-100 border-b border-slate-200 dark:border-carbon-800/80 relative overflow-hidden">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <!-- Section Header -->
         <div class="mb-12 max-w-2xl">
-            <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
+            <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-600 dark:text-vermilion-400 mb-3">
                 <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
                 {{ __('experience.tag') }}
             </span>
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
                         {{ __('experience.title') }}
                     </h2>
-                    <p class="mt-3 text-slate-400 text-sm leading-relaxed font-normal">
+                    <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-normal">
                         {{ __('experience.subtitle') }}
                     </p>
                 </div>
@@ -35,16 +35,16 @@
             @foreach($items as $experience)
                 @php
                     $duration = $experience->duration_label ?? '';
-                    $typeBadge = $experience->employment_type_badge_classes ?? 'text-sky-400 bg-sky-500/10 border-sky-500/20';
+                    $typeBadge = $experience->employment_type_badge_classes ?? 'text-sky-700 dark:text-sky-400 bg-sky-500/10 border-sky-500/20';
                     $typeLabel = $experience->employment_type_label ?? 'Internship';
                 @endphp
 
                 <!-- Experience Card -->
-                <article class="group flex flex-col justify-between rounded-xl bg-carbon-900 border border-carbon-800 hover:border-carbon-700/80 transition-all duration-200 hover:-translate-y-0.5 overflow-hidden h-full">
+                <article class="group flex flex-col justify-between rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-carbon-700/80 shadow-sm dark:shadow-none transition-all duration-200 hover:-translate-y-0.5 overflow-hidden h-full">
                     
                     <div>
                         <!-- Header Bar (3 colored dots, employment type badge, duration label) -->
-                        <div class="flex items-center justify-between px-4 py-2.5 bg-carbon-950 border-b border-carbon-800 gap-2 flex-wrap select-none">
+                        <div class="flex items-center justify-between px-4 py-2.5 bg-slate-50 dark:bg-carbon-950 border-b border-slate-200 dark:border-carbon-800 gap-2 flex-wrap select-none">
                             <div class="flex items-center gap-2">
                                 <div class="flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-rose-500/80"></span>
@@ -57,7 +57,7 @@
                             </div>
 
                             @if($duration)
-                                <span class="font-mono text-[10px] text-vermilion-400 bg-vermilion-500/10 border border-vermilion-500/20 px-2 py-0.5 rounded shrink-0">
+                                <span class="font-mono text-[10px] text-vermilion-600 dark:text-vermilion-400 bg-vermilion-500/10 border border-vermilion-500/20 px-2 py-0.5 rounded shrink-0 font-medium">
                                     {{ $duration }}
                                 </span>
                             @endif
@@ -67,15 +67,15 @@
                         <div class="p-5 sm:p-6 flex flex-col gap-4">
                             <!-- Position & Company -->
                             <div>
-                                <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-vermilion-400 transition-colors leading-snug">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors leading-snug">
                                     {{ $experience->position }}
                                 </h3>
-                                <div class="flex items-center gap-2 mt-1.5 text-xs text-slate-300 font-medium flex-wrap font-mono">
-                                    <span class="text-slate-200">{{ $experience->company_name }}</span>
+                                <div class="flex items-center gap-2 mt-1.5 text-xs font-medium flex-wrap font-mono">
+                                    <span class="text-slate-800 dark:text-slate-200 font-semibold">{{ $experience->company_name }}</span>
                                     @if(!empty($experience->location))
-                                        <span class="text-slate-600">&bull;</span>
-                                        <span class="inline-flex items-center gap-1 text-slate-400">
-                                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+                                        <span class="inline-flex items-center gap-1 text-slate-600 dark:text-slate-400">
+                                            <svg class="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
@@ -87,8 +87,8 @@
 
                             <!-- Description -->
                             @if(!empty($experience->description))
-                                <div class="p-3.5 rounded-lg bg-carbon-950 border border-carbon-800">
-                                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                                <div class="p-3.5 rounded-lg bg-slate-50 dark:bg-carbon-950 border border-slate-200 dark:border-carbon-800">
+                                    <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
                                         {{ $experience->description }}
                                     </p>
                                 </div>

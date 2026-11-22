@@ -151,6 +151,9 @@
                     </a>
                 </div>
 
+                <!-- Theme Toggle (Light / Dark Mode) -->
+                <x-theme-toggle />
+
                 <!-- GitHub Button (Desktop: visible on md and up) -->
                 <a href="https://github.com/muhammadashidqy76-dev" target="_blank" rel="noopener noreferrer"
                     class="hidden md:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-carbon-900 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-200 hover:text-white text-xs font-medium font-mono transition-all shadow-sm group">

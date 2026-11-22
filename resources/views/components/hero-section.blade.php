@@ -2,7 +2,7 @@
     showBioModal: false,
     showCvModal: false,
     copied: false,
-    focusTrack: '{{ strtolower(request('focus', 'all')) }}',
+    focusTrack: '{{ strtolower(request('focus', 'it-support')) }}',
     init() {
         const urlParams = new URLSearchParams(window.location.search);
         const urlFocus = urlParams.get('focus');
@@ -11,6 +11,8 @@
             if (['backend', 'laravel'].includes(val)) this.focusTrack = 'backend';
             else if (['cloud', 'aws'].includes(val)) this.focusTrack = 'cloud';
             else if (['it-support', 'it_support', 'itsupport'].includes(val)) this.focusTrack = 'it-support';
+        } else {
+            this.focusTrack = 'it-support';
         }
     },
     setFocus(track) {
@@ -48,12 +50,12 @@
         setTimeout(() => { this.copied = false; }, 2000);
     }
 }" @keydown.escape.window="closeBioModal(); closeCvModal();"
-    class="relative min-h-[88vh] flex items-center justify-center bg-[#0a0a0c] text-slate-100 overflow-hidden py-20 sm:py-28 lg:py-32 border-b border-white/[0.08]">
+    class="relative min-h-[88vh] flex items-center justify-center bg-slate-50 dark:bg-[#0a0a0c] text-slate-800 dark:text-slate-100 overflow-hidden py-20 sm:py-28 lg:py-32 border-b border-slate-200/80 dark:border-white/[0.08]">
 
     <!-- ─── Developer-Centric Background Canvas (Linear/Cursor Dot-Grid & Ambient Radial Depth) ─── -->
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <!-- Technical Dot-Grid Matrix with Smooth Center-Focused Radial Mask -->
-        <div class="absolute inset-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_65%_55%_at_50%_50%,#000_60%,transparent_100%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#00000012_1px,transparent_1px)] dark:bg-[radial-gradient(#ffffff18_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_65%_55%_at_50%_50%,#000_60%,transparent_100%)]"></div>
 
         <!-- Ambient Radial Gradient Glow behind Hero text for subtle dimension -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] h-[350px] sm:h-[450px] bg-gradient-to-b from-vermilion-500/12 via-rose-600/5 to-transparent blur-[130px] rounded-full"></div>
@@ -68,34 +70,34 @@
 
             <!-- 1. Small Top Badge (Pill with Thin Border & White/Red Text, Triggers Bio Modal) -->
             <button type="button" @click="openBioModal()" title="Klik untuk melihat bio & profil lengkap"
-                class="group inline-flex items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-vermilion-500/40 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-sm shadow-black/40 focus:outline-none focus:ring-1 focus:ring-vermilion-500/50">
+                class="group inline-flex items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.07] border border-slate-300 dark:border-white/10 hover:border-vermilion-500/50 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-sm focus:outline-none focus:ring-1 focus:ring-vermilion-500/50">
                 <!-- Mini Avatar with Live Dot Indicator -->
-                <div class="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-white/10 group-hover:ring-vermilion-500/60 transition-all shrink-0 bg-carbon-950">
+                <div class="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-slate-300 dark:ring-white/10 group-hover:ring-vermilion-500/60 transition-all shrink-0 bg-slate-100 dark:bg-carbon-950">
                     <img src="{{ asset('images/Siakad.jpg') }}" alt="Moch Hasbi Ashidqy"
                         class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
-                    <span class="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-emerald-400 ring-1 ring-carbon-950" title="Open to Work"></span>
+                    <span class="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-emerald-400 ring-1 ring-white dark:ring-carbon-950" title="Open to Work"></span>
                 </div>
 
-                <span class="text-xs font-medium text-white tracking-tight">
+                <span class="text-xs font-medium text-slate-800 dark:text-white tracking-tight">
                     Moch Hasbi Ashidqy
                 </span>
 
-                <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-300 transition-colors ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
             </button>
 
             <!-- 2. Main Headline (Large, Bold, Clean White Text) -->
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12] max-w-4xl">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12] max-w-4xl">
                 Infrastructure, Backend &amp;
-                <span class="block mt-1 sm:mt-2 text-white font-extrabold">
+                <span class="block mt-1 sm:mt-2 text-slate-900 dark:text-white font-extrabold">
                     System Reliability
                 </span>
             </h1>
 
             <!-- 3. Sub-headline / Deskripsi (Abu-abu Terang, Clean) -->
-            <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl sm:max-w-3xl leading-relaxed font-normal">
-                Fokus membangun backend Laravel yang scalable, mengelola infrastruktur Cloud AWS, serta memastikan operasional IT Support dan troubleshooting sistem yang handal.
+            <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl sm:max-w-3xl leading-relaxed font-normal">
+                Fokus pada operasional IT Support, pemecahan masalah jaringan &amp; hardware sistem, serta fondasi otomasi dan infrastruktur modern.
             </p>
 
             <!-- 4. Tombol Call-to-Action (CTA) Berdampingan di Tengah -->
@@ -111,103 +113,72 @@
 
                 <!-- Tombol Sekunder: Curriculum Vitae -->
                 <button type="button" @click="openCvModal()"
-                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-slate-200 hover:text-white font-semibold text-sm border border-white/10 hover:border-white/20 bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-sm transition-all duration-200 group cursor-pointer focus:outline-none focus:ring-1 focus:ring-slate-500">
-                    <svg class="w-4 h-4 text-vermilion-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white font-semibold text-sm border border-slate-300 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/20 bg-white dark:bg-white/[0.04] hover:bg-slate-100 dark:hover:bg-white/[0.08] backdrop-blur-sm transition-all duration-200 group cursor-pointer focus:outline-none focus:ring-1 focus:ring-slate-400 dark:focus:ring-slate-500 shadow-sm">
+                    <svg class="w-4 h-4 text-vermilion-500 dark:text-vermilion-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     <span>Curriculum Vitae</span>
                 </button>
             </div>
 
-            <!-- 5. Tech Stack Pills (Interactive Career Pillar Spotlight) -->
+            <!-- 5. Tech Stack Pills (Career Pillar Spotlight: IT Support Active, Others Locked) -->
             <div class="flex flex-col items-center gap-2 pt-2">
                 <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-                    <!-- Laravel Backend -->
-                    <button type="button" @click="setFocus('backend')"
-                        :title="focusTrack === 'backend' ? 'Klik untuk batalkan fokus' : 'Klik untuk memfokuskan pilar Laravel'"
-                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono backdrop-blur-sm transition-all duration-300 cursor-pointer focus:outline-none"
-                        :class="{
-                            'bg-vermilion-500/15 border border-vermilion-500/60 text-white shadow-[0_0_20px_rgba(255,51,75,0.25)] ring-1 ring-vermilion-500/40 scale-[1.03]': focusTrack === 'backend',
-                            'opacity-35 blur-[0.8px] grayscale-[40%] border border-dashed border-white/10 text-slate-400 hover:opacity-85 hover:blur-none hover:grayscale-0': focusTrack !== 'all' && focusTrack !== 'backend',
-                            'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-slate-300 shadow-sm': focusTrack === 'all'
-                        }">
+                    <!-- IT Support (ACTIVE PRIMARY PILLAR) -->
+                    <button type="button"
+                        title="Fokus Utama: IT Support & System Reliability"
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono backdrop-blur-sm transition-all duration-300 cursor-default focus:outline-none bg-indigo-600 dark:bg-indigo-600 border border-indigo-500 dark:border-indigo-500 shadow-md shadow-indigo-600/30 ring-2 ring-indigo-500/30 scale-[1.03]"
+                        style="color: #ffffff !important;">
                         <!-- Active Pulsing Dot -->
-                        <span x-show="focusTrack === 'backend'" class="w-1.5 h-1.5 rounded-full bg-vermilion-400 animate-pulse shrink-0"></span>
+                        <span class="w-1.5 h-1.5 rounded-full animate-pulse shrink-0" style="background-color: #ffffff !important;"></span>
 
-                        <svg class="w-3.5 h-3.5 text-vermilion-500 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                        </svg>
-                        <span class="font-medium" :class="focusTrack === 'backend' ? 'text-white' : 'text-slate-200'">Laravel</span>
-                    </button>
-
-                    <!-- AWS Cloud -->
-                    <button type="button" @click="setFocus('cloud')"
-                        :title="focusTrack === 'cloud' ? 'Klik untuk batalkan fokus' : 'Klik untuk memfokuskan pilar AWS Cloud'"
-                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono backdrop-blur-sm transition-all duration-300 cursor-pointer focus:outline-none"
-                        :class="{
-                            'bg-amber-500/15 border border-amber-500/60 text-white shadow-[0_0_20px_rgba(245,158,11,0.25)] ring-1 ring-amber-500/40 scale-[1.03]': focusTrack === 'cloud',
-                            'opacity-35 blur-[0.8px] grayscale-[40%] border border-dashed border-white/10 text-slate-400 hover:opacity-85 hover:blur-none hover:grayscale-0': focusTrack !== 'all' && focusTrack !== 'cloud',
-                            'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-slate-300 shadow-sm': focusTrack === 'all'
-                        }">
-                        <!-- Active Pulsing Dot -->
-                        <span x-show="focusTrack === 'cloud'" class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
-
-                        <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
-                        </svg>
-                        <span class="font-medium" :class="focusTrack === 'cloud' ? 'text-white' : 'text-slate-200'">AWS Cloud</span>
-                    </button>
-
-                    <!-- IT Support -->
-                    <button type="button" @click="setFocus('it-support')"
-                        :title="focusTrack === 'it-support' ? 'Klik untuk batalkan fokus' : 'Klik untuk memfokuskan pilar IT Support'"
-                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono backdrop-blur-sm transition-all duration-300 cursor-pointer focus:outline-none"
-                        :class="{
-                            'bg-indigo-500/15 border border-indigo-500/60 text-white shadow-[0_0_20px_rgba(99,102,241,0.25)] ring-1 ring-indigo-500/40 scale-[1.03]': focusTrack === 'it-support',
-                            'opacity-35 blur-[0.8px] grayscale-[40%] border border-dashed border-white/10 text-slate-400 hover:opacity-85 hover:blur-none hover:grayscale-0': focusTrack !== 'all' && focusTrack !== 'it-support',
-                            'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-slate-300 shadow-sm': focusTrack === 'all'
-                        }">
-                        <!-- Active Pulsing Dot -->
-                        <span x-show="focusTrack === 'it-support'" class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse shrink-0"></span>
-
-                        <svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="color: #ffffff !important; stroke: #ffffff !important;">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <span class="font-medium" :class="focusTrack === 'it-support' ? 'text-white' : 'text-slate-200'">IT Support</span>
+                        <span class="font-semibold" style="color: #ffffff !important;">IT Support</span>
                     </button>
+
+                    <!-- Laravel Backend (LOCKED / NEXT PATH) -->
+                    <div class="relative select-none" title="Fase pengembangan berikutnya (Next Learning Path) — saat ini fokus pada IT Support & Systems">
+                        <button type="button" disabled
+                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono opacity-60 blur-[0.3px] border border-dashed border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400 bg-slate-100/90 dark:bg-white/[0.02] cursor-not-allowed">
+                            <svg class="w-3.5 h-3.5 shrink-0 text-rose-500/70" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                            </svg>
+                            <span class="font-medium text-slate-600 dark:text-slate-400">Laravel</span>
+                            <span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-mono font-medium bg-slate-200/80 dark:bg-white/[0.06] text-slate-600 dark:text-slate-400 border border-slate-300/60 dark:border-white/10">
+                                🔒 Next Path
+                            </span>
+                        </button>
+                    </div>
+
+                    <!-- AWS Cloud (LOCKED / NEXT PATH) -->
+                    <div class="relative select-none" title="Fase pengembangan berikutnya (Next Learning Path) — saat ini fokus pada IT Support & Systems">
+                        <button type="button" disabled
+                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono opacity-60 blur-[0.3px] border border-dashed border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400 bg-slate-100/90 dark:bg-white/[0.02] cursor-not-allowed">
+                            <svg class="w-3.5 h-3.5 shrink-0 text-amber-500/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
+                            </svg>
+                            <span class="font-medium text-slate-600 dark:text-slate-400">AWS Cloud</span>
+                            <span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-mono font-medium bg-slate-200/80 dark:bg-white/[0.06] text-slate-600 dark:text-slate-400 border border-slate-300/60 dark:border-white/10">
+                                🔒 Next Path
+                            </span>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Role Learning Path Quick Link (Khusus IT Support saat difokuskan) -->
-                <div x-show="focusTrack === 'it-support'"
-                    x-cloak
-                    x-transition:enter="transition ease-out duration-250"
-                    x-transition:enter-start="opacity-0 scale-95 -translate-y-1"
-                    x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                    class="pt-1">
+                <!-- Role Learning Path Quick Link (Khusus IT Support) -->
+                <div class="pt-1">
                     <a href="{{ route('roadmap.index', ['roleSlug' => 'it-support']) }}"
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/50 hover:border-indigo-400 text-indigo-300 hover:text-white font-mono text-xs font-semibold shadow-lg shadow-indigo-500/10 transition-all duration-200 group">
-                        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-50/90 dark:bg-indigo-500/15 hover:bg-indigo-100 dark:hover:bg-indigo-500/25 border border-indigo-300 dark:border-indigo-500/50 hover:border-indigo-400 text-indigo-900 dark:text-indigo-300 hover:text-indigo-950 dark:hover:text-white font-mono text-xs font-semibold shadow-sm dark:shadow-lg dark:shadow-indigo-500/10 transition-all duration-200 group">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse"></span>
                         <span>Buka Learning Path &amp; Checklist IT Support</span>
-                        <svg class="w-3.5 h-3.5 text-indigo-400 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg class="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </a>
                 </div>
-
-                <!-- Reset Active Focus Indicator -->
-                <button type="button" 
-                    x-show="focusTrack !== 'all'"
-                    x-cloak
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 -translate-y-1"
-                    x-transition:enter-end="opacity-100 translate-y-0"
-                    @click="setFocus('all')"
-                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono text-slate-400 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-colors cursor-pointer mt-1"
-                    title="Klik untuk mereset dan menampilkan semua pilar">
-                    <span>Reset Fokus</span>
-                    <span class="text-slate-500 hover:text-white">✕</span>
-                </button>
             </div>
 
             <!-- 6. Footer Connect (// CONNECT: GitHub & LinkedIn) -->
@@ -291,7 +262,7 @@
 
                 <!-- Name & Education Badge -->
                 <div>
-                    <h3 id="bio-modal-title" class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    <h3 id="bio-modal-title" class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                         Moch Hasbi Ashidqy
                     </h3>
                     <div class="flex flex-wrap items-center gap-2 mt-1.5">
@@ -417,7 +388,7 @@
 
                 <!-- Title & Qualifications Header -->
                 <div class="text-center">
-                    <h3 id="cv-modal-title" class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    <h3 id="cv-modal-title" class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                         {{ __('cv.title') }}
                     </h3>
                 </div>

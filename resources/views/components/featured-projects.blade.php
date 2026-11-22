@@ -96,21 +96,21 @@
         document.body.classList.remove('overflow-hidden');
     }
 }" @keydown.escape.window="closeModal()"
-    class="relative bg-carbon-950/60 text-slate-100 py-20 lg:py-28 overflow-hidden border-b border-carbon-800/80">
+    class="relative bg-slate-50/70 dark:bg-carbon-950/60 text-slate-800 dark:text-slate-100 py-20 lg:py-28 overflow-hidden border-b border-slate-200/80 dark:border-carbon-800/80">
 
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <!-- Section Header with Engineering Identity -->
         <div class="mb-12 max-w-2xl">
             <span
-                class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
+                class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-500 dark:text-vermilion-400 mb-3">
                 <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
                 {{ __('projects.title') }}
             </span>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
                 {{ __('projects.headline') }}
             </h2>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed font-normal">
+            <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-normal">
                 {{ __('projects.subtitle') }}
             </p>
         </div>
@@ -171,27 +171,27 @@
                 @endphp
 
                 <article
-                    class="group flex flex-col rounded-xl bg-carbon-900 border border-carbon-800 hover:border-carbon-700/80 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 overflow-hidden h-full">
+                    class="group flex flex-col rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-carbon-700/80 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/50 overflow-hidden h-full shadow-sm">
 
                     <!-- Preview Image / Frame Mockup -->
-                    <div class="relative flex-none bg-carbon-950 border-b border-carbon-800">
+                    <div class="relative flex-none bg-slate-100 dark:bg-carbon-950 border-b border-slate-200 dark:border-carbon-800">
                         @if (!$isApiMockup)
                             <!-- Browser Frame Header -->
                             <div
-                                class="flex items-center gap-2 px-3 py-2 bg-carbon-950 border-b border-carbon-800 select-none">
+                                class="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-carbon-950 border-b border-slate-200 dark:border-carbon-800 select-none">
                                 <div class="flex gap-1.5 items-center">
                                     <span class="w-2 h-2 rounded-full bg-rose-500/80"></span>
                                     <span class="w-2 h-2 rounded-full bg-amber-400/80"></span>
                                     <span class="w-2 h-2 rounded-full bg-emerald-400/80"></span>
                                 </div>
                                 <span
-                                    class="flex-1 text-center font-mono text-[10px] text-slate-400 bg-carbon-900 px-2 py-0.5 rounded border border-carbon-800 truncate max-w-[170px] mx-auto">
+                                    class="flex-1 text-center font-mono text-[10px] text-slate-600 dark:text-slate-400 bg-white dark:bg-carbon-900 px-2 py-0.5 rounded border border-slate-200 dark:border-carbon-800 truncate max-w-[170px] mx-auto shadow-xs">
                                     {{ $browserUrl }}
                                 </span>
                             </div>
 
                             <!-- Browser Frame Mockup Image / Placeholder -->
-                            <div class="h-32 overflow-hidden relative bg-carbon-950">
+                            <div class="h-32 overflow-hidden relative bg-slate-50 dark:bg-carbon-950">
                                @if (!empty($previewImage))
                                     @php
                                         $isExternal = \Illuminate\Support\Str::startsWith($previewImage, ['http://', 'https://']);
@@ -211,9 +211,9 @@
                                         loading="lazy"
                                         onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
                                     <div
-                                        class="hidden w-full h-full flex flex-col items-center justify-center bg-carbon-950 p-4 text-center">
+                                        class="hidden w-full h-full flex flex-col items-center justify-center bg-slate-50 dark:bg-carbon-950 p-4 text-center">
                                         <div
-                                            class="w-7 h-7 rounded-md bg-vermilion-500/10 border border-vermilion-500/20 flex items-center justify-center text-vermilion-400 mb-1.5">
+                                            class="w-7 h-7 rounded-md bg-vermilion-500/10 border border-vermilion-500/20 flex items-center justify-center text-vermilion-500 dark:text-vermilion-400 mb-1.5">
                                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -221,13 +221,13 @@
                                             </svg>
                                         </div>
                                         <span
-                                            class="text-xs font-mono text-slate-300 font-medium">{{ $mainTitle }}</span>
+                                            class="text-xs font-mono text-slate-700 dark:text-slate-300 font-medium">{{ $mainTitle }}</span>
                                     </div>
                                 @else
                                     <div
-                                        class="w-full h-full flex flex-col items-center justify-center bg-carbon-950 p-4 text-center">
+                                        class="w-full h-full flex flex-col items-center justify-center bg-slate-50 dark:bg-carbon-950 p-4 text-center">
                                         <div
-                                            class="w-7 h-7 rounded-md bg-vermilion-500/10 border border-vermilion-500/20 flex items-center justify-center text-vermilion-400 mb-1.5">
+                                            class="w-7 h-7 rounded-md bg-vermilion-500/10 border border-vermilion-500/20 flex items-center justify-center text-vermilion-500 dark:text-vermilion-400 mb-1.5">
                                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -235,14 +235,14 @@
                                             </svg>
                                         </div>
                                         <span
-                                            class="text-xs font-mono text-slate-300 font-medium">{{ $mainTitle }}</span>
+                                            class="text-xs font-mono text-slate-700 dark:text-slate-300 font-medium">{{ $mainTitle }}</span>
                                     </div>
                                 @endif
                             </div>
                         @else
-                            <!-- Terminal / API Frame Mockup -->
+                            <!-- Terminal / API Frame Mockup (Always Authentic Dark IDE) -->
                             <div
-                                class="flex items-center justify-between px-3 py-2 bg-carbon-950 border-b border-carbon-800 select-none">
+                                class="flex items-center justify-between px-3 py-2 bg-[#0d131f] border-b border-[#1b2539] select-none">
                                 <div class="flex gap-1.5 items-center">
                                     <span class="w-2 h-2 rounded-full bg-rose-500/80"></span>
                                     <span class="w-2 h-2 rounded-full bg-amber-400/80"></span>
@@ -254,8 +254,8 @@
                                 </span>
                             </div>
                             <div
-                                class="h-32 p-3 text-[11px] leading-relaxed text-emerald-400 bg-carbon-950 overflow-hidden font-mono select-none">
-                                <pre class="font-mono"><code>{
+                                class="h-32 p-3 text-[11px] leading-relaxed text-emerald-400 bg-[#090d16] overflow-hidden font-mono select-none">
+                                <pre class="font-mono"><code class="text-emerald-400">{
   "status": "success",
   "code": 200,
   "data": { "sync": "multi_channel", "latency": "&lt;200ms" }
@@ -271,17 +271,17 @@
                         <div>
                             <div class="flex items-center justify-between gap-2 mb-2">
                                 <span
-                                    class="text-[10px] font-mono font-semibold tracking-wider uppercase text-vermilion-400 bg-vermilion-500/10 border border-vermilion-500/20 px-2 py-0.5 rounded">
+                                    class="text-[10px] font-mono font-semibold tracking-wider uppercase text-vermilion-500 dark:text-vermilion-400 bg-vermilion-500/10 border border-vermilion-500/20 px-2 py-0.5 rounded">
                                     {{ $badgeIndex }}
                                 </span>
                             </div>
                             <h3
-                                class="text-base font-bold text-white leading-snug group-hover:text-vermilion-400 transition-colors">
+                                class="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-vermilion-500 dark:group-hover:text-vermilion-400 transition-colors">
                                 {{ $mainTitle }}
                             </h3>
                             @if (!empty($subtitle))
                                 <span
-                                    class="block text-xs font-normal text-slate-400 mt-1 line-clamp-1">{{ $subtitle }}</span>
+                                    class="block text-xs font-normal text-slate-500 dark:text-slate-400 mt-1 line-clamp-1">{{ $subtitle }}</span>
                             @endif
                         </div>
 
@@ -293,14 +293,14 @@
                                         $itemName = is_string($item) ? $item : $item->name ?? '';
                                     @endphp
                                     <span
-                                        class="text-[11px] font-medium px-2 py-0.5 rounded bg-carbon-950 text-slate-300 border border-carbon-800">
+                                        class="text-[11px] font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-carbon-950 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-carbon-800">
                                         {{ $itemName }}
                                     </span>
                                 @endforeach
 
                                 @if ($remainingCount > 0)
                                     <span
-                                        class="text-[10px] font-semibold px-2 py-0.5 rounded bg-carbon-950 text-vermilion-400 border border-vermilion-500/30">
+                                        class="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-carbon-950 text-vermilion-500 dark:text-vermilion-400 border border-vermilion-500/30">
                                         +{{ $remainingCount }} {{ __('projects.more_tech') }}
                                     </span>
                                 @endif
@@ -315,13 +315,13 @@
                         <!-- Key Metric Highlight with Technical Monospace -->
                         @if (!empty($impact))
                             <div
-                                class="text-[11px] font-mono text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1.5 rounded-lg flex items-center gap-2">
+                                class="text-[11px] font-mono text-amber-600 dark:text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1.5 rounded-lg flex items-center gap-2">
                                 <span class="text-xs leading-none shrink-0 select-none">⚡</span>
                                 <span class="font-medium truncate">{{ $impact }}</span>
                             </div>
                         @endif
 
-                        <div class="border-t border-carbon-800"></div>
+                        <div class="border-t border-slate-200 dark:border-carbon-800"></div>
 
                         <!-- Action Buttons -->
                         <div class="flex items-center gap-2">
@@ -334,7 +334,7 @@
                             <!-- Action Link Button (Secondary -> External Link only) -->
                             @if (!empty($demoUrl) && $demoUrl !== '#')
                                 <a href="{{ $demoUrl }}" target="_blank" rel="noopener noreferrer"
-                                    class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-carbon-950 hover:bg-carbon-850 active:bg-carbon-950 text-slate-200 hover:text-white text-xs font-semibold border border-carbon-800 hover:border-slate-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-slate-600">
+                                    class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-slate-100 dark:bg-carbon-950 hover:bg-slate-200 dark:hover:bg-carbon-850 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white text-xs font-semibold border border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600">
                                     @if ($isGithub)
                                         <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -351,7 +351,7 @@
                                 </a>
                             @else
                                 <span
-                                    class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-carbon-950/60 text-slate-600 text-xs font-semibold border border-carbon-800/60 cursor-not-allowed select-none">
+                                    class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-slate-100/60 dark:bg-carbon-950/60 text-slate-400 dark:text-slate-600 text-xs font-semibold border border-slate-200/60 dark:border-carbon-800/60 cursor-not-allowed select-none">
                                     <svg class="w-3.5 h-3.5 opacity-40" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -447,24 +447,24 @@
                 x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="ease-in duration-150"
                 x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                 x-transition:leave-end="opacity-0 scale-98 translate-y-2" @click.stop
-                class="relative w-full max-w-2xl bg-carbon-900 border border-carbon-800 rounded-xl shadow-2xl overflow-hidden z-10 my-8 flex flex-col max-h-[85vh]">
+                class="relative w-full max-w-2xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 rounded-xl shadow-2xl overflow-hidden z-10 my-8 flex flex-col max-h-[85vh]">
 
                 <!-- 1. Header: Title, Subtitle, Badge, & Close Button -->
                 <div
-                    class="flex items-start justify-between gap-4 p-5 sm:p-6 bg-carbon-950 border-b border-carbon-800 sticky top-0 z-20">
+                    class="flex items-start justify-between gap-4 p-5 sm:p-6 bg-slate-50 dark:bg-carbon-950 border-b border-slate-200 dark:border-carbon-800 sticky top-0 z-20">
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-2 mb-1.5">
                             <span
-                                class="text-[10px] font-mono font-semibold uppercase tracking-wider text-vermilion-400 bg-vermilion-500/10 border border-vermilion-500/20 px-2 py-0.5 rounded">
+                                class="text-[10px] font-mono font-semibold uppercase tracking-wider text-vermilion-500 dark:text-vermilion-400 bg-vermilion-500/10 border border-vermilion-500/20 px-2 py-0.5 rounded">
                                 {{ $badgeIndex }} &bull; {{ __('projects.modal_detail_badge') }}
                             </span>
                         </div>
                         <h3 id="modal-title-{{ $slug }}"
-                            class="text-lg sm:text-xl font-bold text-white leading-snug">
+                            class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
                             {{ $mainTitle }}
                         </h3>
                         @if (!empty($subtitle))
-                            <p class="text-xs sm:text-sm text-slate-400 mt-0.5 font-medium">
+                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5 font-medium">
                                 {{ $subtitle }}
                             </p>
                         @endif
@@ -472,7 +472,7 @@
 
                     <!-- Close Button (X) -->
                     <button type="button" @click="closeModal()" aria-label="{{ __('projects.close') }}"
-                        class="rounded-lg p-2 text-slate-400 hover:text-white hover:bg-carbon-850 transition-colors focus:outline-none focus:ring-2 focus:ring-vermilion-500/50 shrink-0 cursor-pointer">
+                        class="rounded-lg p-2 text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-carbon-850 transition-colors focus:outline-none focus:ring-2 focus:ring-vermilion-500/50 shrink-0 cursor-pointer">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                             stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -481,17 +481,17 @@
                 </div>
 
                 <!-- Modal Body (Scrollable) -->
-                <div class="p-5 sm:p-6 overflow-y-auto space-y-6 text-slate-300">
+                <div class="p-5 sm:p-6 overflow-y-auto space-y-6 text-slate-700 dark:text-slate-300">
 
                     <!-- Section Problem Statement -->
                     <div class="space-y-2">
                         <div
-                            class="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-vermilion-400">
-                            <div class="w-1.5 h-1.5 rounded-full bg-vermilion-400"></div>
+                            class="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-vermilion-500 dark:text-vermilion-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-vermilion-500 dark:bg-vermilion-400"></div>
                             <h4>{{ __('projects.problem_statement') }}</h4>
                         </div>
                         <div
-                            class="p-4 rounded-lg bg-carbon-950 border border-carbon-800 text-xs sm:text-sm leading-relaxed text-slate-300">
+                            class="p-4 rounded-lg bg-slate-50 dark:bg-carbon-950 border border-slate-200 dark:border-carbon-800 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                             {{ $problem }}
                         </div>
                     </div>
@@ -499,8 +499,8 @@
                     <!-- Section Architecture Details -->
                     <div class="space-y-2.5">
                         <div
-                            class="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-sky-400">
-                            <div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>
+                            class="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-sky-500 dark:text-sky-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400"></div>
                             <h4>{{ __('projects.architecture') }}</h4>
                         </div>
 
@@ -508,9 +508,9 @@
                             <div class="space-y-2">
                                 @foreach ($archLines as $line)
                                     <div
-                                        class="p-3.5 rounded-lg bg-carbon-950 border border-carbon-800 text-xs sm:text-sm leading-relaxed text-slate-300 flex items-start gap-3">
+                                        class="p-3.5 rounded-lg bg-slate-50 dark:bg-carbon-950 border border-slate-200 dark:border-carbon-800 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300 flex items-start gap-3">
                                         <div
-                                            class="w-4 h-4 rounded bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 shrink-0 mt-0.5 text-xs font-bold">
+                                            class="w-4 h-4 rounded bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-500 dark:text-sky-400 shrink-0 mt-0.5 text-xs font-bold">
                                             ✓
                                         </div>
                                         <div class="flex-1 font-mono text-xs sm:text-sm">
@@ -521,7 +521,7 @@
                             </div>
                         @else
                             <div
-                                class="p-4 rounded-lg bg-carbon-950 border border-carbon-800 text-xs sm:text-sm leading-relaxed text-slate-400">
+                                class="p-4 rounded-lg bg-slate-50 dark:bg-carbon-950 border border-slate-200 dark:border-carbon-800 text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                                 {{ $archDetails ?: __('projects.no_architecture') }}
                             </div>
                         @endif
@@ -530,8 +530,8 @@
                     <!-- Section Tech Stack Lengkap -->
                     <div class="space-y-2.5">
                         <div
-                            class="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-emerald-400">
-                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+                            class="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400"></div>
                             <h4>{{ __('projects.tech_stack') }}</h4>
                         </div>
 
@@ -547,17 +547,17 @@
                                                 : null);
                                     @endphp
                                     <div
-                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-carbon-950 border border-carbon-800 text-xs font-medium text-slate-200">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-50 dark:bg-carbon-950 border border-slate-200 dark:border-carbon-800 text-xs font-medium text-slate-700 dark:text-slate-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
                                         <span>{{ $itemName }}</span>
                                         @if (!empty($category))
-                                            <span class="text-[10px] text-slate-400">({{ $category }})</span>
+                                            <span class="text-[10px] text-slate-500 dark:text-slate-400">({{ $category }})</span>
                                         @endif
                                     </div>
                                 @endforeach
                             </div>
                         @else
-                            <p class="text-xs text-slate-400 font-mono">{{ __('projects.no_tech_stack') }}</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">{{ __('projects.no_tech_stack') }}</p>
                         @endif
                     </div>
 
@@ -565,12 +565,12 @@
 
                 <!-- 4. Section Metric & Action Links (Footer Sticky) -->
                 <div
-                    class="p-5 sm:p-6 bg-carbon-950 border-t border-carbon-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 sticky bottom-0 z-20">
+                    class="p-5 sm:p-6 bg-slate-50 dark:bg-carbon-950 border-t border-slate-200 dark:border-carbon-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 sticky bottom-0 z-20">
 
                     <!-- Key Metric with ⚡ -->
                     @if (!empty($impact))
                         <div
-                            class="flex items-center gap-2 text-xs font-mono text-amber-300 bg-amber-500/10 border border-amber-500/20 px-3 py-2 rounded-lg">
+                            class="flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-amber-300 bg-amber-500/10 border border-amber-500/20 px-3 py-2 rounded-lg">
                             <span class="text-xs select-none">⚡</span>
                             <span class="font-semibold">{{ $impact }}</span>
                         </div>
@@ -582,7 +582,7 @@
                     <div class="flex items-center gap-2.5 justify-end">
                         @if (!empty($demoUrl) && $demoUrl !== '#')
                             <a href="{{ $demoUrl }}" target="_blank" rel="noopener noreferrer"
-                                class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-carbon-950 hover:bg-carbon-850 active:bg-carbon-950 text-slate-200 hover:text-white text-xs font-semibold border border-carbon-800 hover:border-slate-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-slate-600">
+                                class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-white dark:bg-carbon-950 hover:bg-slate-100 dark:hover:bg-carbon-850 active:bg-slate-200 dark:active:bg-carbon-950 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white text-xs font-semibold border border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600">
                                 @if ($isGithub)
                                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -601,7 +601,7 @@
 
                         @if (!empty($repoUrl) && $repoUrl !== '#')
                             <a href="{{ $repoUrl }}" target="_blank" rel="noopener noreferrer"
-                                class="flex items-center justify-center gap-1.5 py-2 px-4 rounded-lg bg-carbon-900 hover:bg-carbon-850 active:bg-carbon-900 text-slate-200 hover:text-white text-xs font-semibold border border-carbon-800 hover:border-slate-700 transition-all duration-150">
+                                class="flex items-center justify-center gap-1.5 py-2 px-4 rounded-lg bg-white dark:bg-carbon-900 hover:bg-slate-100 dark:hover:bg-carbon-850 active:bg-slate-200 dark:active:bg-carbon-900 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white text-xs font-semibold border border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-150">
                                 <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />

@@ -14,14 +14,15 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|jetbrains-mono:400,500,600,700&display=swap" rel="stylesheet" />
 
+        <!-- Modern Web Guidance: Native Color Scheme & FOUC Prevention -->
+        <x-theme-head />
+
         <!-- Scripts & Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <style>
             html, body {
                 font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-                background-color: #090c12;
-                color: #f1f5f9;
             }
             .font-mono { font-family: 'JetBrains Mono', monospace; }
         </style>
@@ -49,9 +50,12 @@
                     </span>
                 </a>
 
-                <a href="{{ url('/') }}" class="text-xs font-mono text-slate-400 hover:text-white transition-colors flex items-center gap-1">
-                    <span>Website Utama</span>
-                </a>
+                <div class="flex items-center gap-2">
+                    <x-theme-toggle />
+                    <a href="{{ url('/') }}" class="text-xs font-mono text-slate-400 hover:text-white transition-colors flex items-center gap-1">
+                        <span>Website Utama</span>
+                    </a>
+                </div>
             </div>
 
             <!-- Terminal Window Card -->

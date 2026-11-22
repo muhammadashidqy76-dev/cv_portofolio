@@ -14,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|jetbrains-mono:400,500,600,700&display=swap" rel="stylesheet" />
 
+    <!-- Modern Web Guidance: Native Color Scheme & FOUC Prevention -->
+    <x-theme-head />
+
     <!-- Scripts and Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -57,8 +60,10 @@
                     </span>
                 </div>
 
-                <!-- Right: Navigation Links -->
+                <!-- Right: Navigation Links & Theme Toggle -->
                 <div class="flex items-center gap-2 sm:gap-4 font-mono text-xs">
+                    <x-theme-toggle />
+
                     <a href="/#projects" class="hidden md:inline-block text-slate-400 hover:text-white transition-colors px-2 py-1">
                         Projek
                     </a>

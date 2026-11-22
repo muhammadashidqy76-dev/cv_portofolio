@@ -19,6 +19,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|jetbrains-mono:400,500,600,700&display=swap" rel="stylesheet" />
 
+    <!-- Modern Web Guidance: Native Color Scheme & FOUC Prevention -->
+    <x-theme-head />
+
     <!-- Scripts and Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -161,6 +164,74 @@
         }
         .prose-note a:hover { color: #fb7185; }
 
+        /* ── Light Mode Prose & Code Adaptation ── */
+        html.light .prose-note {
+            --prose-body: #334155;        /* slate-700 */
+            --prose-heading: #0f172a;     /* slate-900 */
+            --prose-lead: #64748b;        /* slate-500 */
+            --prose-code-bg: #f8fafc;     /* slate-50 */
+            --prose-code-border: #e2e8f0; /* slate-200 */
+            --prose-quote-border: #e11d48; /* rose-600 */
+            --prose-hr: #e2e8f0;
+        }
+
+        html.light .prose-note h1,
+        html.light .prose-note h2,
+        html.light .prose-note h3,
+        html.light .prose-note h4 {
+            color: #0f172a;
+        }
+
+        html.light .prose-note strong {
+            color: #0f172a;
+        }
+
+        html.light .prose-note em {
+            color: #475569;
+        }
+
+        /* Light mode inline code */
+        html.light .prose-note code:not(pre > code) {
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #c2410c; /* warm technical amber */
+        }
+
+        /* Light mode Code blocks */
+        html.light .prose-note pre {
+            background-color: #f8fafc !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+        }
+
+        html.light .prose-note pre code {
+            color: #0f172a !important;
+            background: transparent !important;
+        }
+
+        /* Light mode blockquote */
+        html.light .prose-note blockquote {
+            border-left-color: #e11d48;
+            color: #475569;
+        }
+
+        /* Light mode tables */
+        html.light .prose-note th {
+            background: #f1f5f9;
+            color: #0f172a;
+            border-bottom: 2px solid #cbd5e1;
+        }
+        html.light .prose-note td {
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+        }
+        html.light .prose-note tr:hover td {
+            background: rgba(241, 245, 249, 0.7);
+        }
+        html.light .prose-note img {
+            border-color: #e2e8f0;
+        }
+
         /* Reading progress bar */
         #reading-progress {
             position: fixed;
@@ -174,7 +245,7 @@
         }
     </style>
 </head>
-<body class="bg-carbon-950 text-slate-100 font-sans antialiased selection:bg-rose-500 selection:text-white relative min-h-screen">
+<body class="bg-slate-50 dark:bg-carbon-950 text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-rose-500 selection:text-white relative min-h-screen">
 
     <!-- Global grid background -->
     <div class="fixed inset-0 bg-[linear-gradient(to_right,#1f293d18_2px,transparent_2px),linear-gradient(to_bottom,#1f293d18_2px,transparent_2px)] bg-[size:3.5rem_3.5rem] pointer-events-none z-0"></div>
@@ -247,6 +318,9 @@
 
                 <!-- Right: Actions & Badges -->
                 <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                    <!-- Theme Toggle -->
+                    <x-theme-toggle />
+
                     <!-- Track Badge -->
                     @if($entry->category === 'laravel')
                         <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-rose-500/10 text-rose-400 border border-rose-500/20">
@@ -325,12 +399,12 @@
                 @endif
 
                 <!-- Title -->
-                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight tracking-tight mb-4" id="article-title">
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight mb-4" id="article-title">
                     {{ $entry->title }}
                 </h1>
 
                 <!-- Meta bar -->
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-slate-500 text-sm font-mono border-t border-carbon-800 pt-4">
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-slate-500 text-sm font-mono border-t border-slate-200 dark:border-carbon-800 pt-4">
                     @if($entry->published_at)
                         <time datetime="{{ $entry->published_at->format('Y-m-d') }}" class="flex items-center gap-1.5">
                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -353,7 +427,7 @@
             </header>
 
             <!-- Lead / Excerpt -->
-            <div class="bg-carbon-900 border border-carbon-800 rounded-xl px-6 py-5 mb-10 text-slate-300 text-sm leading-relaxed font-sans italic border-l-2 border-l-rose-500/40">
+            <div class="bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 shadow-sm dark:shadow-none rounded-xl px-6 py-5 mb-10 text-slate-700 dark:text-slate-300 text-sm leading-relaxed font-sans italic border-l-2 border-l-rose-500/40">
                 {{ $entry->content }}
             </div>
 
@@ -363,18 +437,18 @@
             </article>
 
             <!-- ── Author Card / Mini Profile ── -->
-            <div class="mt-14 pt-8 border-t border-carbon-800">
-                <div class="p-6 rounded-2xl bg-carbon-900/70 border border-carbon-800/80 backdrop-blur-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div class="mt-14 pt-8 border-t border-slate-200 dark:border-carbon-800">
+                <div class="p-6 rounded-2xl bg-white dark:bg-carbon-900/70 border border-slate-200 dark:border-carbon-800/80 shadow-sm dark:shadow-none backdrop-blur-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-carbon-800 border border-carbon-700/80 flex items-center justify-center font-mono font-bold text-vermilion-400 text-base shadow-inner shrink-0">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-carbon-800 border border-slate-200 dark:border-carbon-700/80 flex items-center justify-center font-mono font-bold text-vermilion-500 dark:text-vermilion-400 text-base shadow-inner shrink-0">
                             <img src="/images/Siakad.jpg" alt="Moch Hasbi Ashidqy" class="w-full h-full rounded-xl object-cover">
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
-                                <h3 class="text-sm font-bold text-white tracking-tight">Moch Hasbi Ashidqy</h3>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-vermilion-500/10 border border-vermilion-500/20 text-vermilion-400">Author</span>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white tracking-tight">Moch Hasbi Ashidqy</h3>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-vermilion-500/10 border border-vermilion-500/20 text-vermilion-600 dark:text-vermilion-400">Author</span>
                             </div>
-                            <p class="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                                 Self-taught Laravel Backend Developer &bull; Berbagi catatan eksplorasi arsitektur, clean code, dan performa backend.
                             </p>
                         </div>
@@ -386,19 +460,19 @@
 
         <!-- ── Prev / Next Navigation ── -->
         @if($prevEntry || $nextEntry)
-        <nav class="border-t border-carbon-800 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10" aria-label="Navigasi catatan">
+        <nav class="border-t border-slate-200 dark:border-carbon-800 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10" aria-label="Navigasi catatan">
             <p class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-6">Catatan lainnya dalam track ini</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                 @if($prevEntry)
                 <a href="{{ route('notes.show', $prevEntry->slug) }}"
                    id="prev-note-link"
-                   class="group flex flex-col gap-2 p-4 rounded-xl bg-carbon-900 border border-carbon-800 hover:border-slate-700 hover:bg-carbon-850 transition-all duration-200">
-                    <span class="flex items-center gap-1.5 text-xs font-mono text-slate-500 group-hover:text-slate-400">
+                   class="group flex flex-col gap-2 p-4 rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-carbon-850 shadow-sm dark:shadow-none transition-all duration-200">
+                    <span class="flex items-center gap-1.5 text-xs font-mono text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-400">
                         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
                         Sebelumnya
                     </span>
-                    <span class="text-sm font-medium text-slate-300 group-hover:text-white transition-colors leading-snug">
+                    <span class="text-sm font-medium text-slate-800 dark:text-slate-300 group-hover:text-vermilion-600 dark:group-hover:text-white transition-colors leading-snug">
                         {{ $prevEntry->title }}
                     </span>
                 </a>
@@ -409,12 +483,12 @@
                 @if($nextEntry)
                 <a href="{{ route('notes.show', $nextEntry->slug) }}"
                    id="next-note-link"
-                   class="group flex flex-col gap-2 p-4 rounded-xl bg-carbon-900 border border-carbon-800 hover:border-slate-700 hover:bg-carbon-850 transition-all duration-200 sm:text-right">
-                    <span class="flex items-center gap-1.5 text-xs font-mono text-slate-500 group-hover:text-slate-400 sm:justify-end">
+                   class="group flex flex-col gap-2 p-4 rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-carbon-850 shadow-sm dark:shadow-none transition-all duration-200 sm:text-right">
+                    <span class="flex items-center gap-1.5 text-xs font-mono text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-400 sm:justify-end">
                         Berikutnya
                         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </span>
-                    <span class="text-sm font-medium text-slate-300 group-hover:text-white transition-colors leading-snug">
+                    <span class="text-sm font-medium text-slate-800 dark:text-slate-300 group-hover:text-vermilion-600 dark:group-hover:text-white transition-colors leading-snug">
                         {{ $nextEntry->title }}
                     </span>
                 </a>

@@ -84,19 +84,19 @@
     $fallbackIconPath = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>';
 @endphp
 
-<section id="tech-stack" class="relative bg-carbon-950/60 text-slate-100 py-20 lg:py-28 overflow-hidden border-b border-carbon-800/80">
+<section id="tech-stack" class="relative bg-white/70 dark:bg-carbon-950/60 text-slate-800 dark:text-slate-100 py-20 lg:py-28 overflow-hidden border-b border-slate-200 dark:border-carbon-800/80">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <!-- ─── Section Header ─── -->
         <div class="mb-12 max-w-2xl">
-            <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-400 mb-3">
+            <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-vermilion-600 dark:text-vermilion-400 mb-3">
                 <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
                 {{ __('tech.tag') }}
             </span>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
                 {{ __('tech.title') }}
             </h2>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed font-normal">
+            <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-normal">
                 {{ __('tech.subtitle') }}
             </p>
         </div>
@@ -114,7 +114,7 @@
                             $count = count($itemsGrouped[$cat]);
                         @endphp
 
-                        <div class="flex flex-col p-6 rounded-xl bg-carbon-900 border border-carbon-800 hover:border-carbon-700/80 transition-all duration-200 justify-between h-full">
+                        <div class="flex flex-col p-6 rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-carbon-700/80 shadow-sm dark:shadow-none transition-all duration-200 justify-between h-full">
                             
                             <!-- Card Top Bar: Icon + Title on left, Badge on right -->
                             <div class="flex items-center justify-between mb-6">
@@ -122,12 +122,12 @@
                                     <svg class="w-5 h-5 {{ $meta['color'] }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         {!! $meta['icon'] !!}
                                     </svg>
-                                    <h3 class="text-base font-bold text-white tracking-tight">
+                                    <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">
                                         {{ $cat }}
                                     </h3>
                                 </div>
 
-                                <span class="font-mono text-xs text-vermilion-400 bg-carbon-950 border border-carbon-800 px-2.5 py-1 rounded-md">
+                                <span class="font-mono text-xs text-vermilion-600 dark:text-vermilion-400 bg-slate-50 dark:bg-carbon-950 border border-slate-200 dark:border-carbon-800 px-2.5 py-1 rounded-md font-semibold">
                                     {{ $count }} {{ $count > 1 ? __('tech.technologies') : __('tech.technology') }}
                                 </span>
                             </div>
@@ -137,21 +137,26 @@
                                 @foreach($itemsGrouped[$cat] as $item)
                                     @php
                                         $name = is_array($item) ? $item['name'] : $item->name;
+                                        $status = is_array($item) ? ($item['status'] ?? 'finished') : $item->status;
+                                        $isFinished = ($status === \App\Models\TechStackItem::STATUS_FINISHED);
 
-                                        $badgeClasses = ($item instanceof \App\Models\TechStackItem)
-                                            ? $item->status_badge_classes
-                                            : ['text' => 'text-emerald-400', 'bg' => 'bg-emerald-400/10', 'border' => 'border-emerald-400/20'];
+                                        $pillBg = $isFinished 
+                                            ? 'bg-emerald-50/80 dark:bg-emerald-400/10 border-emerald-200 dark:border-emerald-400/20' 
+                                            : 'bg-amber-50/80 dark:bg-amber-400/10 border-amber-200 dark:border-amber-400/20';
+                                        $pillIconColor = $isFinished 
+                                            ? 'text-emerald-700 dark:text-emerald-400' 
+                                            : 'text-amber-700 dark:text-amber-400';
 
                                         $iconPath = $techIconPaths[$name] ?? $fallbackIconPath;
                                         $techSlug = \Illuminate\Support\Str::slug($name);
                                     @endphp
-                                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg {{ $badgeClasses['bg'] }} border {{ $badgeClasses['border'] }} text-xs font-medium select-none shadow-sm">
-                                        <span class="shrink-0">
-                                            <svg class="w-3.5 h-3.5 {{ $badgeClasses['text'] }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg {{ $pillBg }} border text-xs font-medium select-none shadow-sm">
+                                        <span class="shrink-0 {{ $pillIconColor }}">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                                 {!! $iconPath !!}
                                             </svg>
                                         </span>
-                                        <span class="{{ $badgeClasses['text'] }}">{{ $name }}</span>
+                                        <span class="text-slate-800 dark:text-slate-100 font-semibold">{{ $name }}</span>
                                     </div>
                                 @endforeach
                             </div>
@@ -162,18 +167,18 @@
             </div>
 
             <!-- Footer indicator bar -->
-            <div class="mt-8 flex items-center gap-2 p-4 rounded-xl bg-carbon-900/60 border border-carbon-800 text-xs font-mono text-slate-400">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Menampilkan teknologi terverifikasi dengan status <strong class="text-emerald-400 font-semibold">Finished</strong> (siap diterapkan di lingkungan produksi).</span>
+            <div class="mt-8 flex items-center gap-2 p-4 rounded-xl bg-slate-100/90 dark:bg-carbon-900/60 border border-slate-200 dark:border-carbon-800 text-xs font-mono text-slate-700 dark:text-slate-400">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Menampilkan teknologi terverifikasi dengan status <strong class="text-emerald-700 dark:text-emerald-400 font-semibold">Finished</strong> (siap diterapkan di lingkungan produksi).</span>
             </div>
         @else
-            <div class="p-10 rounded-xl bg-carbon-900 border border-carbon-800 text-center space-y-3">
-                <div class="w-10 h-10 rounded-full bg-carbon-950 border border-carbon-800 mx-auto flex items-center justify-center text-slate-500">
+            <div class="p-10 rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 shadow-sm dark:shadow-none text-center space-y-3">
+                <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-carbon-950 border border-slate-200 dark:border-carbon-800 mx-auto flex items-center justify-center text-slate-500">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <p class="font-mono text-xs text-slate-300">Belum ada teknologi dengan status <span class="text-emerald-400 font-semibold">Finished</span>.</p>
+                <p class="font-mono text-xs text-slate-700 dark:text-slate-300">Belum ada teknologi dengan status <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Finished</span>.</p>
             </div>
         @endif
 

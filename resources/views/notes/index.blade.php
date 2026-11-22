@@ -14,10 +14,13 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|jetbrains-mono:400,500,600,700&display=swap" rel="stylesheet" />
 
+    <!-- Modern Web Guidance: Native Color Scheme & FOUC Prevention -->
+    <x-theme-head />
+
     <!-- Scripts and Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-carbon-950 text-slate-100 font-sans antialiased selection:bg-rose-500 selection:text-white relative min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 dark:bg-carbon-950 text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-rose-500 selection:text-white relative min-h-screen flex flex-col justify-between">
 
     <!-- Global grid background -->
     <div class="fixed inset-0 bg-[linear-gradient(to_right,#1f293d18_2px,transparent_2px),linear-gradient(to_bottom,#1f293d18_2px,transparent_2px)] bg-[size:3.5rem_3.5rem] pointer-events-none z-0"></div>
@@ -51,8 +54,10 @@
                     </span>
                 </div>
 
-                <!-- Right: Navigation Links -->
+                <!-- Right: Navigation Links & Theme Toggle -->
                 <div class="flex items-center gap-2 sm:gap-4 font-mono text-xs">
+                    <x-theme-toggle />
+
                     <a href="/#projects" class="hidden md:inline-block text-slate-400 hover:text-white transition-colors px-2 py-1">
                         Projek
                     </a>
@@ -81,10 +86,10 @@
                     <span class="w-3.5 h-px bg-vermilion-500 rounded"></span>
                     TECHNICAL NOTES
                 </span>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
                     Catatan Pribadi &amp; Teknis
                 </h1>
-                <p class="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed font-normal">
+                <p class="mt-4 text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed font-normal">
                     Dokumentasi terkait pengetahuan saya dalam dunia teknologi dan pengembangan berkaitan dengan backend, database, server, dan lain lain.
                 </p>
 

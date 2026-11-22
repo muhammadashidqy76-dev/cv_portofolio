@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|jetbrains-mono:400,500,600,700&display=swap" rel="stylesheet" />
 
+    <!-- Modern Web Guidance: Native Color Scheme & FOUC Prevention -->
+    <x-theme-head />
+
     <!-- Scripts and Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -19,8 +22,6 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html, body {
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-            background-color: #090c12;
-            color: #f1f5f9;
             min-height: 100vh;
         }
         .font-mono { font-family: 'JetBrains Mono', monospace, monospace; }
