@@ -140,7 +140,7 @@
                     </button>
 
                     <!-- Laravel Backend (LOCKED / NEXT PATH) -->
-                    <div class="relative select-none" title="Fase pengembangan berikutnya (Next Learning Path) — saat ini fokus pada IT Support & Systems">
+                    <!-- <div class="relative select-none" title="Fase pengembangan berikutnya (Next Learning Path) — saat ini fokus pada IT Support & Systems">
                         <button type="button" disabled
                             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono opacity-60 blur-[0.3px] border border-dashed border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400 bg-slate-100/90 dark:bg-white/[0.02] cursor-not-allowed">
                             <svg class="w-3.5 h-3.5 shrink-0 text-rose-500/70" viewBox="0 0 24 24" fill="currentColor">
@@ -151,10 +151,10 @@
                                 🔒 Next Path
                             </span>
                         </button>
-                    </div>
+                    </div> -->
 
                     <!-- AWS Cloud (LOCKED / NEXT PATH) -->
-                    <div class="relative select-none" title="Fase pengembangan berikutnya (Next Learning Path) — saat ini fokus pada IT Support & Systems">
+                    <!-- <div class="relative select-none" title="Fase pengembangan berikutnya (Next Learning Path) — saat ini fokus pada IT Support & Systems">
                         <button type="button" disabled
                             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono opacity-60 blur-[0.3px] border border-dashed border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400 bg-slate-100/90 dark:bg-white/[0.02] cursor-not-allowed">
                             <svg class="w-3.5 h-3.5 shrink-0 text-amber-500/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -166,7 +166,7 @@
                             </span>
                         </button>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Role Learning Path Quick Link (Khusus IT Support) -->
                 <div class="pt-1">
