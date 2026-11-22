@@ -184,26 +184,27 @@ html.light .text-white:not(
 }
 
 /* Elements that must always retain pure white text in light mode (e.g. active pills, colored buttons) */
+/* NOTE: Avoid [class*="bg-indigo-5XX"] — it matches dark:bg-indigo-500/15 in class attr even in light mode! */
 html.light .keep-white,
 html.light .keep-white *,
 html.light .\!text-white,
-html.light [class*="bg-indigo-600"] *,
-html.light [class*="bg-indigo-500"] *,
-html.light [class*="bg-vermilion-600"] *,
-html.light [class*="bg-vermilion-500"] *,
-html.light button[class*="bg-indigo"] *,
+html.light button[class*="bg-indigo-6"] *,
+html.light button[class*="bg-indigo-7"] *,
+html.light button[class*="bg-indigo-8"] *,
+html.light button[class*="bg-vermilion-6"] *,
+html.light button[class*="bg-vermilion-5"] *,
 html.light button[class*="bg-vermilion"] *,
-html.light button[class*="bg-amber"] *,
-html.light button[class*="bg-emerald"] *,
-html.light button[class*="bg-rose"] *,
-html.light a[class*="bg-vermilion"] *,
-html.light a[class*="bg-indigo"] * {
+html.light button[class*="bg-amber-6"] *,
+html.light button[class*="bg-emerald-6"] *,
+html.light button[class*="bg-rose-6"] *,
+html.light a[class*="bg-vermilion-6"] *,
+html.light a[class*="bg-vermilion-5"] * {
     color: #ffffff !important;
 }
 
-html.light button[class*="bg-indigo"] svg,
-html.light button[class*="bg-vermilion"] svg,
-html.light a[class*="bg-vermilion"] svg {
+html.light button[class*="bg-indigo-6"] svg,
+html.light button[class*="bg-indigo-7"] svg,
+html.light button[class*="bg-vermilion"] svg {
     stroke: currentColor !important;
     color: #ffffff !important;
 }

@@ -136,7 +136,7 @@
             <div class="flex items-center gap-2 sm:gap-3">
 
                 <!-- Language Switcher Pill -->
-                <div
+                <!-- <div
                     class="flex items-center rounded-lg bg-carbon-900 border border-carbon-800 overflow-hidden shadow-sm font-mono">
                     <a href="{{ route('lang.switch', 'id') }}"
                         class="px-2.5 py-1.5 text-[11px] font-semibold transition-all {{ app()->getLocale() === 'id' ? 'bg-vermilion-600 text-white' : 'text-slate-400 hover:text-white hover:bg-carbon-850' }}"
@@ -149,7 +149,7 @@
                         title="English">
                         EN
                     </a>
-                </div>
+                </div> -->
 
                 <!-- Theme Toggle (Light / Dark Mode) -->
                 <x-theme-toggle />
