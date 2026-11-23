@@ -312,7 +312,7 @@ html.light :not(pre) > code {
 }
 
 /* ─────────────────────────────────────────────────────────────
- * Form Controls & Inputs
+ * Form Controls, Radios, Checkboxes & Choice Cards in Light Mode
  * ───────────────────────────────────────────────────────────── */
 html.light input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
 html.light textarea,
@@ -325,6 +325,208 @@ html.light select {
 html.light input::placeholder,
 html.light textarea::placeholder {
     color: #94a3b8 !important;
+}
+
+/* 1. Base Radio & Checkbox Inputs: High-Contrast Crisp Outlines */
+html.light input[type="radio"],
+html.light input[type="checkbox"] {
+    background-color: #ffffff !important;
+    border-color: #94a3b8 !important; /* slate-400: sharp visible boundary */
+    border-width: 2px !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+html.light input[type="radio"]:hover,
+html.light input[type="checkbox"]:hover {
+    border-color: #475569 !important; /* slate-600 */
+    box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.25) !important;
+}
+
+/* 2. Checked State: Solid Accent Background with Pure White Symbol */
+html.light input[type="radio"]:checked,
+html.light input[type="checkbox"]:checked {
+    background-color: currentColor !important;
+    border-color: currentColor !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12) !important;
+}
+
+/* 3. Radio & Checkbox Choice Cards / Wrappers (Unchecked State) */
+html.light label[class*="rounded"]:has(input[type="radio"]),
+html.light label[class*="rounded"]:has(input[type="checkbox"]),
+html.light label[class*="border"]:has(input[type="radio"]),
+html.light label[class*="border"]:has(input[type="checkbox"]) {
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important; /* slate-300: clean visible card edge */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+html.light label[class*="rounded"]:has(input[type="radio"]):hover,
+html.light label[class*="rounded"]:has(input[type="checkbox"]):hover,
+html.light label[class*="border"]:has(input[type="radio"]):hover,
+html.light label[class*="border"]:has(input[type="checkbox"]):hover {
+    border-color: #94a3b8 !important; /* slate-400 */
+    background-color: #f8fafc !important; /* slate-50 */
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Typography inside Choice Cards */
+html.light label:has(input[type="radio"]) span,
+html.light label:has(input[type="checkbox"]) span {
+    color: #1e293b !important; /* slate-800: high contrast */
+}
+
+html.light label:has(input[type="radio"]) span.text-slate-400,
+html.light label:has(input[type="radio"]) span.text-slate-500,
+html.light label:has(input[type="radio"]) span.text-\[10px\],
+html.light label:has(input[type="radio"]) span.text-\[11px\],
+html.light label:has(input[type="checkbox"]) span.text-slate-400,
+html.light label:has(input[type="checkbox"]) span.text-slate-500,
+html.light label:has(input[type="checkbox"]) span.text-\[10px\],
+html.light label:has(input[type="checkbox"]) span.text-\[11px\] {
+    color: #475569 !important; /* slate-600 */
+}
+
+/* 4. Active / Checked Card Affordance by Accent Color (Vibrant & Obvious) */
+/* Fallback checked card */
+html.light label[class*="rounded"]:has(input[type="radio"]:checked),
+html.light label[class*="rounded"]:has(input[type="checkbox"]:checked),
+html.light label[class*="border"]:has(input[type="radio"]:checked),
+html.light label[class*="border"]:has(input[type="checkbox"]:checked) {
+    border-color: #e11d48 !important;
+    border-width: 2px !important;
+    background-color: #fff1f2 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Vermilion / Rose Cards */
+html.light label:has(input.text-vermilion-500:checked),
+html.light label:has(input.text-rose-500:checked),
+html.light .has-\[\:checked\]\:bg-vermilion-500\/5:has(:checked),
+html.light .has-\[\:checked\]\:bg-rose-500\/5:has(:checked) {
+    background-color: #fff1f2 !important; /* rose-50 */
+    border-color: #e11d48 !important; /* rose-600 */
+    border-width: 2px !important;
+}
+
+/* Sky / Blue Cards */
+html.light label:has(input.text-sky-500:checked),
+html.light label:has(input.text-blue-500:checked),
+html.light .has-\[\:checked\]\:bg-sky-500\/5:has(:checked) {
+    background-color: #f0f9ff !important; /* sky-50 */
+    border-color: #0284c7 !important; /* sky-600 */
+    border-width: 2px !important;
+}
+
+/* Emerald / Green Cards */
+html.light label:has(input.text-emerald-500:checked),
+html.light label:has(input.text-green-500:checked),
+html.light .has-\[\:checked\]\:bg-emerald-500\/5:has(:checked) {
+    background-color: #ecfdf5 !important; /* emerald-50 */
+    border-color: #059669 !important; /* emerald-600 */
+    border-width: 2px !important;
+}
+
+/* Amber / Yellow Cards */
+html.light label:has(input.text-amber-500:checked),
+html.light label:has(input.text-yellow-500:checked),
+html.light .has-\[\:checked\]\:bg-amber-500\/5:has(:checked) {
+    background-color: #fffbeb !important; /* amber-50 */
+    border-color: #d97706 !important; /* amber-600 */
+    border-width: 2px !important;
+}
+
+/* Indigo / Purple Cards */
+html.light label:has(input.text-indigo-500:checked),
+html.light label:has(input.text-purple-500:checked),
+html.light .has-\[\:checked\]\:bg-indigo-500\/5:has(:checked) {
+    background-color: #eef2ff !important; /* indigo-50 */
+    border-color: #4f46e5 !important; /* indigo-600 */
+    border-width: 2px !important;
+}
+
+/* Cyan / Teal Cards */
+html.light label:has(input.text-cyan-500:checked),
+html.light label:has(input.text-teal-500:checked),
+html.light .has-\[\:checked\]\:bg-cyan-500\/5:has(:checked) {
+    background-color: #ecfeff !important; /* cyan-50 */
+    border-color: #0891b2 !important; /* cyan-600 */
+    border-width: 2px !important;
+}
+
+/* Active title text emphasis */
+html.light label:has(:checked) span.font-bold,
+html.light label:has(:checked) span.font-semibold {
+    color: #0f172a !important; /* slate-900 */
+}
+
+/* Status text badges inside cards (e.g. "Dikuasai", "Sedang Belajar") */
+html.light label:has(input.text-emerald-500:checked) span.text-emerald-400 {
+    color: #047857 !important;
+    font-weight: 700 !important;
+}
+html.light label:has(input.text-amber-500:checked) span.text-amber-400 {
+    color: #b45309 !important;
+    font-weight: 700 !important;
+}
+html.light label:has(input.text-rose-500:checked) span.text-rose-400 {
+    color: #be123c !important;
+    font-weight: 700 !important;
+}
+html.light label:has(input.text-sky-500:checked) span.text-sky-400 {
+    color: #0369a1 !important;
+    font-weight: 700 !important;
+}
+html.light label:has(input.text-indigo-500:checked) span.text-indigo-400 {
+    color: #4338ca !important;
+    font-weight: 700 !important;
+}
+html.light label:has(input.text-cyan-500:checked) span.text-cyan-400 {
+    color: #0e7490 !important;
+    font-weight: 700 !important;
+}
+
+/* 5. Simple Inline Radio Labels (e.g. Status: Published / Draft) */
+html.light label:not([class*="border"]):not([class*="rounded"]) {
+    color: #1e293b !important;
+}
+html.light label:not([class*="border"]):not([class*="rounded"]) span.text-slate-200 {
+    color: #1e293b !important;
+}
+html.light label:not([class*="border"]):not([class*="rounded"]) span.text-slate-400 {
+    color: #475569 !important;
+}
+
+/* 6. Dashboard Tables & Data Lists in Light Mode */
+html.light table thead tr {
+    background-color: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+html.light table thead th {
+    color: #475569 !important;
+    font-weight: 700 !important;
+}
+html.light table tbody tr {
+    background-color: #ffffff !important;
+    transition: background-color 0.15s ease-in-out !important;
+}
+html.light table tbody tr:hover {
+    background-color: #f1f5f9 !important;
+}
+html.light table tbody td {
+    color: #1e293b !important;
+    border-bottom-color: #e2e8f0 !important;
+}
+html.light table tbody td .text-white {
+    color: #0f172a !important;
+}
+html.light table tbody td .text-slate-400,
+html.light table tbody td .text-slate-500 {
+    color: #64748b !important;
 }
 
 /* ─────────────────────────────────────────────────────────────
