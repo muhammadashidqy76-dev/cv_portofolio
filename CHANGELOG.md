@@ -7,6 +7,8 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Changed
+- Penyelarasan Judul, Head, & Narasi Section untuk Posisi IT Support (`lang/id.json`, `lang/en.json`, `welcome.blade.php`):
+  - Mengadaptasi seluruh heading dan subheading section beranda publik (Featured Projects, Tech Stack, Work Experience, Journey, Learning Log, Footer, Bio Modal, dan CV Modal) agar selaras dengan positioning sebagai **IT Support & Systems Specialist** (fokus pada troubleshooting perangkat keras/lunak, keandalan jaringan, administrasi sistem, dan operasional IT), tanpa mengubah isi data teknis dari masing-masing section.
 - Hero Section Career Pillars (`resources/views/components/hero-section.blade.php`): mengarahkan pilar karier utama secara default ke **IT Support** (aktif bersinar dengan akses langsung ke roadmap & checklist IT Support), sementara pilar **Laravel** dan **AWS Cloud** dikunci sementara dengan status terencana (`🔒 Next Path`) berestetika blur, opasitas lembut, dan kursor `not-allowed`, serta menyelaraskan sub-headline deskripsi ke arah spesialisasi operasional IT Support, pemecahan masalah jaringan/hardware, dan fondasi otomasi modern.
 
 ### Fixed

@@ -17,8 +17,8 @@
     "bio.close": "Tutup modal bio",
     "bio.open_to_work": "Open to Work",
     "bio.grad_badge": "Teknik Informatika UIN Malang - 2026",
-    "bio.role": "Laravel Backend Developer",
-    "bio.intro_p1": "Halo! Saya <strong class='text-white font-semibold'>Moch Hasbi Ashidqy</strong>, fresh graduate lulusan <strong class='text-white font-semibold'>Teknik Informatika UIN Maulana Malik Ibrahim Malang</strong>. Memiliki ketertarikan mendalam dan terbiasa mengeksplorasi secara mandiri ekosistem <strong class='text-white font-semibold'>PHP & Laravel</strong>, pengelolaan infrastruktur <strong class='text-white font-semibold'>AWS Cloud</strong>, serta operasional <strong class='text-white font-semibold'>IT Support</strong>. Terbiasa merancang backend aplikasi, optimasi database, hingga <strong class='text-white font-semibold'>troubleshooting sistem</strong> secara praktis.",
+    "bio.role": "IT Support & Systems Specialist",
+    "bio.intro_p1": "Halo! Saya <strong class='text-white font-semibold'>Moch Hasbi Ashidqy</strong>, fresh graduate lulusan <strong class='text-white font-semibold'>Teknik Informatika UIN Maulana Malik Ibrahim Malang</strong>. Memiliki fokus pada operasional <strong class='text-white font-semibold'>IT Support</strong>, troubleshooting hardware & software, administrasi jaringan komputer, serta pemeliharaan infrastruktur sistem dan server secara andal.",
     "bio.social_title": "Hubungi & Media Sosial",
 
     "cv.title": "Curriculum Vitae",
@@ -28,7 +28,7 @@
     "cv.education_label": "Pendidikan:",
     "cv.education_val": "S1 Teknik Informatika, UIN Maulana Malik Ibrahim Malang",
     "cv.specialization_label": "Fokus Spesialisasi:",
-    "cv.specialization_val": "Laravel Backend Engineer (API, Queue, Caching, Transactions)",
+    "cv.specialization_val": "IT Support & Systems Specialist (Hardware, Troubleshooting, Networking, System Administration)",
     "cv.availability_label": "Ketersediaan:",
     "cv.availability_val": "Siap untuk posisi Full-time / Remote / On-site",
     "cv.banner_info": "Dapatkan berkas CV formal untuk proses rekrutmen, atau bagikan tautan portofolio ini untuk peninjauan proyek secara langsung.",
@@ -39,8 +39,8 @@
     "cv.note": "CV diperbarui secara berkala seiring perkembangan skill.",
 
     "projects.title": "Featured Projects",
-    "projects.headline": "Arsitektur untuk Performa & Keandalan",
-    "projects.subtitle": "Tiga project berurutan dari kompleksitas rendah ke tinggi — E-Commerce Monolith, Headless API, hingga Modular CMS.",
+    "projects.headline": "Implementasi Teknis & Keandalan Sistem",
+    "projects.subtitle": "Portofolio implementasi teknis nyata — dari simulasi topologi jaringan, otomasi sistem backend, hingga manajemen konten digital.",
     "projects.detail": "Detail",
     "projects.live_demo": "Live Demo",
     "projects.close": "Tutup",
@@ -57,8 +57,8 @@
     "projects.no_tech_stack": "Tech stack belum ditentukan.",
 
     "tech.tag": "Tech Stack & Tools",
-    "tech.title": "Teknologi & Tools Ekosistem",
-    "tech.subtitle": "Dikelompokkan secara terstruktur untuk gambaran arsitektur backend, database, frontend, dan workflow kerja.",
+    "tech.title": "Teknologi, Jaringan & Tools Operasional",
+    "tech.subtitle": "Kumpulan tools, simulasi jaringan, perangkat sistem operasi, database, dan utilitas pendukung operasional IT.",
     "tech.view_roadmap": "Lihat Roadmap Lengkap",
     "tech.status.finished": "Finished",
     "tech.status.in_progress": "In Progress",
@@ -68,7 +68,7 @@
 
     "journey.tag": "Learning Journey",
     "journey.title": "Kompetensi & Sertifikasi Teknis",
-    "journey.subtitle": "Validasi keahlian melalui pelatihan terstruktur, sertifikasi profesi resmi, dan penerapan pada proyek nyata.",
+    "journey.subtitle": "Validasi keahlian melalui pelatihan terstruktur, sertifikasi profesi resmi, dan penerapan pada studi kasus teknis nyata.",
     "journey.show": "Tampilkan Journey",
     "journey.hide": "Sembunyikan Journey",
     "journey.learned": "Learned",
@@ -89,7 +89,7 @@
 
     "log.tag": "Learning Log",
     "log.title": "Catatan Eksplorasi & Handbook Teknis",
-    "log.subtitle": "Kumpulan catatan bedah konsep dan eksplorasi teknis yang saya tulis untuk menguji dan memperdalam pemahaman di dunia backend dan infrastruktur.",
+    "log.subtitle": "Kumpulan dokumentasi teknis, catatan pemecahan masalah (troubleshooting), konfigurasi jaringan, dan eksplorasi sistem.",
     "log.show": "Tampilkan Learning Log",
     "log.hide": "Sembunyikan Learning Log",
     "log.tag_production_ready": "Production-Ready",
@@ -107,11 +107,11 @@
     "log.empty_track": "Belum ada catatan publik untuk pilar ini.",
 
     "experience.tag": "WORK",
-    "experience.title": "Pengalaman Kerja & Magang",
-    "experience.subtitle": "Rekam jejak kontribusi teknis dan pengalaman profesional dalam pengembangan sistem backend.",
+    "experience.title": "Pengalaman Kerja & Kontribusi Teknis",
+    "experience.subtitle": "Rekam jejak kontribusi teknis dan pengalaman profesional dalam pemeliharaan sistem, helpdesk, dan teknologi informasi.",
     "experience.present": "Sekarang",
 
-    "footer.tagline": "Laravel Backend Developer — Fokus membangun sistem backend yang scalable, teroptimasi, dan maintainable.",
+    "footer.tagline": "IT Support & Systems Specialist — Fokus pada pemecahan masalah teknis, keandalan infrastruktur jaringan, dan operasional sistem komputer.",
     "footer.built_with": "Built with",
     "footer.rights": "All rights reserved.",
 

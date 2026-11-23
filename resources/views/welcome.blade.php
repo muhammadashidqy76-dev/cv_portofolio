@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ashidqy — Laravel Backend Developer</title>
+    <title>Ashidqy — IT Support</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo-web.svg') }}">

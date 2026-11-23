@@ -17,8 +17,8 @@
     "bio.close": "Close bio modal",
     "bio.open_to_work": "Open to Work",
     "bio.grad_badge": "IT Graduate, UIN Malang",
-    "bio.role": "Laravel Backend Developer",
-    "bio.intro_p1": "Hello! I am <strong class='text-white font-semibold'>Moch Hasbi Ashidqy</strong>, a fresh graduate with a Bachelor's degree in <strong class='text-white font-semibold'>Informatics Engineering from UIN Maulana Malik Ibrahim Malang</strong>. I have a deep interest and experience in independently exploring the <strong class='text-white font-semibold'>PHP & Laravel</strong> ecosystem, <strong class='text-white font-semibold'>AWS Cloud</strong> infrastructure management, and <strong class='text-white font-semibold'>IT Support</strong> operations. Accustomed to practically designing backend applications, database optimization, and <strong class='text-white font-semibold'>system troubleshooting</strong>.",
+    "bio.role": "IT Support & Systems Specialist",
+    "bio.intro_p1": "Hello! I am <strong class='text-white font-semibold'>Moch Hasbi Ashidqy</strong>, a fresh graduate with a Bachelor's degree in <strong class='text-white font-semibold'>Informatics Engineering from UIN Maulana Malik Ibrahim Malang</strong>. Focused on <strong class='text-white font-semibold'>IT Support</strong> operations, hardware & software troubleshooting, computer network administration, and reliable system & server infrastructure maintenance.",
     "bio.social_title": "Contact & Social Media",
 
     "cv.title": "Curriculum Vitae",
@@ -28,7 +28,7 @@
     "cv.education_label": "Education:",
     "cv.education_val": "B.S. in Informatics Engineering, UIN Maulana Malik Ibrahim Malang",
     "cv.specialization_label": "Specialization:",
-    "cv.specialization_val": "Laravel Backend Engineer (API, Queue, Caching, Transactions)",
+    "cv.specialization_val": "IT Support & Systems Specialist (Hardware, Troubleshooting, Networking, System Administration)",
     "cv.availability_label": "Availability:",
     "cv.availability_val": "Open for Full-time / Remote / On-site positions",
     "cv.banner_info": "Get the formal CV document for recruitment, or share this portfolio link for direct project review.",
@@ -39,8 +39,8 @@
     "cv.note": "CV is updated regularly as skills grow.",
 
     "projects.title": "Featured Projects",
-    "projects.headline": "Architected for Performance & Reliability",
-    "projects.subtitle": "Three projects sequenced by complexity — E-Commerce Monolith, Headless API, to Modular CMS.",
+    "projects.headline": "Technical Implementation & System Reliability",
+    "projects.subtitle": "Real-world technical implementations — from network topology simulation, backend system automation, to digital content management.",
     "projects.detail": "Detail",
     "projects.live_demo": "Live Demo",
     "projects.close": "Close",
@@ -57,8 +57,8 @@
     "projects.no_tech_stack": "Tech stack not specified yet.",
 
     "tech.tag": "Tech Stack & Tools",
-    "tech.title": "Technologies & Ecosystem Tools",
-    "tech.subtitle": "Structured by categories for a clear overview of backend architecture, database, frontend, and workflow.",
+    "tech.title": "Technologies, Networking & Operational Tools",
+    "tech.subtitle": "Curated tools, network simulations, operating systems, databases, and IT operational utilities.",
     "tech.view_roadmap": "View Complete Roadmap",
     "tech.status.finished": "Finished",
     "tech.status.in_progress": "In Progress",
@@ -68,7 +68,7 @@
 
     "journey.tag": "Learning Journey",
     "journey.title": "Technical Skills & Certifications",
-    "journey.subtitle": "Validate expertise through structured training, official professional certification, and application in real-world projects.",
+    "journey.subtitle": "Validating expertise through structured training, official professional certifications, and hands-on technical case studies.",
     "journey.show": "Show Journey",
     "journey.hide": "Hide Journey",
     "journey.learned": "Learned",
@@ -89,7 +89,7 @@
 
     "log.tag": "Learning Log",
     "log.title": "Exploration Notes & Technical Handbook",
-    "log.subtitle": "A collection of architectural deep dives and technical notes written to test and deepen my understanding of backend and infrastructure.",
+    "log.subtitle": "Collection of technical documentation, troubleshooting playbooks, network configurations, and system explorations.",
     "log.show": "Show Learning Log",
     "log.hide": "Hide Learning Log",
     "log.tag_production_ready": "Production-Ready",
@@ -107,11 +107,11 @@
     "log.empty_track": "No public notes in this pillar yet.",
 
     "experience.tag": "Work",
-    "experience.title": "Work Experience & Internships",
-    "experience.subtitle": "Track record of technical contributions and professional experience in backend system development.",
+    "experience.title": "Work Experience & Technical Contributions",
+    "experience.subtitle": "Track record of technical contributions and professional experience in system maintenance, helpdesk, and information technology.",
     "experience.present": "Present",
 
-    "footer.tagline": "Laravel Backend Developer — Focused on building scalable, optimized, and maintainable backend systems.",
+    "footer.tagline": "IT Support & Systems Specialist — Focused on technical troubleshooting, network infrastructure reliability, and computer system operations.",
     "footer.built_with": "Built with",
     "footer.rights": "All rights reserved.",
 
