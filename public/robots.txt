@@ -1,2 +1,20 @@
+# Robots.txt for ashidqy-dev.my.id
 User-agent: *
-Disallow:
+Allow: /
+Allow: /roadmap
+Allow: /notes/
+Allow: /build/
+Allow: /images/
+
+# Block administrative, private, and authentication routes
+Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /profile
+
+# Sitemap definition
+Sitemap: https://ashidqy-dev.my.id/sitemap.xml

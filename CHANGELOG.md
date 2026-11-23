@@ -6,6 +6,13 @@ bukan per-commit (untuk itu lihat `git log`).
 
 ## [Unreleased]
 
+### Added
+- Optimasi SEO & Mesin Pencarian Google (`welcome.blade.php`, `robots.txt`, `sitemap.xml`):
+  - Menambahkan meta tag SEO lengkap di `resources/views/welcome.blade.php`: `description`, `keywords`, `author`, `robots (index, follow)`, dan `canonical URL`.
+  - Menambahkan Open Graph protocol (Facebook, LinkedIn, WhatsApp) dan Twitter Cards untuk preview visual tautan profesional saat dibagikan di media sosial.
+  - Membuat `public/robots.txt` standar yang mengizinkan bot mesin pencari (Googlebot) merayapi halaman beranda dan roadmap publik, sembari memblokir akses crawler ke rute autentikasi dan dashboard internal (`/dashboard`, `/login`, `/admin`, dll).
+  - Menyediakan `public/sitemap.xml` sebagai peta situs indeks pencarian untuk diserahkan ke Google Search Console.
+
 ### Changed
 - Penyelarasan Judul, Head, & Narasi Section untuk Posisi IT Support (`lang/id.json`, `lang/en.json`, `welcome.blade.php`):
   - Mengadaptasi seluruh heading dan subheading section beranda publik (Featured Projects, Tech Stack, Work Experience, Journey, Learning Log, Footer, Bio Modal, dan CV Modal) agar selaras dengan positioning sebagai **IT Support & Systems Specialist** (fokus pada troubleshooting perangkat keras/lunak, keandalan jaringan, administrasi sistem, dan operasional IT), tanpa mengubah isi data teknis dari masing-masing section.

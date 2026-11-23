@@ -3,7 +3,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ashidqy — IT Support</title>
+    <title>Ashidqy — IT Support & Systems Specialist</title>
+
+    <!-- Meta SEO & Search Engine Optimization -->
+    <meta name="description" content="Portfolio profesional Ashidqy - IT Support & Systems Specialist. Spesialisasi dalam troubleshooting sistem operasi, keandalan jaringan, administrasi Linux server, serta otomasi infrastruktur.">
+    <meta name="keywords" content="IT Support, Systems Specialist, Network Administrator, Linux Server, Troubleshooting, Ashidqy, Portfolio, DevOps, IT Operations">
+    <meta name="author" content="Ashidqy">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="{{ config('app.url') ?? 'https://ashidqy-dev.my.id' }}/">
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ config('app.url') ?? 'https://ashidqy-dev.my.id' }}/">
+    <meta property="og:title" content="Ashidqy — IT Support & Systems Specialist">
+    <meta property="og:description" content="Portfolio profesional Ashidqy: Menangani operasional IT, troubleshooting perangkat keras/lunak, keandalan jaringan, dan administrasi server.">
+    <meta property="og:image" content="{{ asset('images/logo-web.svg') }}">
+    <meta property="og:locale" content="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ashidqy — IT Support & Systems Specialist">
+    <meta name="twitter:description" content="Portfolio profesional Ashidqy: IT Support & Systems Specialist.">
+    <meta name="twitter:image" content="{{ asset('images/logo-web.svg') }}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo-web.svg') }}">
