@@ -1,4 +1,5 @@
-<!-- Modern Web Guidance & W3C Color Scheme Meta & FOUC Prevention -->
+<!-- Modern Web Guidance: W3C HTTPS Upgrade & FOUC Prevention -->
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="color-scheme" content="light dark">
 <style>
     [x-cloak] { display: none !important; }

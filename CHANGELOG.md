@@ -7,6 +7,14 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Pencegahan Peringatan Insecure Form Submission di Balik Reverse Proxy Cloudflare HTTPS (`TrustProxies.php`, `AppServiceProvider.php`, `theme-head.blade.php`, `roadmap_it_support/index.blade.php`, `docker/nginx/default.conf`):
+  - Mengonfigurasi `$proxies = '*'` di `TrustProxies.php` agar Laravel mempercayai header forwarded dari Cloudflare & Nginx.
+  - Memaksa skema HTTPS via `URL::forceScheme('https')` di `AppServiceProvider.php` saat di production atau di balik proxy HTTPS.
+  - Menambahkan meta tag CSP W3C `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">` di `theme-head.blade.php` agar browser meng-upgrade seluruh form submission ke HTTPS secara otomatis.
+  - Mengubah action route pada form delete dan status toggle di `roadmap_it_support/index.blade.php` menjadi URL relatif (`route(..., false)`) untuk menjamin kepatuhan protokol halaman aktif.
+  - Menambahkan parameter FastCGI `HTTP_X_FORWARDED_PROTO` dan `HTTPS` di `docker/nginx/default.conf` agar PHP-FPM mengenali status koneksi SSL.
+
+### Fixed
 - Pencegahan FOUC Modal Konfirmasi Hapus Checkpoint pada Dashboard Roadmap IT (`resources/views/roadmap_it_support/index.blade.php`, `resources/css/app.css`, `resources/views/components/theme-head.blade.php`, `resources/views/layouts/app.blade.php`, `resources/views/layouts/guest.blade.php`):
   - Memperbaiki bug di mana modal konfirmasi hapus selalu muncul pertama kali saat halaman Roadmap IT diakses via navbar maupun saat di-refresh.
   - Menambahkan inline `style="display: none;"` pada wrapper dialog modal di `roadmap_it_support/index.blade.php` agar selaras dengan implementasi modal di modul lain.
