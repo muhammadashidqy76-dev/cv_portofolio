@@ -13,19 +13,33 @@ use Illuminate\View\View;
 class RoadmapItSupportController extends Controller
 {
     /**
-     * Tampilkan halaman daftar manajemen Roadmap IT Support di Dashboard.
+     * Tampilkan halaman daftar manajemen Roadmap di Dashboard (mendukung tab role IT Support & Cloud Engineer).
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $role = RoadmapRole::firstOrCreate(
-            ['slug' => 'it-support'],
-            [
+        $allRoles = RoadmapRole::orderBy('display_order')->get();
+
+        if ($allRoles->isEmpty()) {
+            RoadmapRole::create([
                 'name'          => 'IT Support & Systems',
-                'tagline'       => 'Peta kurikulum penguasaan jaringan komputer, protokol inti internet, pemeliharaan hardware, dan studi kasus operasional IT support in-house.',
+                'slug'          => 'it-support',
+                'tagline'       => 'Peta kurikulum penguasaan jaringan komputer, protokol internet, hardware, dan operasional IT.',
                 'status'        => 'published',
                 'display_order' => 1,
-            ]
-        );
+            ]);
+            RoadmapRole::create([
+                'name'          => 'Cloud Engineer (AWS)',
+                'slug'          => 'cloud-engineer',
+                'tagline'       => 'Peta kurikulum penguasaan arsitektur cloud AWS, administrasi Linux server, dan containerization Docker.',
+                'status'        => 'published',
+                'display_order' => 2,
+            ]);
+            $allRoles = RoadmapRole::orderBy('display_order')->get();
+        }
+
+        // Ambil role berdasarkan parameter query ?role=... (default: it-support)
+        $activeRoleSlug = $request->query('role', 'it-support');
+        $role = $allRoles->firstWhere('slug', $activeRoleSlug) ?? $allRoles->first();
 
         $checkpoints = RoadmapCheckpoint::with(['note', 'project'])
             ->where('roadmap_role_id', $role->id)
@@ -46,15 +60,22 @@ class RoadmapItSupportController extends Controller
 
         $phases = $checkpoints->groupBy('phase_name');
 
-        return view('roadmap_it_support.index', compact('role', 'checkpoints', 'stats', 'phases'));
+        // Hitung statistik ringkas untuk tiap role (untuk label badge pada tab)
+        $roleCounts = RoadmapCheckpoint::selectRaw('roadmap_role_id, count(*) as count')
+            ->groupBy('roadmap_role_id')
+            ->pluck('count', 'roadmap_role_id');
+
+        return view('roadmap_it_support.index', compact('role', 'allRoles', 'checkpoints', 'stats', 'phases', 'roleCounts'));
     }
 
     /**
      * Tampilkan form pembuatan checkpoint roadmap baru.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
-        $role = RoadmapRole::where('slug', 'it-support')->firstOrFail();
+        $roleSlug = $request->query('role', 'it-support');
+        $role = RoadmapRole::where('slug', $roleSlug)->first() ?? RoadmapRole::firstOrFail();
+        $allRoles = RoadmapRole::orderBy('display_order')->get();
         $notes = LearningLogEntry::published()->orderBy('title')->get(['id', 'title', 'slug', 'category']);
         $projects = Project::published()->orderBy('complexity_order')->get();
 
@@ -64,7 +85,7 @@ class RoadmapItSupportController extends Controller
             ->orderBy('phase_name')
             ->pluck('phase_name');
 
-        return view('roadmap_it_support.create', compact('role', 'notes', 'projects', 'existingPhases'));
+        return view('roadmap_it_support.create', compact('role', 'allRoles', 'notes', 'projects', 'existingPhases'));
     }
 
     /**
@@ -72,9 +93,11 @@ class RoadmapItSupportController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $role = RoadmapRole::where('slug', 'it-support')->firstOrFail();
+        $roleId = $request->input('roadmap_role_id');
+        $role = $roleId ? RoadmapRole::find($roleId) : RoadmapRole::where('slug', 'it-support')->firstOrFail();
 
         $validated = $request->validate([
+            'roadmap_role_id'            => 'nullable|exists:roadmap_roles,id',
             'phase_name'                 => 'required|string|max:255',
             'title'                      => 'required|string|max:255',
             'description'                => 'nullable|string',
@@ -121,8 +144,8 @@ class RoadmapItSupportController extends Controller
 
         RoadmapCheckpoint::create($validated);
 
-        return redirect()->route('roadmap-it-support.index')
-            ->with('status', 'Checkpoint Roadmap IT Support berhasil ditambahkan.');
+        return redirect()->route('roadmap-it-support.index', ['role' => $role->slug])
+            ->with('status', 'Checkpoint Roadmap (' . $role->name . ') berhasil ditambahkan.');
     }
 
     /**
@@ -132,6 +155,7 @@ class RoadmapItSupportController extends Controller
     {
         $checkpoint = $roadmap_it_support;
         $role = $checkpoint->role;
+        $allRoles = RoadmapRole::orderBy('display_order')->get();
         $notes = LearningLogEntry::published()->orderBy('title')->get(['id', 'title', 'slug', 'category']);
         $projects = Project::published()->orderBy('complexity_order')->get();
 
@@ -140,7 +164,7 @@ class RoadmapItSupportController extends Controller
             ->orderBy('phase_name')
             ->pluck('phase_name');
 
-        return view('roadmap_it_support.edit', compact('checkpoint', 'role', 'notes', 'projects', 'existingPhases'));
+        return view('roadmap_it_support.edit', compact('checkpoint', 'role', 'allRoles', 'notes', 'projects', 'existingPhases'));
     }
 
     /**
@@ -151,6 +175,7 @@ class RoadmapItSupportController extends Controller
         $checkpoint = $roadmap_it_support;
 
         $validated = $request->validate([
+            'roadmap_role_id'            => 'nullable|exists:roadmap_roles,id',
             'phase_name'                 => 'required|string|max:255',
             'title'                      => 'required|string|max:255',
             'description'                => 'nullable|string',
@@ -195,7 +220,9 @@ class RoadmapItSupportController extends Controller
 
         $checkpoint->update($validated);
 
-        return redirect()->route('roadmap-it-support.index')
+        $roleSlug = $checkpoint->role ? $checkpoint->role->slug : 'it-support';
+
+        return redirect()->route('roadmap-it-support.index', ['role' => $roleSlug])
             ->with('status', "Checkpoint '{$checkpoint->title}' berhasil diperbarui.");
     }
 
@@ -206,9 +233,10 @@ class RoadmapItSupportController extends Controller
     {
         $checkpoint = $roadmap_it_support;
         $title = $checkpoint->title;
+        $roleSlug = $checkpoint->role ? $checkpoint->role->slug : 'it-support';
         $checkpoint->delete();
 
-        return redirect()->route('roadmap-it-support.index')
+        return redirect()->route('roadmap-it-support.index', ['role' => $roleSlug])
             ->with('status', "Checkpoint '{$title}' berhasil dihapus.");
     }
 

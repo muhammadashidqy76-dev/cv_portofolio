@@ -125,20 +125,20 @@
                     </div>
                 </a>
 
-                <!-- 6. IT Support Roadmap -->
+                <!-- 6. Specialization Roadmap -->
                 <a href="{{ route('roadmap-it-support.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-3.5 sm:p-5 hover:border-indigo-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 sm:mb-2">
-                            <span class="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">06. IT Roadmap</span>
-                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20 text-indigo-700 dark:text-indigo-400 font-medium shrink-0">Live</span>
+                            <span class="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">06. Roadmap Track</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20 text-indigo-700 dark:text-indigo-400 font-medium shrink-0">2 Roles</span>
                         </div>
                         <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-slate-900 dark:text-white">
                             {{ $roadmapStats['total'] }}
                         </div>
                     </div>
                     <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex flex-col xs:flex-row xs:items-center justify-between gap-1 text-[11px] sm:text-xs font-mono">
-                        <span class="text-emerald-700 dark:text-emerald-400 font-medium truncate">{{ $roadmapStats['finished'] }} Clear</span>
-                        <span class="text-indigo-700 dark:text-indigo-400 font-semibold truncate">{{ $roadmapStats['percentage'] }}% Mastered</span>
+                        <span class="text-indigo-700 dark:text-indigo-400 font-medium truncate">IT &bull; Cloud AWS</span>
+                        <span class="text-emerald-700 dark:text-emerald-400 font-semibold truncate">{{ $roadmapStats['percentage'] }}% Mastered</span>
                     </div>
                 </a>
 

@@ -2,29 +2,29 @@
     <x-slot name="header">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <div class="flex items-center gap-2 font-mono text-xs text-slate-400 mb-1">
-                    <a href="{{ route('dashboard') }}" class="hover:text-white transition-colors">CMS</a>
-                    <span class="text-slate-600">/</span>
-                    <span class="text-indigo-400">Roadmap IT Support</span>
+                <div class="flex items-center gap-2 font-mono text-xs text-slate-500 dark:text-slate-400 mb-1">
+                    <a href="{{ route('dashboard') }}" class="hover:text-slate-900 dark:hover:text-white transition-colors">CMS</a>
+                    <span class="text-slate-400 dark:text-slate-600">/</span>
+                    <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Roadmap Track</span>
                 </div>
-                <h1 class="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight flex items-center gap-2">
-                    <span>Manajemen Roadmap IT Support</span>
-                    <span class="text-xs px-2 py-0.5 rounded font-normal font-mono bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">
+                <h1 class="text-xl sm:text-2xl font-bold font-mono text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+                    <span>Manajemen Roadmap Spesialisasi</span>
+                    <span class="text-xs px-2 py-0.5 rounded font-normal font-mono bg-indigo-500/10 border border-indigo-500/30 text-indigo-700 dark:text-indigo-400">
                         {{ $stats['percentage'] }}% Mastered
                     </span>
                 </h1>
             </div>
 
             <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
-                <a href="{{ route('roadmap.index', ['roleSlug' => 'it-support']) }}" target="_blank"
-                   class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-carbon-900 border border-carbon-800 hover:border-slate-700 text-slate-300 hover:text-white font-mono text-xs transition-colors">
-                    <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('roadmap.index', ['roleSlug' => $role->slug]) }}" target="_blank"
+                   class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-mono text-xs transition-colors shadow-sm dark:shadow-none">
+                    <svg class="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                    <span>Lihat Halaman Publik (Recruiter)</span>
+                    <span>Lihat Halaman Publik ({{ $role->name }})</span>
                 </a>
 
-                <a href="{{ route('roadmap-it-support.create') }}"
+                <a href="{{ route('roadmap-it-support.create', ['role' => $role->slug]) }}"
                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 font-mono text-xs font-semibold text-white uppercase tracking-wider transition-all duration-150 shadow-lg shadow-indigo-600/20">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -53,16 +53,74 @@
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
+            <!-- ─── Role Tabs Switcher (IT Support vs Cloud Engineer AWS) ─────────── -->
+            <div class="flex items-center gap-2 p-1.5 rounded-xl bg-slate-100 dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 font-mono text-xs overflow-x-auto shadow-sm dark:shadow-none">
+                @foreach ($allRoles as $r)
+                    @php
+                        $isActive = $r->id === $role->id;
+                        $count = $roleCounts[$r->id] ?? 0;
+                    @endphp
+                    <a href="{{ route('roadmap-it-support.index', ['role' => $r->slug]) }}"
+                       class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all whitespace-nowrap {{ $isActive ? 'bg-white dark:bg-indigo-600 text-slate-900 dark:text-white font-bold shadow-sm dark:shadow-indigo-600/30 border border-slate-200 dark:border-transparent' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-carbon-850' }}">
+                        @if ($r->slug === 'it-support')
+                            <svg class="w-4 h-4 {{ $isActive ? 'text-indigo-600 dark:text-white' : 'text-slate-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        @else
+                            <svg class="w-4 h-4 {{ $isActive ? 'text-cyan-600 dark:text-white' : 'text-slate-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
+                            </svg>
+                        @endif
+                        <span>{{ $r->name }}</span>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] {{ $isActive ? 'bg-indigo-50 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-200 border border-indigo-200 dark:border-indigo-700' : 'bg-slate-200 dark:bg-carbon-800 text-slate-600 dark:text-slate-400' }}">
+                            {{ $count }}
+                        </span>
+                    </a>
+                @endforeach
+            </div>
+
+            <!-- Role Summary Banner -->
+            <div class="p-4 sm:p-5 rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 shadow-sm dark:shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl {{ $role->slug === 'cloud-engineer' ? 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20' : 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20' }} flex items-center justify-center shrink-0">
+                        @if ($role->slug === 'cloud-engineer')
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
+                            </svg>
+                        @else
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        @endif
+                    </div>
+                    <div>
+                        <div class="font-mono text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span>Track: {{ $role->name }}</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded font-medium {{ $role->status === 'published' ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20' : 'bg-slate-100 text-slate-500' }}">
+                                {{ ucfirst($role->status) }}
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 max-w-3xl">
+                            {{ $role->tagline }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-xs font-mono text-slate-600 dark:text-slate-400 shrink-0">
+                    <span class="font-bold text-slate-900 dark:text-white">{{ $stats['finished'] }}</span> dari <span class="font-bold text-slate-900 dark:text-white">{{ $stats['total'] }}</span> materi telah diselesaikan
+                </div>
+            </div>
+
             <!-- Flash Session Status -->
             @if (session('status'))
-                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs flex items-center justify-between">
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-mono text-xs flex items-center justify-between shadow-sm">
                     <div class="flex items-center gap-2">
                         <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                         <span>{{ session('status') }}</span>
                     </div>
-                    <span class="text-[10px] text-emerald-500/70">Tersimpan ke Database</span>
+                    <span class="text-[10px] text-emerald-600/80 dark:text-emerald-400/80">Tersimpan ke Database</span>
                 </div>
             @endif
 

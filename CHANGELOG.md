@@ -6,6 +6,13 @@ bukan per-commit (untuk itu lihat `git log`).
 
 ## [Unreleased]
 
+### Added
+- Tab Spesialisasi Roadmap Multi-Track di Dashboard Admin (`roadmap_it_support/index.blade.php`, `create.blade.php`, `edit.blade.php`, `RoadmapItSupportController.php`, `RoadmapSeeder.php`):
+  - Mengintegrasikan antarmuka tab responsif di Dashboard Roadmap yang memisahkan kurikulum menjadi 2 pilar spesialisasi utama: **IT Support & Systems** (14 materi/checkpoints berbasis Cisco CCNA & hardware/OS in-house) dan **Cloud Engineer AWS** (13 materi/checkpoints berbasis arsitektur AWS EC2, S3, IAM, VPC, Docker, Nginx, dan CI/CD).
+  - Menyediakan dummy dataset materi kurikulum lengkap untuk Cloud Engineer (AWS) melalui `RoadmapSeeder` yang mencakup 5 fase penguasaan (Linux essentials, AWS Core Services, VPC networking, Docker multi-container, dan CI/CD deployment).
+  - Menambahkan selector dropdown `Jalur Spesialisasi (Track)` pada form pembuatan (`create`) dan pengeditan (`edit`) checkpoint roadmap sehingga pengguna dapat menetapkan materi ke masing-masing jalur karier.
+  - Memperbarui tautan tombol *Lihat Halaman Publik* agar secara dinamis membuka role spesialisasi aktif (`/roadmap/it-support` atau `/roadmap/cloud-engineer`).
+
 ### Fixed
 - Kontras & Keterbacaan Navlink Aktif pada Mode Terang (Light Mode):
   - Memperbaiki konflik kontras warna pada `nav-link.blade.php` dan `responsive-nav-link.blade.php`: mengganti kelas teks dan latar belakang dengan `text-rose-800 dark:text-rose-300` di atas latar lembut `bg-rose-100/70 dark:bg-rose-500/15` serta border `border-rose-600 dark:border-rose-500`, sehingga judul halaman aktif memiliki rasio kontras tinggi (>7:1) dan tidak bentrok atau pudar di latar mode terang.

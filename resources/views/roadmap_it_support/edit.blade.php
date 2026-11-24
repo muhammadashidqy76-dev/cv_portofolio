@@ -27,7 +27,25 @@
             @method('PUT')
 
             <!-- Form Card -->
-            <div class="p-6 rounded-2xl bg-carbon-900 border border-carbon-800 space-y-6 shadow-xl font-mono">
+            <div class="p-6 rounded-2xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 space-y-6 shadow-sm dark:shadow-xl font-mono">
+
+                <!-- 0. Pilih Jalur Spesialisasi (Role Track) -->
+                <div>
+                    <label for="roadmap_role_id" class="block text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2 font-semibold">
+                        Jalur Spesialisasi (Track) <span class="text-rose-500">*</span>
+                    </label>
+                    <select name="roadmap_role_id" id="roadmap_role_id"
+                            class="w-full bg-slate-50 dark:bg-carbon-950 border border-slate-300 dark:border-carbon-800 rounded-lg px-4 py-2.5 text-xs text-slate-900 dark:text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30" required>
+                        @foreach ($allRoles as $r)
+                            <option value="{{ $r->id }}" {{ old('roadmap_role_id', $checkpoint->roadmap_role_id) == $r->id ? 'selected' : '' }}>
+                                {{ $r->name }} ({{ $r->slug }})
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('roadmap_role_id')
+                        <p class="mt-1 text-xs text-rose-500">{{ $message }}</p>
+                    @enderror
+                </div>
 
                 <!-- 1. Fase / Modul -->
                 <div>
