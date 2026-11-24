@@ -7,6 +7,13 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Responsivitas Mode Tablet & Interaktivitas Navigasi Dashboard (`navigation.blade.php`, `nav-link.blade.php`, `responsive-nav-link.blade.php`, `dashboard.blade.php`):
+  - **Breakpoint Tablet (iPad / Layar 768px - 1279px)**: Mengubah ambang breakpoint navigasi desktop dari `sm:` menjadi `xl:`. Pada perangkat tablet/iPad, bilah menu kini otomatis beralih ke tombol hamburger yang rapi, menghindari tabrakan teks 7 menu di layar medium.
+  - **Dropdown Profil Pengguna pada Mode Hamburger**: Mengubah bagian nama pengguna di menu mobile/tablet menjadi tombol accordion interaktif bertenaga Alpine.js (`userMenuOpen`). Saat nama pengguna diklik, menu akan mekar dengan transisi halus menampilkan opsi *Lihat Website Publik*, *Pengaturan Profil*, dan *Keluar (Log Out)* lengkap dengan ikon pendukung.
+  - **Keterbacaan & Kontras Badge Nomor Navlink Aktif**: Badge nomor urut (`00`, `01`, `02`, dst.) pada `responsive-nav-link` kini dibungkus badge solid berkontras tinggi (`bg-vermilion-600 text-white font-bold` saat aktif, dan `bg-slate-200 text-slate-700` saat inaktif), serta border indikator kiri dipertebal (`border-s-4`) sehingga status halaman aktif langsung terbaca jelas di mode terang maupun gelap.
+  - **Grid Kartu Metrik di Tablet**: Menyesuaikan grid kartu overview dashboard (`grid-cols-2 md:grid-cols-3 xl:grid-cols-6`) agar di layar tablet tersusun simetris 3 kolom x 2 baris dengan jarak antar kartu yang lega.
+
+### Fixed
 - Responsivitas & Tampilan Mobile Dashboard Admin (`dashboard.blade.php`, `navigation.blade.php`, `responsive-nav-link.blade.php`):
   - Memperbaiki layout menu navigasi mobile (`navigation.blade.php`): membersihkan duplikasi menu tautan yang sebelumnya berulang dua kali di versi seluler, menata nomor indeks (`00.` s/d `06.`), serta mempercantik opsi profil pengguna dan tombol logout dengan ikon & tata letak seluler yang proporsional.
   - Memperbaiki kartu metrik statistik overview (`dashboard.blade.php`): mengubah grid mobile dari 1 kolom besar (`grid-cols-1`) menjadi 2 kolom rapi dan hemat ruang (`grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6`), menyesuaikan padding dan ukuran font agar tidak terpotong di layar ponsel sempit (360px–414px).

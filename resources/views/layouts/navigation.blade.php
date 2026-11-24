@@ -26,8 +26,8 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-1 sm:-my-px sm:flex items-center">
+                <!-- Navigation Links (Desktop only on xl screens) -->
+                <div class="hidden space-x-1 xl:-my-px xl:flex items-center">
                     <!-- 1. Overview (Dashboard) -->
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Overview') }}
@@ -65,8 +65,8 @@
                 </div>
             </div>
 
-            <!-- Right Controls: View Public Web & User Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:gap-3">
+            <!-- Right Controls: View Public Web & User Dropdown (xl screens) -->
+            <div class="hidden xl:flex xl:items-center xl:gap-3">
                 <!-- Theme Toggle -->
                 <x-theme-toggle />
 
@@ -108,11 +108,11 @@
                 </x-dropdown>
             </div>
 
-            <!-- Mobile Right Controls (Theme Toggle & Hamburger) -->
-            <div class="-me-2 flex items-center sm:hidden gap-1.5">
+            <!-- Tablet & Mobile Right Controls (Theme Toggle & Hamburger) -->
+            <div class="-me-2 flex items-center xl:hidden gap-2">
                 <x-theme-toggle />
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900 focus:outline-none transition duration-150 ease-in-out">
-                    <svg class="h-5 w-5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -121,68 +121,108 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu (Mobile) -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden border-t border-slate-200 dark:border-carbon-800 bg-white dark:bg-carbon-950 divide-y divide-slate-100 dark:divide-carbon-900 transition-all">
-        <div class="pt-2 pb-3 space-y-1 px-2">
+    <!-- Responsive Navigation Menu (Mobile & Tablet) -->
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden xl:hidden border-t border-slate-200 dark:border-carbon-800 bg-white dark:bg-carbon-950 divide-y divide-slate-100 dark:divide-carbon-900 transition-all shadow-xl">
+        <div class="pt-2.5 pb-3.5 space-y-1.5 px-3">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                <span class="font-mono text-xs">00.</span> {{ __('Overview') }}
+                <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('dashboard') ? 'bg-vermilion-600 text-white dark:bg-vermilion-500 dark:text-white' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">00</span>
+                <span>{{ __('Overview') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.*')">
-                <span class="font-mono text-xs">01.</span> {{ __('Featured Projects') }}
+                <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('projects.*') ? 'bg-vermilion-600 text-white dark:bg-vermilion-500 dark:text-white' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">01</span>
+                <span>{{ __('Featured Projects') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('tech-stack.index')" :active="request()->routeIs('tech-stack.*')">
-                <span class="font-mono text-xs">02.</span> {{ __('Tech Stack') }}
+                <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('tech-stack.*') ? 'bg-vermilion-600 text-white dark:bg-vermilion-500 dark:text-white' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">02</span>
+                <span>{{ __('Tech Stack') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('work-experience.index')" :active="request()->routeIs('work-experience.*')">
-                <span class="font-mono text-xs">03.</span> {{ __('Work Experience') }}
+                <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('work-experience.*') ? 'bg-vermilion-600 text-white dark:bg-vermilion-500 dark:text-white' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">03</span>
+                <span>{{ __('Work Experience') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('journey.index')" :active="request()->routeIs('journey.*')">
-                <span class="font-mono text-xs">04.</span> {{ __('Journey & Kredensial') }}
+                <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('journey.*') ? 'bg-vermilion-600 text-white dark:bg-vermilion-500 dark:text-white' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">04</span>
+                <span>{{ __('Journey & Kredensial') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('learning-log.index')" :active="request()->routeIs('learning-log.*')">
-                <span class="font-mono text-xs">05.</span> {{ __('Notes & Tech Logs') }}
+                <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('learning-log.*') ? 'bg-vermilion-600 text-white dark:bg-vermilion-500 dark:text-white' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">05</span>
+                <span>{{ __('Notes & Tech Logs') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('roadmap-it-support.index')" :active="request()->routeIs('roadmap-it-support.*')">
-                <span class="font-mono text-xs">06.</span> {{ __('Roadmap IT Support') }}
+                <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('roadmap-it-support.*') ? 'bg-vermilion-600 text-white dark:bg-vermilion-500 dark:text-white' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">06</span>
+                <span>{{ __('Roadmap IT Support') }}</span>
             </x-responsive-nav-link>
         </div>
 
-        <!-- Responsive Settings Options -->
-        <div class="pt-3 pb-3 border-t border-slate-200 dark:border-carbon-800/80 px-4">
-            <div class="flex items-center gap-2 mb-3 py-1">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
-                <div class="min-w-0">
-                    <div class="font-mono text-xs font-semibold text-slate-900 dark:text-white truncate">{{ Auth::user()->name }}</div>
-                    <div class="font-mono text-[11px] text-slate-500 truncate">{{ Auth::user()->email }}</div>
+        <!-- Responsive Settings Accordion / Dropdown Options -->
+        <div x-data="{ userMenuOpen: false }" class="pt-3 pb-3 border-t border-slate-200 dark:border-carbon-800/80 px-4">
+            <!-- User Toggle Trigger Button -->
+            <button @click="userMenuOpen = !userMenuOpen" 
+                    type="button"
+                    class="w-full flex items-center justify-between p-2 rounded-lg bg-slate-50 hover:bg-slate-100 dark:bg-carbon-900 dark:hover:bg-carbon-850 border border-slate-200 dark:border-carbon-800 transition-colors focus:outline-none">
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+                    <div class="min-w-0 text-left">
+                        <div class="font-mono text-xs font-semibold text-slate-900 dark:text-white truncate">{{ Auth::user()->name }}</div>
+                        <div class="font-mono text-[11px] text-slate-500 truncate">{{ Auth::user()->email }}</div>
+                    </div>
                 </div>
-            </div>
+                <svg class="w-4 h-4 text-slate-500 transition-transform duration-200 shrink-0" 
+                     :class="{ 'rotate-180': userMenuOpen }" 
+                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
 
-            <div class="space-y-1">
-                <a href="{{ url('/') }}" target="_blank" class="flex items-center justify-between py-2 px-2.5 rounded-lg text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900 transition-colors">
-                    <span>Lihat Website Publik</span>
-                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
+            <!-- Collapsible Dropdown Content -->
+            <div x-show="userMenuOpen" 
+                 x-cloak 
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 -translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-2"
+                 class="mt-2 space-y-1 ps-1 pt-1">
+                
+                <a href="{{ url('/') }}" target="_blank" class="flex items-center justify-between py-2 px-3 rounded-lg text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900 transition-colors">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        <span>Lihat Website Publik</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-mono">&nearr;</span>
                 </a>
-                <a href="{{ route('profile.edit') }}" class="flex items-center justify-between py-2 px-2.5 rounded-lg text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900 transition-colors">
-                    <span>Pengaturan Profil</span>
+
+                <a href="{{ route('profile.edit') }}" class="flex items-center justify-between py-2 px-3 rounded-lg text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900 transition-colors">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <span>Pengaturan Profil</span>
+                    </div>
                     <span class="text-slate-400">&rarr;</span>
                 </a>
+
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="{{ route('logout') }}"
                             onclick="event.preventDefault(); this.closest('form').submit();"
-                            class="flex items-center justify-between py-2 px-2.5 rounded-lg text-xs font-mono font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors">
-                        <span>Keluar (Log Out)</span>
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
+                            class="flex items-center justify-between py-2 px-3 rounded-lg text-xs font-mono font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-3.5 h-3.5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                            <span>Keluar (Log Out)</span>
+                        </div>
+                        <span class="text-[10px] text-rose-500 font-mono">EXIT</span>
                     </a>
                 </form>
             </div>

@@ -37,7 +37,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
             <!-- ─── Metric Cards Grid ─────────────────────────────────────────────── -->
-            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-5">
                 
                 <!-- 1. Featured Projects -->
                 <a href="{{ route('projects.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-3.5 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
