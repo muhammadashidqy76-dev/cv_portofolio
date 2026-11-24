@@ -7,6 +7,11 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Keterbacaan Teks Navlink Aktif pada Menu Mobile Navbar Publik (`components/navbar.blade.php`):
+  - Memperbaiki masalah teks aktif (misal "Teknologi", "Projek", "Pengalaman") yang tampil putih/samar di atas latar pastel merah muda di mode terang (light mode) sesuai tangkapan layar pengguna:
+  - Merapikan struktur ekspresi kondisi ternary Alpine `:class` yang sebelumnya ganda/rusak, serta menetapkan pembungkus teks judul dengan kelas eksplisit `text-slate-900 dark:text-white font-bold tracking-tight` di atas latar `bg-rose-100 dark:bg-vermilion-500/20` dan border `border-rose-600 dark:border-vermilion-500`, sehingga teks menu aktif selalu hitam pekat di mode terang dan putih bersih di mode gelap.
+
+### Fixed
 - Keterbacaan & Kontras Teks Navlink Aktif pada Mode Mobile & Tablet (`components/navbar.blade.php`, `components/responsive-nav-link.blade.php`, `layouts/navigation.blade.php`):
   - Memperbaiki keterbacaan teks judul navlink aktif di mode terang (light mode): teks kini menggunakan kelas `text-rose-950 dark:text-rose-200 font-extrabold` dan pembungkus judul `font-semibold text-slate-900 dark:text-white` di atas latar pastel kontras `bg-rose-100/90 dark:bg-rose-500/20` dengan border tebal `border-s-4 border-rose-600`.
   - Mempertegas teks judul menu dropdown navbar publik (`navbar.blade.php`): tautan mobile aktif kini bertuliskan `text-rose-900 dark:text-rose-300 font-extrabold` dengan border `border-rose-600` dan latar `bg-rose-100/90`, menghilangkan efek pudar atau teks samar di layar smartphone dan tablet.

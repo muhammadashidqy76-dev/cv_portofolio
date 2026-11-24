@@ -193,15 +193,15 @@
         x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-2" @click.away="mobileOpen = false"
         class="md:hidden border-t border-carbon-800 bg-carbon-950/95 backdrop-blur-xl px-4 pt-3 pb-5 shadow-2xl font-mono">
-        <nav class="flex flex-col space-y-1">
+        <nav class="flex flex-col space-y-1.5">
             <!-- Mobile Projects -->
             <a href="#projects" @click="mobileOpen = false"
                 class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-4"
                 :class="activeSection === 'projects'
                     ?
-                    'text-rose-900 dark:text-rose-300 bg-rose-100/90 dark:bg-vermilion-500/15 border-rose-600 dark:border-vermilion-500 font-extrabold shadow-sm' :
+                    'text-rose-950 dark:text-rose-200 bg-rose-100 dark:bg-vermilion-500/20 border-rose-600 dark:border-vermilion-500 font-bold shadow-sm' :
                     'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
-                <span class="tracking-wide">{{ __('nav.projects') }}</span>
+                <span class="font-bold tracking-tight text-slate-900 dark:text-white">{{ __('nav.projects') }}</span>
                 <span class="font-mono text-[10px] px-1.5 py-0.5 rounded"
                     :class="activeSection === 'projects' ? 'bg-rose-600 text-white font-bold shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-400'">01</span>
             </a>
@@ -211,9 +211,9 @@
                 class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-4"
                 :class="activeSection === 'tech-stack'
                     ?
-                    'text-rose-900 dark:text-rose-300 bg-rose-100/90 dark:bg-vermilion-500/15 border-rose-600 dark:border-vermilion-500 font-extrabold shadow-sm' :
+                    'text-rose-950 dark:text-rose-200 bg-rose-100 dark:bg-vermilion-500/20 border-rose-600 dark:border-vermilion-500 font-bold shadow-sm' :
                     'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
-                <span class="tracking-wide">{{ __('nav.tech_stack') }}</span>
+                <span class="font-bold tracking-tight text-slate-900 dark:text-white">{{ __('nav.tech_stack') }}</span>
                 <span class="font-mono text-[10px] px-1.5 py-0.5 rounded"
                     :class="activeSection === 'tech-stack' ? 'bg-rose-600 text-white font-bold shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-400'">02</span>
             </a>
@@ -223,9 +223,9 @@
                 class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-4"
                 :class="activeSection === 'experience'
                     ?
-                    'text-rose-900 dark:text-rose-300 bg-rose-100/90 dark:bg-vermilion-500/15 border-rose-600 dark:border-vermilion-500 font-extrabold shadow-sm' :
+                    'text-rose-950 dark:text-rose-200 bg-rose-100 dark:bg-vermilion-500/20 border-rose-600 dark:border-vermilion-500 font-bold shadow-sm' :
                     'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
-                <span class="tracking-wide">{{ __('nav.experience') }}</span>
+                <span class="font-bold tracking-tight text-slate-900 dark:text-white">{{ __('nav.experience') }}</span>
                 <span class="font-mono text-[10px] px-1.5 py-0.5 rounded"
                     :class="activeSection === 'experience' ? 'bg-rose-600 text-white font-bold shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-400'">03</span>
             </a>
