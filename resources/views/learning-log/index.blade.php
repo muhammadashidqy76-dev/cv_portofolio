@@ -279,7 +279,7 @@
                                     </a>
 
                                     <button type="button" 
-                                            @click="openDeleteModal('{{ route('learning-log.destroy', $item) }}', '{{ addslashes($item->title) }}', '{{ $item->category === 'laravel' ? 'Laravel' : ($item->category === 'cloud_engineering' ? 'Cloud & DevOps' : 'IT Support') }}', '{{ $item->tag }}', '{{ $item->slug }}')"
+                                            @click="openDeleteModal('{{ route('learning-log.destroy', $item, false) }}', '{{ addslashes($item->title) }}', '{{ $item->category === 'laravel' ? 'Laravel' : ($item->category === 'cloud_engineering' ? 'Cloud & DevOps' : 'IT Support') }}', '{{ $item->tag }}', '{{ $item->slug }}')"
                                             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-vermilion-500 hover:bg-vermilion-600 text-white font-mono text-xs font-semibold transition-colors cursor-pointer">
                                         Hapus
                                     </button>

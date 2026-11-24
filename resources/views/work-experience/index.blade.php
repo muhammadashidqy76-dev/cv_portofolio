@@ -210,7 +210,7 @@
 
                                     <!-- Delete Button — triggers custom modal -->
                                     <button type="button"
-                                            @click="openDeleteModal('{{ route('work-experience.destroy', $item) }}', '{{ addslashes($item->position) }}', '{{ addslashes($item->company_name) }}', {{ $item->is_current ? 'true' : 'false' }})"
+                                            @click="openDeleteModal('{{ route('work-experience.destroy', $item, false) }}', '{{ addslashes($item->position) }}', '{{ addslashes($item->company_name) }}', {{ $item->is_current ? 'true' : 'false' }})"
                                             class="inline-flex items-center gap-1 text-[11px] font-mono text-rose-400 hover:text-rose-300 active:text-rose-200 transition-colors cursor-pointer ml-1">
                                         Hapus
                                     </button>

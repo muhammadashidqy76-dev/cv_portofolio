@@ -270,7 +270,7 @@
 
                                     <!-- Delete Button — triggers custom modal -->
                                     <button type="button"
-                                            @click="openDeleteModal('{{ route('journey.destroy', $item) }}', '{{ addslashes($item->course_name) }}', '{{ $item->credential_type }}')"
+                                            @click="openDeleteModal('{{ route('journey.destroy', $item, false) }}', '{{ addslashes($item->course_name) }}', '{{ $item->credential_type }}')"
                                             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-vermilion-500 hover:bg-vermilion-600 text-white font-mono text-xs font-semibold transition-colors cursor-pointer">
                                         Hapus
                                     </button>

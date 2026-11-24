@@ -7,6 +7,12 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Konversi Action URL Modal Hapus ke Skema Relatif di Seluruh Modul CMS (`journey/index.blade.php`, `projects/index.blade.php`, `learning-log/index.blade.php`, `tech-stack/index.blade.php`, `work-experience/index.blade.php`):
+  - Mengubah pemanggilan `route('*.destroy', $item)` menjadi `route('*.destroy', $item, false)` (URL relatif seperti `/journey/1`) pada seluruh tombol pemicu modal konfirmasi hapus.
+  - Memastikan browser secara mutlak mengeksekusi request DELETE melalui protokol halaman aktif (HTTPS) tanpa memicu dialog peringatan sambungan tidak aman pada domain `ashidqy-dev.my.id`.
+  - Memperluas deteksi Cloudflare (`cf-visitor`, non-local env) pada `AppServiceProvider.php` untuk memaksakan skema HTTPS secara konsisten.
+
+### Fixed
 - Pencegahan Peringatan Insecure Form Submission di Balik Reverse Proxy Cloudflare HTTPS (`TrustProxies.php`, `AppServiceProvider.php`, `theme-head.blade.php`, `roadmap_it_support/index.blade.php`, `docker/nginx/default.conf`):
   - Mengonfigurasi `$proxies = '*'` di `TrustProxies.php` agar Laravel mempercayai header forwarded dari Cloudflare & Nginx.
   - Memaksa skema HTTPS via `URL::forceScheme('https')` di `AppServiceProvider.php` saat di production atau di balik proxy HTTPS.
