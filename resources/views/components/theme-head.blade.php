@@ -1,5 +1,8 @@
 <!-- Modern Web Guidance & W3C Color Scheme Meta & FOUC Prevention -->
 <meta name="color-scheme" content="light dark">
+<style>
+    [x-cloak] { display: none !important; }
+</style>
 <script>
     (function() {
         try {

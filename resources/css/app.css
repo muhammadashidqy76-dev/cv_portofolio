@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────────────────────
+ * Alpine.js Anti-FOUC (Flash of Unstyled Content) Cloak
+ * ───────────────────────────────────────────────────────────── */
+[x-cloak] {
+    display: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
  * Modern Web Guidance: Native Color-Scheme & Viewport Canvas
  * ───────────────────────────────────────────────────────────── */
 :root {

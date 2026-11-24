@@ -7,6 +7,12 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Pencegahan FOUC Modal Konfirmasi Hapus Checkpoint pada Dashboard Roadmap IT (`resources/views/roadmap_it_support/index.blade.php`, `resources/css/app.css`, `resources/views/components/theme-head.blade.php`, `resources/views/layouts/app.blade.php`, `resources/views/layouts/guest.blade.php`):
+  - Memperbaiki bug di mana modal konfirmasi hapus selalu muncul pertama kali saat halaman Roadmap IT diakses via navbar maupun saat di-refresh.
+  - Menambahkan inline `style="display: none;"` pada wrapper dialog modal di `roadmap_it_support/index.blade.php` agar selaras dengan implementasi modal di modul lain.
+  - Menambahkan aturan CSS global `[x-cloak] { display: none !important; }` ke dalam `resources/css/app.css`, serta inline `<style>` pada `theme-head.blade.php`, `app.blade.php`, dan `guest.blade.php` untuk mencegah FOUC (Flash of Unstyled Content) di semua elemen Alpine.js sebelum script dimuat.
+
+### Fixed
 - Fix root cause teks navlink aktif jadi putih di mobile/tablet light mode (`components/navbar.blade.php`):
   - **Header container**: dari hardcoded `bg-carbon-950/95` → `bg-white/90 dark:bg-carbon-950/90` agar navbar putih di light mode.
   - **Drawer container**: dari hardcoded `bg-carbon-950/95` → `bg-white dark:bg-carbon-950` agar menu dropdown juga putih di light mode.

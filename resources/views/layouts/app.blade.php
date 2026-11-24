@@ -21,6 +21,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <style>
+            [x-cloak] { display: none !important; }
             html, body {
                 font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             }

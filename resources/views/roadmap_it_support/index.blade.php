@@ -313,14 +313,20 @@
         </div>
 
         <!-- ─── Modal Delete Confirmation ────────────────────────────────────── -->
-        <div x-show="deleteModalOpen" x-cloak
+        <div x-show="deleteModalOpen"
+             style="display: none;"
+             x-cloak
              class="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true">
-            <div x-show="deleteModalOpen" x-transition:enter="ease-out duration-200" x-transition:enter-start="opacity-0"
+            <div x-show="deleteModalOpen"
+                 style="display: none;"
+                 x-transition:enter="ease-out duration-200" x-transition:enter-start="opacity-0"
                  x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-150"
                  x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="closeDeleteModal()"
                  class="fixed inset-0 bg-black/80 backdrop-blur-sm"></div>
 
-            <div x-show="deleteModalOpen" x-transition:enter="ease-out duration-200"
+            <div x-show="deleteModalOpen"
+                 style="display: none;"
+                 x-transition:enter="ease-out duration-200"
                  x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                  x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100 scale-100"
                  x-transition:leave-end="opacity-0 scale-95" @click.stop
