@@ -195,17 +195,17 @@ html.light .text-white:not(
 html.light .keep-white,
 html.light .keep-white *,
 html.light .\!text-white,
-html.light button[class*="bg-indigo-6"] *,
-html.light button[class*="bg-indigo-7"] *,
-html.light button[class*="bg-indigo-8"] *,
-html.light button[class*="bg-vermilion-6"] *,
-html.light button[class*="bg-vermilion-5"] *,
-html.light button[class*="bg-vermilion"] *,
-html.light button[class*="bg-amber-6"] *,
-html.light button[class*="bg-emerald-6"] *,
-html.light button[class*="bg-rose-6"] *,
-html.light a[class*="bg-vermilion-6"] *,
-html.light a[class*="bg-vermilion-5"] * {
+html.light button[class*="bg-indigo-6"]:not([class*="/"]) *,
+html.light button[class*="bg-indigo-7"]:not([class*="/"]) *,
+html.light button[class*="bg-indigo-8"]:not([class*="/"]) *,
+html.light button[class*="bg-vermilion-6"]:not([class*="/"]) *,
+html.light button[class*="bg-vermilion-5"]:not([class*="/"]) *,
+html.light button[class*="bg-vermilion"]:not([class*="/"]) *,
+html.light button[class*="bg-amber-6"]:not([class*="/"]) *,
+html.light button[class*="bg-emerald-6"]:not([class*="/"]) *,
+html.light button[class*="bg-rose-6"]:not([class*="/"]) *,
+html.light a[class*="bg-vermilion-6"]:not([class*="/"]) *,
+html.light a[class*="bg-vermilion-5"]:not([class*="/"]) * {
     color: #ffffff !important;
 }
 
