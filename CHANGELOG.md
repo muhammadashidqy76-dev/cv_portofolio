@@ -7,6 +7,11 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Changed
+- Penyesuaian Kontras Tombol Tautan Verifikasi & Dokumen pada Dashboard Journey (`resources/views/journey/index.blade.php`):
+  - Memperbaiki keterbacaan tombol "Verifikasi ↗" di mode terang: mengganti teks merah muda neon `text-vermilion-400` dengan `text-rose-700 hover:text-rose-900 bg-rose-50 border-rose-200` sehingga teks memiliki kontras yang tegas, elegan, dan nyaman dibaca.
+  - Memperbaiki tombol "Lihat Dokumen ↗" dengan warna latar `bg-slate-100 text-slate-700 border-slate-200` yang serasi di mode terang.
+
+### Changed
 - Penyesuaian Kontras Tombol Tautan Verifikasi Kredensial Mode Light (`resources/views/components/journey-section.blade.php`):
   - Memperhalus kontras tombol tautan verifikasi pada card Journey di mode terang (light mode) dari warna merah terang neon (`text-vermilion-600 bg-vermilion-500/10`) menjadi nuansa rose yang lebih lembut dan nyaman di mata (`text-rose-800 bg-rose-50/80 border-rose-200/70 hover:bg-rose-100/90 hover:text-rose-950`).
   - Menjaga kejelasan teks dan hierarki visual tanpa menimbulkan efek terlalu mencolok/pedas di mata pengguna.

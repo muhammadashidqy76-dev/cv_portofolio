@@ -237,8 +237,8 @@
                                             @if (!empty($item->certificate_file_path))
                                                 <a href="{{ $item->certificate_url }}" 
                                                    target="_blank" 
-                                                   class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-carbon-950 hover:bg-carbon-850 text-slate-300 hover:text-white border border-carbon-800 text-[11px] font-mono transition-colors">
-                                                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                   class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-carbon-950 dark:hover:bg-carbon-850 text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white border border-slate-200 dark:border-carbon-800 text-[11px] font-mono transition-colors">
+                                                    <svg class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                                                     </svg>
                                                     <span>Lihat Dokumen ↗</span>
@@ -248,7 +248,7 @@
                                             @if (!empty($item->verification_url))
                                                 <a href="{{ $item->verification_url }}" 
                                                    target="_blank" 
-                                                   class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-vermilion-500/10 hover:bg-vermilion-500/20 text-vermilion-400 border border-vermilion-500/20 text-[11px] font-mono transition-colors">
+                                                   class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-rose-50 hover:bg-rose-100 dark:bg-vermilion-500/10 dark:hover:bg-vermilion-500/20 text-rose-700 hover:text-rose-900 dark:text-vermilion-400 dark:hover:text-vermilion-300 border border-rose-200 dark:border-vermilion-500/20 text-[11px] font-mono transition-colors">
                                                     <span>Verifikasi ↗</span>
                                                 </a>
                                             @endif
