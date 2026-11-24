@@ -7,6 +7,11 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Keterbacaan & Kontras Navlink Anchor Aktif pada Navbar Beranda (`components/navbar.blade.php`):
+  - Memperbaiki tautan navigasi desktop (`#projects`, `#tech-stack`, `#experience`): saat tautan berstatus aktif melalui scrollspy, kelas teks dan latar belakang di mode terang kini menggunakan `text-rose-700 bg-rose-50 border-rose-300 font-bold shadow-sm` (dan `dark:text-vermilion-400 dark:bg-vermilion-500/10` di mode gelap), sedangkan tautan inaktif menggunakan `text-slate-600 dark:text-slate-300`.
+  - Memperbaiki menu dropdown seluler: tautan anchor aktif kini memiliki border samping tebal `border-l-4 border-rose-600`, teks tegas `text-rose-800 font-bold`, latar `bg-rose-50`, serta nomor urut (`01`, `02`, `03`) yang dibungkus badge pil solid merah pekat `bg-rose-600 text-white font-bold shadow-sm` sehingga kontras dan tajam terbaca di mode terang.
+
+### Fixed
 - Kontras Tombol Filter 'Semua' pada Toolbar Roadmap Publik (`roadmap/index.blade.php`):
   - Mengganti styling tombol filter status 'Semua' saat aktif di mode terang dari `bg-slate-900 text-white` (yang ter-override menjadi teks gelap di atas latar gelap) menjadi `bg-indigo-100 text-indigo-900 border-indigo-300 font-bold shadow-sm`, selaras dengan palet filter status lainnya (`Finished` di hijau pastel dan `In Progress` di amber pastel) sehingga memiliki kontras tinggi dan mudah dibaca di mode terang.
 

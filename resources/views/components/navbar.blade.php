@@ -106,8 +106,8 @@
                     class="px-3 py-2 lg:px-3.5 lg:py-2 rounded-lg text-xs transition-all duration-200 border"
                     :class="activeSection === 'projects'
                         ?
-                        'text-vermilion-400 bg-vermilion-500/10 border-vermilion-500/30 font-semibold shadow-sm' :
-                        'text-slate-300 hover:text-white hover:bg-carbon-900/80 border-transparent font-medium'">
+                        'text-rose-700 dark:text-vermilion-400 bg-rose-50 dark:bg-vermilion-500/10 border-rose-300 dark:border-vermilion-500/30 font-bold shadow-sm' :
+                        'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900/80 border-transparent font-medium'">
                     {{ __('nav.projects') }}
                 </a>
 
@@ -116,8 +116,8 @@
                     class="px-3 py-2 lg:px-3.5 lg:py-2 rounded-lg text-xs transition-all duration-200 border"
                     :class="activeSection === 'tech-stack'
                         ?
-                        'text-vermilion-400 bg-vermilion-500/10 border-vermilion-500/30 font-semibold shadow-sm' :
-                        'text-slate-300 hover:text-white hover:bg-carbon-900/80 border-transparent font-medium'">
+                        'text-rose-700 dark:text-vermilion-400 bg-rose-50 dark:bg-vermilion-500/10 border-rose-300 dark:border-vermilion-500/30 font-bold shadow-sm' :
+                        'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900/80 border-transparent font-medium'">
                     {{ __('nav.tech_stack') }}
                 </a>
 
@@ -126,8 +126,8 @@
                     class="px-3 py-2 lg:px-3.5 lg:py-2 rounded-lg text-xs transition-all duration-200 border"
                     :class="activeSection === 'experience'
                         ?
-                        'text-vermilion-400 bg-vermilion-500/10 border-vermilion-500/30 font-semibold shadow-sm' :
-                        'text-slate-300 hover:text-white hover:bg-carbon-900/80 border-transparent font-medium'">
+                        'text-rose-700 dark:text-vermilion-400 bg-rose-50 dark:bg-vermilion-500/10 border-rose-300 dark:border-vermilion-500/30 font-bold shadow-sm' :
+                        'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900/80 border-transparent font-medium'">
                     {{ __('nav.experience') }}
                 </a>
             </nav>
@@ -196,38 +196,38 @@
         <nav class="flex flex-col space-y-1">
             <!-- Mobile Projects -->
             <a href="#projects" @click="mobileOpen = false"
-                class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-2"
+                class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-4"
                 :class="activeSection === 'projects'
                     ?
-                    'text-vermilion-400 bg-vermilion-500/10 border-vermilion-500 font-semibold' :
-                    'text-slate-300 hover:bg-carbon-900 hover:text-white border-transparent font-medium'">
+                    'text-rose-800 dark:text-vermilion-400 bg-rose-50 dark:bg-vermilion-500/10 border-rose-600 dark:border-vermilion-500 font-bold' :
+                    'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
                 <span>{{ __('nav.projects') }}</span>
-                <span class="font-mono text-[10px]"
-                    :class="activeSection === 'projects' ? 'text-vermilion-400 font-bold' : 'text-slate-500'">01</span>
+                <span class="font-mono text-[10px] px-1.5 py-0.5 rounded"
+                    :class="activeSection === 'projects' ? 'bg-rose-600 text-white font-bold shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-400'">01</span>
             </a>
 
             <!-- Mobile Tech Stack -->
             <a href="#tech-stack" @click="mobileOpen = false"
-                class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-2"
+                class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-4"
                 :class="activeSection === 'tech-stack'
                     ?
-                    'text-vermilion-400 bg-vermilion-500/10 border-vermilion-500 font-semibold' :
-                    'text-slate-300 hover:bg-carbon-900 hover:text-white border-transparent font-medium'">
+                    'text-rose-800 dark:text-vermilion-400 bg-rose-50 dark:bg-vermilion-500/10 border-rose-600 dark:border-vermilion-500 font-bold' :
+                    'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
                 <span>{{ __('nav.tech_stack') }}</span>
-                <span class="font-mono text-[10px]"
-                    :class="activeSection === 'tech-stack' ? 'text-vermilion-400 font-bold' : 'text-slate-500'">02</span>
+                <span class="font-mono text-[10px] px-1.5 py-0.5 rounded"
+                    :class="activeSection === 'tech-stack' ? 'bg-rose-600 text-white font-bold shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-400'">02</span>
             </a>
 
             <!-- Mobile Experience -->
             <a href="#experience" @click="mobileOpen = false"
-                class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-2"
+                class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-4"
                 :class="activeSection === 'experience'
                     ?
-                    'text-vermilion-400 bg-vermilion-500/10 border-vermilion-500 font-semibold' :
-                    'text-slate-300 hover:bg-carbon-900 hover:text-white border-transparent font-medium'">
+                    'text-rose-800 dark:text-vermilion-400 bg-rose-50 dark:bg-vermilion-500/10 border-rose-600 dark:border-vermilion-500 font-bold' :
+                    'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
                 <span>{{ __('nav.experience') }}</span>
-                <span class="font-mono text-[10px]"
-                    :class="activeSection === 'experience' ? 'text-vermilion-400 font-bold' : 'text-slate-500'">03</span>
+                <span class="font-mono text-[10px] px-1.5 py-0.5 rounded"
+                    :class="activeSection === 'experience' ? 'bg-rose-600 text-white font-bold shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-400'">03</span>
             </a>
 
             <div class="pt-3 mt-2 border-t border-carbon-800">
