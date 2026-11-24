@@ -69,8 +69,8 @@
         }, { passive: true });
     }
 }" class="sticky top-0 z-50 w-full transition-all duration-300 backdrop-blur-md"
-    :class="scrolled ? 'bg-carbon-950/95 border-b border-carbon-800 shadow-xl shadow-black/40' :
-        'bg-carbon-950/80 border-b border-carbon-800/60'">
+    :class="scrolled ? 'bg-white/95 dark:bg-carbon-950/95 border-b border-slate-200 dark:border-carbon-800 shadow-sm dark:shadow-xl dark:shadow-black/40' :
+        'bg-white/90 dark:bg-carbon-950/90 border-b border-slate-200/80 dark:border-carbon-800/60'">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 sm:h-20">
@@ -80,20 +80,20 @@
                 class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-vermilion-500/40 rounded-lg p-1">
                 <!-- 3 Colored Window Dots Motif -->
                 <div
-                    class="hidden sm:flex items-center gap-1 p-1.5 rounded-md bg-carbon-900 border border-carbon-800 group-hover:border-carbon-700 transition-colors">
+                    class="hidden sm:flex items-center gap-1 p-1.5 rounded-md bg-slate-100 dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 group-hover:border-slate-300 dark:group-hover:border-carbon-700 transition-colors">
                     <span class="w-2 h-2 rounded-full bg-rose-500/90"></span>
                     <span class="w-2 h-2 rounded-full bg-amber-400/90"></span>
                     <span class="w-2 h-2 rounded-full bg-emerald-400/90"></span>
                 </div>
 
-                <div class="flex items-center font-mono text-sm sm:text-base font-bold text-white tracking-tight">
-                    <span class="text-vermilion-400 group-hover:-translate-x-0.5 transition-transform">&lt;</span>
-                    <span class="px-1 text-slate-100 group-hover:text-white transition-colors">Ashidqy</span>
-                    <span class="text-vermilion-400 group-hover:translate-x-0.5 transition-transform">/&gt;</span>
+                <div class="flex items-center font-mono text-sm sm:text-base font-bold text-slate-900 dark:text-white tracking-tight">
+                    <span class="text-vermilion-600 dark:text-vermilion-400 group-hover:-translate-x-0.5 transition-transform">&lt;</span>
+                    <span class="px-1 text-slate-800 dark:text-slate-100 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Ashidqy</span>
+                    <span class="text-vermilion-600 dark:text-vermilion-400 group-hover:translate-x-0.5 transition-transform">/&gt;</span>
                 </div>
 
                 <span
-                    class="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-vermilion-500/10 border border-vermilion-500/20 text-vermilion-400">
+                    class="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-vermilion-500/10 border border-vermilion-500/20 text-vermilion-600 dark:text-vermilion-400">
                     <span class="w-1.5 h-1.5 rounded-full bg-vermilion-400 animate-pulse"></span>
                     dev
                 </span>
@@ -135,28 +135,12 @@
             <!-- ─── Far Right: Language Switcher + CTA / GitHub Button & Mobile Toggle ─── -->
             <div class="flex items-center gap-2 sm:gap-3">
 
-                <!-- Language Switcher Pill -->
-                <!-- <div
-                    class="flex items-center rounded-lg bg-carbon-900 border border-carbon-800 overflow-hidden shadow-sm font-mono">
-                    <a href="{{ route('lang.switch', 'id') }}"
-                        class="px-2.5 py-1.5 text-[11px] font-semibold transition-all {{ app()->getLocale() === 'id' ? 'bg-vermilion-600 text-white' : 'text-slate-400 hover:text-white hover:bg-carbon-850' }}"
-                        title="Bahasa Indonesia">
-                        ID
-                    </a>
-                    <span class="w-px h-3 bg-carbon-800"></span>
-                    <a href="{{ route('lang.switch', 'en') }}"
-                        class="px-2.5 py-1.5 text-[11px] font-semibold transition-all {{ app()->getLocale() === 'en' ? 'bg-vermilion-600 text-white' : 'text-slate-400 hover:text-white hover:bg-carbon-850' }}"
-                        title="English">
-                        EN
-                    </a>
-                </div> -->
-
                 <!-- Theme Toggle (Light / Dark Mode) -->
                 <x-theme-toggle />
 
                 <!-- GitHub Button (Desktop: visible on md and up) -->
                 <a href="https://github.com/muhammadashidqy76-dev" target="_blank" rel="noopener noreferrer"
-                    class="hidden md:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-carbon-900 hover:bg-carbon-850 border border-carbon-800 hover:border-slate-700 text-slate-200 hover:text-white text-xs font-medium font-mono transition-all shadow-sm group">
+                    class="hidden md:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-carbon-900 dark:hover:bg-carbon-850 border border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-carbon-700 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white text-xs font-medium font-mono transition-all shadow-sm group">
                     <svg class="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" fill="currentColor"
                         viewBox="0 0 24 24">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -170,7 +154,7 @@
 
                 <!-- Mobile Hamburger Button (Mobile: visible under md, hidden on md and up) -->
                 <button type="button" @click="mobileOpen = !mobileOpen"
-                    class="inline-flex md:hidden items-center justify-center p-2 rounded-lg bg-carbon-900 border border-carbon-800 text-slate-400 hover:text-white hover:border-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-vermilion-500/40"
+                    class="inline-flex md:hidden items-center justify-center p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-carbon-900 dark:hover:bg-carbon-850 border border-slate-200 dark:border-carbon-800 text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-carbon-700 transition-colors focus:outline-none focus:ring-2 focus:ring-vermilion-500/40"
                     aria-label="{{ __('nav.toggle_menu') }}">
                     <svg x-show="!mobileOpen" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         stroke-width="2">
@@ -187,21 +171,23 @@
         </div>
     </div>
 
-    <!-- ─── Mobile Dropdown Menu (Alpine.js) ─── -->
+    <!-- ─── Mobile / Tablet Dropdown Menu (Alpine.js) ─── -->
     <div x-show="mobileOpen" x-cloak x-transition:enter="transition ease-out duration-150"
         x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-2" @click.away="mobileOpen = false"
-        class="md:hidden border-t border-carbon-800 bg-carbon-950/95 backdrop-blur-xl px-4 pt-3 pb-5 shadow-2xl font-mono">
+        class="md:hidden border-t border-slate-200 dark:border-carbon-800 bg-white dark:bg-carbon-950 backdrop-blur-xl px-4 pt-3 pb-5 shadow-xl font-mono">
         <nav class="flex flex-col space-y-1.5">
             <!-- Mobile Projects -->
             <a href="#projects" @click="mobileOpen = false"
                 class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-4"
                 :class="activeSection === 'projects'
-                    ?
-                    'text-rose-950 dark:text-rose-200 bg-rose-100 dark:bg-vermilion-500/20 border-rose-600 dark:border-vermilion-500 font-bold shadow-sm' :
-                    'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
-                <span class="font-bold tracking-tight text-slate-900 dark:text-white">{{ __('nav.projects') }}</span>
+                    ? 'bg-rose-100 dark:bg-rose-500/20 border-rose-600 dark:border-vermilion-500 font-bold shadow-sm'
+                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
+                <span class="font-bold tracking-tight text-slate-900 dark:text-slate-100"
+                    :class="activeSection === 'projects' ? 'text-rose-900 dark:text-rose-200' : ''">
+                    {{ __('nav.projects') }}
+                </span>
                 <span class="font-mono text-[10px] px-1.5 py-0.5 rounded"
                     :class="activeSection === 'projects' ? 'bg-rose-600 text-white font-bold shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-400'">01</span>
             </a>
@@ -210,10 +196,12 @@
             <a href="#tech-stack" @click="mobileOpen = false"
                 class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-4"
                 :class="activeSection === 'tech-stack'
-                    ?
-                    'text-rose-950 dark:text-rose-200 bg-rose-100 dark:bg-vermilion-500/20 border-rose-600 dark:border-vermilion-500 font-bold shadow-sm' :
-                    'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
-                <span class="font-bold tracking-tight text-slate-900 dark:text-white">{{ __('nav.tech_stack') }}</span>
+                    ? 'bg-rose-100 dark:bg-rose-500/20 border-rose-600 dark:border-vermilion-500 font-bold shadow-sm'
+                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
+                <span class="font-bold tracking-tight text-slate-900 dark:text-slate-100"
+                    :class="activeSection === 'tech-stack' ? 'text-rose-900 dark:text-rose-200' : ''">
+                    {{ __('nav.tech_stack') }}
+                </span>
                 <span class="font-mono text-[10px] px-1.5 py-0.5 rounded"
                     :class="activeSection === 'tech-stack' ? 'bg-rose-600 text-white font-bold shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-400'">02</span>
             </a>
@@ -222,15 +210,17 @@
             <a href="#experience" @click="mobileOpen = false"
                 class="px-3.5 py-2.5 rounded-lg text-xs transition-colors flex items-center justify-between border-l-4"
                 :class="activeSection === 'experience'
-                    ?
-                    'text-rose-950 dark:text-rose-200 bg-rose-100 dark:bg-vermilion-500/20 border-rose-600 dark:border-vermilion-500 font-bold shadow-sm' :
-                    'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
-                <span class="font-bold tracking-tight text-slate-900 dark:text-white">{{ __('nav.experience') }}</span>
+                    ? 'bg-rose-100 dark:bg-rose-500/20 border-rose-600 dark:border-vermilion-500 font-bold shadow-sm'
+                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-carbon-900 hover:text-slate-900 dark:hover:text-white border-transparent font-medium'">
+                <span class="font-bold tracking-tight text-slate-900 dark:text-slate-100"
+                    :class="activeSection === 'experience' ? 'text-rose-900 dark:text-rose-200' : ''">
+                    {{ __('nav.experience') }}
+                </span>
                 <span class="font-mono text-[10px] px-1.5 py-0.5 rounded"
                     :class="activeSection === 'experience' ? 'bg-rose-600 text-white font-bold shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-400'">03</span>
             </a>
 
-            <div class="pt-3 mt-2 border-t border-carbon-800">
+            <div class="pt-3 mt-2 border-t border-slate-200 dark:border-carbon-800">
                 <a href="https://github.com/muhammadashidqy76-dev" target="_blank" rel="noopener noreferrer"
                     class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-vermilion-600 hover:bg-vermilion-500 text-white text-xs font-semibold shadow-md shadow-vermilion-600/20 transition-colors">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

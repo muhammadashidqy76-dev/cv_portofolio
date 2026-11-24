@@ -7,6 +7,13 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Fix root cause teks navlink aktif jadi putih di mobile/tablet light mode (`components/navbar.blade.php`):
+  - **Header container**: dari hardcoded `bg-carbon-950/95` → `bg-white/90 dark:bg-carbon-950/90` agar navbar putih di light mode.
+  - **Drawer container**: dari hardcoded `bg-carbon-950/95` → `bg-white dark:bg-carbon-950` agar menu dropdown juga putih di light mode.
+  - **Teks span aktif**: dari conditional Alpine `:class` yang rentan purge/race (`text-rose-800 dark:text-rose-100` via dynamic string) → static base class `text-slate-900 dark:text-slate-100` dengan override aktif `text-rose-900 dark:text-rose-200`, memastikan teks selalu terbaca di kedua mode.
+  - **Logo, tombol GitHub, tombol hamburger**: diperbarui ke `bg-slate-100 dark:bg-carbon-900 border-slate-200 dark:border-carbon-800` agar serasi dengan latar putih di light mode.
+
+### Fixed
 - Keterbacaan Teks Navlink Aktif pada Menu Mobile Navbar Publik (`components/navbar.blade.php`):
   - Memperbaiki masalah teks aktif (misal "Teknologi", "Projek", "Pengalaman") yang tampil putih/samar di atas latar pastel merah muda di mode terang (light mode) sesuai tangkapan layar pengguna:
   - Merapikan struktur ekspresi kondisi ternary Alpine `:class` yang sebelumnya ganda/rusak, serta menetapkan pembungkus teks judul dengan kelas eksplisit `text-slate-900 dark:text-white font-bold tracking-tight` di atas latar `bg-rose-100 dark:bg-vermilion-500/20` dan border `border-rose-600 dark:border-vermilion-500`, sehingga teks menu aktif selalu hitam pekat di mode terang dan putih bersih di mode gelap.
