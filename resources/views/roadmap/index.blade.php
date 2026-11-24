@@ -144,7 +144,7 @@
                     <div class="flex flex-wrap items-center gap-1.5">
                         <button type="button"
                                 @click="selectedStatus = 'all'"
-                                :class="selectedStatus === 'all' ? 'bg-slate-900 text-white dark:bg-white/10 dark:text-white font-bold border-slate-900 dark:border-white/20 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-800 border-transparent'"
+                                :class="selectedStatus === 'all' ? 'bg-indigo-100 text-indigo-900 border-indigo-300 dark:bg-white/10 dark:text-white dark:border-white/20 font-bold shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-800 border-transparent'"
                                 class="px-3 py-1.5 rounded-lg border transition-colors cursor-pointer">
                             Semua ({{ $stats['total'] }})
                         </button>
@@ -219,7 +219,7 @@
                                     <h2 class="text-xs sm:text-sm font-bold text-white tracking-tight uppercase">
                                         {{ $phaseName }}
                                     </h2>
-                                    <span class="text-[10px] text-indigo-300 bg-indigo-500/20 px-2 py-0.5 rounded border border-indigo-500/30">
+                                    <span class="text-[10px] text-indigo-500 bg-indigo-500/20 px-2 py-0.5 rounded border border-indigo-500/30">
                                         {{ count($items) }} Topik
                                     </span>
                                 </div>

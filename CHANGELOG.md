@@ -7,6 +7,10 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Kontras Tombol Filter 'Semua' pada Toolbar Roadmap Publik (`roadmap/index.blade.php`):
+  - Mengganti styling tombol filter status 'Semua' saat aktif di mode terang dari `bg-slate-900 text-white` (yang ter-override menjadi teks gelap di atas latar gelap) menjadi `bg-indigo-100 text-indigo-900 border-indigo-300 font-bold shadow-sm`, selaras dengan palet filter status lainnya (`Finished` di hijau pastel dan `In Progress` di amber pastel) sehingga memiliki kontras tinggi dan mudah dibaca di mode terang.
+
+### Fixed
 - Kontras & Keterbacaan Halaman Roadmap Publik (Guest Mode) pada Mode Terang (`roadmap/index.blade.php`):
   - Memperbaiki kontras kartu topik pada alur timeline Roadmap (desktop dan mobile): materi berstatus `finished` kini berlatar `bg-emerald-50/90` dengan border `border-emerald-300` dan teks judul tegas `text-emerald-900` (mode terang), sedangkan `in_progress` berlatar `bg-amber-50/90` dengan border `border-amber-300` dan teks `text-amber-900`.
   - Memperbaiki pill filter status toolbar (`Semua`, `Finished / Clear`, `In Progress`, `Planned`): tombol filter aktif kini memiliki warna latar solid tegas dengan teks kontras tinggi (emerald-100/emerald-900 dan amber-100/amber-900 di mode terang) sehingga status filter terpilih sangat jelas terlihat.
