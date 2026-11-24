@@ -122,78 +122,67 @@
     </div>
 
     <!-- Responsive Navigation Menu (Mobile) -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden border-t border-slate-200 dark:border-carbon-800 bg-white dark:bg-carbon-950">
-        <div class="pt-2 pb-3 space-y-1">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden border-t border-slate-200 dark:border-carbon-800 bg-white dark:bg-carbon-950 divide-y divide-slate-100 dark:divide-carbon-900 transition-all">
+        <div class="pt-2 pb-3 space-y-1 px-2">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Overview (Main Dashboard)') }}
+                <span class="font-mono text-xs">00.</span> {{ __('Overview') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.*')">
-                {{ __('Featured Projects (Active)') }}
+                <span class="font-mono text-xs">01.</span> {{ __('Featured Projects') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('tech-stack.index')" :active="request()->routeIs('tech-stack.*')">
-                {{ __('Tech Stack (Active)') }}
+                <span class="font-mono text-xs">02.</span> {{ __('Tech Stack') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('work-experience.index')" :active="request()->routeIs('work-experience.*')">
-                {{ __('Work Experience (Active)') }}
+                <span class="font-mono text-xs">03.</span> {{ __('Work Experience') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('journey.index')" :active="request()->routeIs('journey.*')">
-                {{ __('Journey & Kredensial (Active)') }}
+                <span class="font-mono text-xs">04.</span> {{ __('Journey & Kredensial') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('learning-log.index')" :active="request()->routeIs('learning-log.*')">
-                {{ __('Notes & Learning Log (Active)') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.*')">
-                {{ __('Featured Projects (Active)') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('tech-stack.index')" :active="request()->routeIs('tech-stack.*')">
-                {{ __('Tech Stack (Active)') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('work-experience.index')" :active="request()->routeIs('work-experience.*')">
-                {{ __('Work Experience (Active)') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('journey.index')" :active="request()->routeIs('journey.*')">
-                {{ __('Journey & Kredensial (Active)') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('learning-log.index')" :active="request()->routeIs('learning-log.*')">
-                {{ __('Notes & Learning Log (Active)') }}
+                <span class="font-mono text-xs">05.</span> {{ __('Notes & Tech Logs') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('roadmap-it-support.index')" :active="request()->routeIs('roadmap-it-support.*')">
-                {{ __('Roadmap IT Support (Active)') }}
+                <span class="font-mono text-xs">06.</span> {{ __('Roadmap IT Support') }}
             </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-3 border-t border-carbon-800 px-4">
-            <div class="flex items-center gap-2 mb-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <div class="font-mono text-xs font-medium text-white">{{ Auth::user()->name }}</div>
-                <div class="font-mono text-[11px] text-slate-500">({{ Auth::user()->email }})</div>
+        <div class="pt-3 pb-3 border-t border-slate-200 dark:border-carbon-800/80 px-4">
+            <div class="flex items-center gap-2 mb-3 py-1">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+                <div class="min-w-0">
+                    <div class="font-mono text-xs font-semibold text-slate-900 dark:text-white truncate">{{ Auth::user()->name }}</div>
+                    <div class="font-mono text-[11px] text-slate-500 truncate">{{ Auth::user()->email }}</div>
+                </div>
             </div>
 
-            <div class="space-y-1 mt-3">
-                <a href="{{ url('/') }}" target="_blank" class="block py-2 text-xs font-mono text-slate-300 hover:text-white">
-                    {{ __('Lihat Website Publik ↗') }}
+            <div class="space-y-1">
+                <a href="{{ url('/') }}" target="_blank" class="flex items-center justify-between py-2 px-2.5 rounded-lg text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900 transition-colors">
+                    <span>Lihat Website Publik</span>
+                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                 </a>
-                <a href="{{ route('profile.edit') }}" class="block py-2 text-xs font-mono text-slate-300 hover:text-white">
-                    {{ __('Pengaturan Profil') }}
+                <a href="{{ route('profile.edit') }}" class="flex items-center justify-between py-2 px-2.5 rounded-lg text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-900 transition-colors">
+                    <span>Pengaturan Profil</span>
+                    <span class="text-slate-400">&rarr;</span>
                 </a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="{{ route('logout') }}"
                             onclick="event.preventDefault(); this.closest('form').submit();"
-                            class="block py-2 text-xs font-mono text-rose-400 hover:text-rose-300">
-                        {{ __('Keluar (Log Out)') }}
+                            class="flex items-center justify-between py-2 px-2.5 rounded-lg text-xs font-mono font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors">
+                        <span>Keluar (Log Out)</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
                     </a>
                 </form>
             </div>

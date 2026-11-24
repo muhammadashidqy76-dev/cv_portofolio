@@ -6,6 +6,13 @@ bukan per-commit (untuk itu lihat `git log`).
 
 ## [Unreleased]
 
+### Fixed
+- Responsivitas & Tampilan Mobile Dashboard Admin (`dashboard.blade.php`, `navigation.blade.php`, `responsive-nav-link.blade.php`):
+  - Memperbaiki layout menu navigasi mobile (`navigation.blade.php`): membersihkan duplikasi menu tautan yang sebelumnya berulang dua kali di versi seluler, menata nomor indeks (`00.` s/d `06.`), serta mempercantik opsi profil pengguna dan tombol logout dengan ikon & tata letak seluler yang proporsional.
+  - Memperbaiki kartu metrik statistik overview (`dashboard.blade.php`): mengubah grid mobile dari 1 kolom besar (`grid-cols-1`) menjadi 2 kolom rapi dan hemat ruang (`grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6`), menyesuaikan padding dan ukuran font agar tidak terpotong di layar ponsel sempit (360px–414px).
+  - Menyempurnakan flexbox header sistem status badges (ENV, OPERATOR, SYSTEM_ONLINE) dan header kartu daftar catatan & proyek terkini agar otomatis membungkus (*wrap*) dengan anggun di layar smartphone tanpa menyebabkan overflow horizontal.
+  - Meningkatkan styling tautan responsif mobile (`responsive-nav-link.blade.php`) dengan rounded borders dan padding sentuh yang ramah jari pengguna (touch-friendly).
+
 ### Added
 - Optimasi SEO & Mesin Pencarian Google (`welcome.blade.php`, `robots.txt`, `sitemap.xml`):
   - Menambahkan meta tag SEO lengkap di `resources/views/welcome.blade.php`: `description`, `keywords`, `author`, `robots (index, follow)`, dan `canonical URL`.

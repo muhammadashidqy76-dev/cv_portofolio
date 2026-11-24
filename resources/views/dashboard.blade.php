@@ -16,18 +16,18 @@
             </div>
 
             <!-- System Status Badges -->
-            <div class="flex items-center gap-2 flex-wrap font-mono text-[11px]">
-                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium">
+            <div class="flex items-center gap-2 flex-wrap font-mono text-[11px] w-full sm:w-auto">
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium shrink-0">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse"></span>
                     <span>SYSTEM_ONLINE</span>
                 </div>
-                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 text-slate-600 dark:text-slate-400 shadow-sm dark:shadow-none">
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 text-slate-600 dark:text-slate-400 shadow-sm dark:shadow-none shrink-0">
                     <span class="text-slate-400 dark:text-slate-500">ENV:</span>
                     <span class="text-slate-800 dark:text-slate-200 font-semibold">{{ app()->environment() }}</span>
                 </div>
-                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 text-slate-600 dark:text-slate-400 shadow-sm dark:shadow-none">
-                    <span class="text-slate-400 dark:text-slate-500">OPERATOR:</span>
-                    <span class="text-slate-800 dark:text-slate-200 font-semibold">{{ Auth::user()->name }}</span>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 text-slate-600 dark:text-slate-400 shadow-sm dark:shadow-none min-w-0 max-w-full">
+                    <span class="text-slate-400 dark:text-slate-500 shrink-0">OPERATOR:</span>
+                    <span class="text-slate-800 dark:text-slate-200 font-semibold truncate">{{ Auth::user()->name }}</span>
                 </div>
             </div>
         </div>
@@ -37,88 +37,88 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
             <!-- ─── Metric Cards Grid ─────────────────────────────────────────────── -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4">
                 
                 <!-- 1. Featured Projects -->
-                <a href="{{ route('projects.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
+                <a href="{{ route('projects.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-3.5 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">01. Projects </span>
-                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium">Live</span>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 sm:mb-2">
+                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">01. Projects</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium shrink-0">Live</span>
                         </div>
-                        <div class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-slate-900 dark:text-white">
                             {{ $projectStats['total'] }}
                         </div>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex items-center justify-between text-xs font-mono">
-                        <span class="text-emerald-700 dark:text-emerald-400 font-medium">{{ $projectStats['published'] }} Published</span>
-                        <span class="text-slate-500">{{ $projectStats['draft'] }} Draft</span>
+                    <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex flex-col xs:flex-row xs:items-center justify-between gap-1 text-[11px] sm:text-xs font-mono">
+                        <span class="text-emerald-700 dark:text-emerald-400 font-medium truncate">{{ $projectStats['published'] }} Published</span>
+                        <span class="text-slate-500 truncate">{{ $projectStats['draft'] }} Draft</span>
                     </div>
                 </a>
 
                 <!-- 2. Tech Stack -->
-                <a href="{{ route('tech-stack.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
+                <a href="{{ route('tech-stack.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-3.5 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">02. Tech Stack </span>
-                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium">Live</span>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 sm:mb-2">
+                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">02. Tech Stack</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium shrink-0">Live</span>
                         </div>
-                        <div class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-slate-900 dark:text-white">
                             {{ $techStats['total'] }}
                         </div>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex items-center justify-between text-xs font-mono">
-                        <span class="text-emerald-700 dark:text-emerald-400 font-medium">{{ $techStats['finished'] }} Mastered</span>
-                        <span class="text-amber-700 dark:text-amber-400 font-medium">{{ $techStats['in_progress'] }} Learning</span>
+                    <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex flex-col xs:flex-row xs:items-center justify-between gap-1 text-[11px] sm:text-xs font-mono">
+                        <span class="text-emerald-700 dark:text-emerald-400 font-medium truncate">{{ $techStats['finished'] }} Mastered</span>
+                        <span class="text-amber-700 dark:text-amber-400 font-medium truncate">{{ $techStats['in_progress'] }} Learning</span>
                     </div>
                 </a>
 
                 <!-- 3. Work Experience -->
-                <a href="{{ route('work-experience.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
+                <a href="{{ route('work-experience.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-3.5 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">03. Experience </span>
-                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium">Live</span>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 sm:mb-2">
+                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">03. Experience</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium shrink-0">Live</span>
                         </div>
-                        <div class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-slate-900 dark:text-white">
                             {{ $experienceStats['total'] }}
                         </div>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex items-center justify-between text-xs font-mono">
-                        <span class="text-cyan-700 dark:text-cyan-400 font-medium">{{ $experienceStats['current'] }} Posisi Aktif</span>
-                        <span class="text-slate-500">{{ $experienceStats['published'] }} Live</span>
+                    <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex flex-col xs:flex-row xs:items-center justify-between gap-1 text-[11px] sm:text-xs font-mono">
+                        <span class="text-cyan-700 dark:text-cyan-400 font-medium truncate">{{ $experienceStats['current'] }} Posisi Aktif</span>
+                        <span class="text-slate-500 truncate">{{ $experienceStats['published'] }} Live</span>
                     </div>
                 </a>
 
                 <!-- 4. Journey & Credentials -->
-                <a href="{{ route('journey.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
+                <a href="{{ route('journey.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-3.5 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">04. Journey </span>
-                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium">Live</span>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 sm:mb-2">
+                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">04. Journey</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium shrink-0">Live</span>
                         </div>
-                        <div class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-slate-900 dark:text-white">
                             {{ $journeyStats['total'] }}
                         </div>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex items-center justify-between text-xs font-mono">
-                        <span class="text-amber-700 dark:text-amber-400 font-medium">{{ $journeyStats['certifications'] }} Sertifikat</span>
-                        <span class="text-slate-500">{{ $journeyStats['courses'] }} Kursus</span>
+                    <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex flex-col xs:flex-row xs:items-center justify-between gap-1 text-[11px] sm:text-xs font-mono">
+                        <span class="text-amber-700 dark:text-amber-400 font-medium truncate">{{ $journeyStats['certifications'] }} Sertifikat</span>
+                        <span class="text-slate-500 truncate">{{ $journeyStats['courses'] }} Kursus</span>
                     </div>
                 </a>
 
                 <!-- 5. Learning Log / Technical Notes -->
-                <a href="{{ route('learning-log.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-4 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
+                <a href="{{ route('learning-log.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-3.5 sm:p-5 hover:border-vermilion-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-2">
-                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">05. Tech Notes </span>
-                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium">Live</span>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 sm:mb-2">
+                            <span class="group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">05. Tech Notes</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium shrink-0">Live</span>
                         </div>
-                        <div class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-slate-900 dark:text-white">
                             {{ $noteStats['total'] }}
                         </div>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex items-center justify-between text-[11px] font-mono">
+                    <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex flex-wrap items-center justify-between gap-1 text-[10px] sm:text-[11px] font-mono">
                         <span class="text-vermilion-600 dark:text-vermilion-400 font-medium">{{ $noteStats['laravel'] }} Laravel</span>
                         <span class="text-cyan-700 dark:text-cyan-400 font-medium">{{ $noteStats['cloud'] }} Cloud</span>
                         <span class="text-indigo-700 dark:text-indigo-400 font-medium">{{ $noteStats['it_support'] }} IT</span>
@@ -126,19 +126,19 @@
                 </a>
 
                 <!-- 6. IT Support Roadmap -->
-                <a href="{{ route('roadmap-it-support.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-4 sm:p-5 hover:border-indigo-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
+                <a href="{{ route('roadmap-it-support.index') }}" class="group rounded-xl bg-white dark:bg-carbon-900/90 border border-slate-200 dark:border-carbon-800 p-3.5 sm:p-5 hover:border-indigo-500/50 transition-all shadow-sm dark:shadow-lg flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-2">
-                            <span class="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">06. IT Roadmap </span>
-                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20 text-indigo-700 dark:text-indigo-400 font-medium">Live</span>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 sm:mb-2">
+                            <span class="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">06. IT Roadmap</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20 text-indigo-700 dark:text-indigo-400 font-medium shrink-0">Live</span>
                         </div>
-                        <div class="text-2xl sm:text-3xl font-bold font-mono text-slate-900 dark:text-white">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-slate-900 dark:text-white">
                             {{ $roadmapStats['total'] }}
                         </div>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex items-center justify-between text-[11px] font-mono">
-                        <span class="text-emerald-700 dark:text-emerald-400 font-medium">{{ $roadmapStats['finished'] }} Clear</span>
-                        <span class="text-indigo-700 dark:text-indigo-400 font-semibold">{{ $roadmapStats['percentage'] }}% Mastered</span>
+                    <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-100 dark:border-carbon-800/80 flex flex-col xs:flex-row xs:items-center justify-between gap-1 text-[11px] sm:text-xs font-mono">
+                        <span class="text-emerald-700 dark:text-emerald-400 font-medium truncate">{{ $roadmapStats['finished'] }} Clear</span>
+                        <span class="text-indigo-700 dark:text-indigo-400 font-semibold truncate">{{ $roadmapStats['percentage'] }}% Mastered</span>
                     </div>
                 </a>
 
@@ -151,23 +151,23 @@
                 <!-- Left: Recent Technical Notes -->
                 <div class="rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 overflow-hidden shadow-sm dark:shadow-xl flex flex-col justify-between">
                     <div>
-                        <div class="px-5 py-3.5 bg-slate-50 dark:bg-carbon-950/80 border-b border-slate-200 dark:border-carbon-800 flex items-center justify-between">
+                        <div class="px-4 sm:px-5 py-3.5 bg-slate-50 dark:bg-carbon-950/80 border-b border-slate-200 dark:border-carbon-800 flex flex-wrap items-center justify-between gap-2">
                             <div class="flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-vermilion-500 dark:bg-vermilion-400"></span>
+                                <span class="w-2 h-2 rounded-full bg-vermilion-500 dark:bg-vermilion-400 shrink-0"></span>
                                 <h3 class="font-mono text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider">
                                     Catatan Teknis Terkini
                                 </h3>
                             </div>
                             <a href="{{ url('/notes') }}" target="_blank" class="text-xs font-mono text-vermilion-600 dark:text-vermilion-400 hover:text-vermilion-700 dark:hover:text-vermilion-300 transition-colors">
-                                Kelola Semua Catatan 
+                                Kelola Semua Catatan &rarr;
                             </a>
                         </div>
 
                         <div class="divide-y divide-slate-100 dark:divide-carbon-800/80">
                             @forelse ($recentNotes as $note)
-                                <div class="p-4 sm:p-5 hover:bg-slate-50/80 dark:hover:bg-carbon-950/40 transition-colors">
-                                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                                        <div class="flex items-center gap-2">
+                                <div class="p-3.5 sm:p-5 hover:bg-slate-50/80 dark:hover:bg-carbon-950/40 transition-colors">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                        <div class="flex items-center gap-2 flex-wrap">
                                             @if ($note->category === 'it_support')
                                                 <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-indigo-500/10 border border-indigo-500/20 text-indigo-700 dark:text-indigo-400">
                                                     IT Support
@@ -210,7 +210,7 @@
                         </div>
                     </div>
 
-                    <div class="p-4 bg-slate-50 dark:bg-carbon-950 border-t border-slate-200 dark:border-carbon-800 flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400">
+                    <div class="p-3.5 sm:p-4 bg-slate-50 dark:bg-carbon-950 border-t border-slate-200 dark:border-carbon-800 flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400">
                         <span>Total: {{ $noteStats['total'] }} Catatan</span>
                         <span class="text-slate-500">Notes</span>
                     </div>
@@ -219,22 +219,22 @@
                 <!-- Right: Featured Projects & Architecture Overview -->
                 <div class="rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 overflow-hidden shadow-sm dark:shadow-xl flex flex-col justify-between">
                     <div>
-                        <div class="px-5 py-3.5 bg-slate-50 dark:bg-carbon-950/80 border-b border-slate-200 dark:border-carbon-800 flex items-center justify-between">
+                        <div class="px-4 sm:px-5 py-3.5 bg-slate-50 dark:bg-carbon-950/80 border-b border-slate-200 dark:border-carbon-800 flex flex-wrap items-center justify-between gap-2">
                             <div class="flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-cyan-500 dark:bg-cyan-400"></span>
+                                <span class="w-2 h-2 rounded-full bg-cyan-500 dark:bg-cyan-400 shrink-0"></span>
                                 <h3 class="font-mono text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider">
                                     Featured Projects Utama
                                 </h3>
                             </div>
                             <a href="{{ route('projects.index') }}" class="text-xs font-mono text-vermilion-600 dark:text-vermilion-400 hover:text-vermilion-700 dark:hover:text-vermilion-300 transition-colors">
-                                Kelola Semua Proyek 
+                                Kelola Semua Proyek &rarr;
                             </a>
                         </div>
 
                         <div class="divide-y divide-slate-100 dark:divide-carbon-800/80">
                             @forelse ($recentProjects as $project)
-                                <div class="p-4 sm:p-5 hover:bg-slate-50/80 dark:hover:bg-carbon-950/40 transition-colors">
-                                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <div class="p-3.5 sm:p-5 hover:bg-slate-50/80 dark:hover:bg-carbon-950/40 transition-colors">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
                                         <div class="flex items-center gap-2">
                                             <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-slate-100 dark:bg-carbon-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-transparent">
                                                 Tier {{ $project->complexity_order }}
@@ -279,7 +279,7 @@
                         </div>
                     </div>
 
-                    <div class="p-4 bg-slate-50 dark:bg-carbon-950 border-t border-slate-200 dark:border-carbon-800 flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400">
+                    <div class="p-3.5 sm:p-4 bg-slate-50 dark:bg-carbon-950 border-t border-slate-200 dark:border-carbon-800 flex items-center justify-between text-xs font-mono text-slate-600 dark:text-slate-400">
                         <span>Total: {{ $projectStats['total'] }} Projects</span>
                         <span class="text-slate-500">Featured Projects</span>
                     </div>
