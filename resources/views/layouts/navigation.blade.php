@@ -66,7 +66,7 @@
             </div>
 
             <!-- Right Controls: View Public Web & User Dropdown (xl screens) -->
-            <div class="hidden xl:flex xl:items-center xl:gap-3">
+            <div class="hidden xl:flex xl:items-center xl:gap-3 ml-2">
                 <!-- Theme Toggle -->
                 <x-theme-toggle />
 
