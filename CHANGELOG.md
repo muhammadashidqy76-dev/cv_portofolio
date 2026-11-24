@@ -7,6 +7,12 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Kontras & Keterbacaan Navlink Aktif pada Mode Terang (Light Mode):
+  - Memperbaiki konflik kontras warna pada `nav-link.blade.php` dan `responsive-nav-link.blade.php`: mengganti kelas teks dan latar belakang dengan `text-rose-800 dark:text-rose-300` di atas latar lembut `bg-rose-100/70 dark:bg-rose-500/15` serta border `border-rose-600 dark:border-rose-500`, sehingga judul halaman aktif memiliki rasio kontras tinggi (>7:1) dan tidak bentrok atau pudar di latar mode terang.
+  - Mempertegas badge nomor menu seluler (`00`, `01`, `02`, dst.) menggunakan `bg-rose-600 text-white font-bold shadow-sm` saat aktif, memberikan perbedaan visual yang kontras dan tajam.
+  - Melengkapi skala warna `vermilion` (50–900) pada `tailwind.config.js` untuk konsistensi palet desain.
+
+### Fixed
 - Responsivitas Mode Tablet & Interaktivitas Navigasi Dashboard (`navigation.blade.php`, `nav-link.blade.php`, `responsive-nav-link.blade.php`, `dashboard.blade.php`):
   - **Breakpoint Tablet (iPad / Layar 768px - 1279px)**: Mengubah ambang breakpoint navigasi desktop dari `sm:` menjadi `xl:`. Pada perangkat tablet/iPad, bilah menu kini otomatis beralih ke tombol hamburger yang rapi, menghindari tabrakan teks 7 menu di layar medium.
   - **Dropdown Profil Pengguna pada Mode Hamburger**: Mengubah bagian nama pengguna di menu mobile/tablet menjadi tombol accordion interaktif bertenaga Alpine.js (`userMenuOpen`). Saat nama pengguna diklik, menu akan mekar dengan transisi halus menampilkan opsi *Lihat Website Publik*, *Pengaturan Profil*, dan *Keluar (Log Out)* lengkap dengan ikon pendukung.
