@@ -121,17 +121,17 @@
                             <div class="h-full bg-gradient-to-r from-indigo-500 to-emerald-400 transition-all duration-500 rounded-full"
                                  style="width: {{ $stats['percentage'] }}%"></div>
                         </div>
-                        <div class="flex items-center justify-between font-mono text-[11px] text-slate-400 pt-1 border-t border-carbon-800/60">
-                            <span class="flex items-center gap-1.5 text-emerald-400">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <div class="flex items-center justify-between font-mono text-[11px] text-slate-600 dark:text-slate-400 pt-1 border-t border-slate-200 dark:border-carbon-800/60">
+                            <span class="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-semibold">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
                                 <span>{{ $stats['finished'] }} Clear</span>
                             </span>
-                            <span class="flex items-center gap-1.5 text-amber-400">
-                                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                            <span class="flex items-center gap-1.5 text-amber-700 dark:text-amber-400 font-semibold">
+                                <span class="w-2 h-2 rounded-full bg-amber-500 dark:bg-amber-400 animate-pulse"></span>
                                 <span>{{ $stats['in_progress'] }} In Progress</span>
                             </span>
-                            <span class="flex items-center gap-1.5 text-slate-400">
-                                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
+                            <span class="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
+                                <span class="w-2 h-2 rounded-full bg-slate-400 dark:bg-slate-600"></span>
                                 <span>{{ $stats['not_started'] }} Planned</span>
                             </span>
                         </div>
@@ -139,32 +139,32 @@
                 </div>
 
                 <!-- ── Filter & Search Toolbar (Roadmap.sh Style) ── -->
-                <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs">
+                <div class="p-3.5 rounded-xl bg-white dark:bg-carbon-900 border border-slate-200 dark:border-carbon-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs shadow-sm dark:shadow-none">
                     <!-- Status Filter Pills -->
                     <div class="flex flex-wrap items-center gap-1.5">
                         <button type="button"
                                 @click="selectedStatus = 'all'"
-                                :class="selectedStatus === 'all' ? 'bg-white/10 text-white font-bold border-white/20' : 'text-slate-400 hover:text-white border-transparent'"
+                                :class="selectedStatus === 'all' ? 'bg-slate-900 text-white dark:bg-white/10 dark:text-white font-bold border-slate-900 dark:border-white/20 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-800 border-transparent'"
                                 class="px-3 py-1.5 rounded-lg border transition-colors cursor-pointer">
                             Semua ({{ $stats['total'] }})
                         </button>
                         <button type="button"
                                 @click="selectedStatus = 'finished'"
-                                :class="selectedStatus === 'finished' ? 'bg-emerald-500/20 text-emerald-300 font-bold border-emerald-500/40' : 'text-slate-400 hover:text-white border-transparent'"
+                                :class="selectedStatus === 'finished' ? 'bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-500/20 dark:text-emerald-300 dark:border-emerald-500/40 font-bold shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-white hover:bg-emerald-50 dark:hover:bg-carbon-800 border-transparent'"
                                 class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border transition-colors cursor-pointer">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
                             <span>Finished / Clear ({{ $stats['finished'] }})</span>
                         </button>
                         <button type="button"
                                 @click="selectedStatus = 'in_progress'"
-                                :class="selectedStatus === 'in_progress' ? 'bg-amber-500/20 text-amber-300 font-bold border-amber-500/40' : 'text-slate-400 hover:text-white border-transparent'"
+                                :class="selectedStatus === 'in_progress' ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40 font-bold shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-amber-700 dark:hover:text-white hover:bg-amber-50 dark:hover:bg-carbon-800 border-transparent'"
                                 class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border transition-colors cursor-pointer">
-                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400"></span>
                             <span>In Progress ({{ $stats['in_progress'] }})</span>
                         </button>
                         <button type="button"
                                 @click="selectedStatus = 'not_started'"
-                                :class="selectedStatus === 'not_started' ? 'bg-slate-700/30 text-slate-300 font-bold border-slate-600' : 'text-slate-400 hover:text-white border-transparent'"
+                                :class="selectedStatus === 'not_started' ? 'bg-slate-200 text-slate-900 border-slate-300 dark:bg-slate-700/30 dark:text-slate-300 dark:border-slate-600 font-bold shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-carbon-800 border-transparent'"
                                 class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border transition-colors cursor-pointer">
                             <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                             <span>Planned ({{ $stats['not_started'] }})</span>
@@ -176,8 +176,8 @@
                         <input type="text"
                                x-model="search"
                                placeholder="Cari materi..."
-                               class="w-full bg-carbon-950 border border-carbon-800 text-slate-100 text-xs rounded-lg pl-8 pr-3 py-1.5 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 font-mono transition-colors">
-                        <svg class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                               class="w-full bg-slate-50 dark:bg-carbon-950 border border-slate-200 dark:border-carbon-800 text-slate-800 dark:text-slate-100 text-xs rounded-lg pl-8 pr-3 py-1.5 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 font-mono transition-colors">
+                        <svg class="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 absolute left-2.5 top-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
@@ -273,11 +273,11 @@
                                                         </div>
 
                                                         <div class="space-y-1 min-w-0">
-                                                            <div class="text-xs sm:text-sm font-semibold tracking-tight leading-snug group-hover:text-white transition-colors {{ $item->status === 'finished' ? 'text-emerald-200' : ($item->status === 'in_progress' ? 'text-amber-200' : 'text-slate-300') }}">
+                                                            <div class="text-xs sm:text-sm font-bold tracking-tight leading-snug group-hover:text-slate-900 dark:group-hover:text-white transition-colors {{ $item->status === 'finished' ? 'text-emerald-900 dark:text-emerald-200' : ($item->status === 'in_progress' ? 'text-amber-900 dark:text-amber-200' : 'text-slate-800 dark:text-slate-200') }}">
                                                                 {{ $item->title }}
                                                             </div>
                                                             @if ($item->source_reference)
-                                                                <div class="text-[10px] font-mono text-slate-500 truncate" title="{{ $item->source_reference }}">
+                                                                <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 truncate" title="{{ $item->source_reference }}">
                                                                     {{ $item->source_reference }}
                                                                 </div>
                                                             @endif
@@ -353,11 +353,11 @@
                                                         </div>
 
                                                         <div class="space-y-1 min-w-0">
-                                                            <div class="text-xs sm:text-sm font-semibold tracking-tight leading-snug group-hover:text-white transition-colors {{ $item->status === 'finished' ? 'text-emerald-200' : ($item->status === 'in_progress' ? 'text-amber-200' : 'text-slate-300') }}">
+                                                            <div class="text-xs sm:text-sm font-bold tracking-tight leading-snug group-hover:text-slate-900 dark:group-hover:text-white transition-colors {{ $item->status === 'finished' ? 'text-emerald-900 dark:text-emerald-200' : ($item->status === 'in_progress' ? 'text-amber-900 dark:text-amber-200' : 'text-slate-800 dark:text-slate-200') }}">
                                                                 {{ $item->title }}
                                                             </div>
                                                             @if ($item->source_reference)
-                                                                <div class="text-[10px] font-mono text-slate-500 truncate" title="{{ $item->source_reference }}">
+                                                                <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400 truncate" title="{{ $item->source_reference }}">
                                                                     {{ $item->source_reference }}
                                                                 </div>
                                                             @endif
@@ -409,11 +409,11 @@
                                                 :class="getNodeClasses('{{ $item->id }}')"
                                                 class="flex-1 p-3 rounded-xl border transition-all duration-200 text-left flex items-start justify-between gap-2.5 group">
                                             <div class="space-y-0.5 min-w-0">
-                                                <div class="text-xs font-semibold {{ $item->status === 'finished' ? 'text-emerald-300' : ($item->status === 'in_progress' ? 'text-amber-300' : 'text-slate-300') }}">
+                                                <div class="text-xs font-bold {{ $item->status === 'finished' ? 'text-emerald-900 dark:text-emerald-300' : ($item->status === 'in_progress' ? 'text-amber-900 dark:text-amber-300' : 'text-slate-800 dark:text-slate-200') }}">
                                                     {{ $item->title }}
                                                 </div>
                                                 @if ($item->source_reference)
-                                                    <div class="text-[9px] font-mono text-slate-500 truncate">{{ $item->source_reference }}</div>
+                                                    <div class="text-[9px] font-mono text-slate-500 dark:text-slate-400 truncate">{{ $item->source_reference }}</div>
                                                 @endif
                                             </div>
 
@@ -511,21 +511,21 @@
 
                             <!-- Status Badge -->
                             <template x-if="activeCheckpoint?.status === 'finished'">
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-medium">
-                                    <svg class="w-3 h-3 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 dark:bg-emerald-500/20 dark:border-emerald-500/40 dark:text-emerald-300 text-xs font-mono font-bold shadow-sm">
+                                    <svg class="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                                     </svg>
                                     <span>Done / Clear</span>
                                 </span>
                             </template>
                             <template x-if="activeCheckpoint?.status === 'in_progress'">
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-mono font-medium">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-                                    <span>Learning</span>
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-500/20 dark:border-amber-500/40 dark:text-amber-300 text-xs font-mono font-bold shadow-sm">
+                                    <span class="w-2 h-2 rounded-full bg-amber-500 dark:bg-amber-400 animate-pulse"></span>
+                                    <span>Learning / In Progress</span>
                                 </span>
                             </template>
                             <template x-if="activeCheckpoint?.status === 'not_started'">
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono font-medium">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 text-slate-800 border border-slate-200 dark:bg-slate-800 dark:text-slate-300 text-xs font-mono font-medium">
                                     <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                                     <span>Planned</span>
                                 </span>
@@ -700,12 +700,12 @@
                 getNodeClasses(id) {
                     const status = this.getCheckpointStatus(id);
                     if (status === 'finished') {
-                        return 'bg-emerald-950/20 border-emerald-500/40 hover:border-emerald-400 hover:bg-emerald-950/30 shadow-sm shadow-emerald-500/10';
+                        return 'bg-emerald-50/90 dark:bg-emerald-950/20 border-emerald-300 dark:border-emerald-500/40 hover:border-emerald-500 dark:hover:border-emerald-400 hover:bg-emerald-100/80 dark:hover:bg-emerald-950/30 shadow-sm shadow-emerald-500/10 text-slate-900 dark:text-white';
                     }
                     if (status === 'in_progress') {
-                        return 'bg-amber-950/20 border-amber-500/40 hover:border-amber-400 hover:bg-amber-950/30 shadow-sm shadow-amber-500/10';
+                        return 'bg-amber-50/90 dark:bg-amber-950/20 border-amber-300 dark:border-amber-500/40 hover:border-amber-500 dark:hover:border-amber-400 hover:bg-amber-100/80 dark:hover:bg-amber-950/30 shadow-sm shadow-amber-500/10 text-slate-900 dark:text-white';
                     }
-                    return 'bg-carbon-900 border-carbon-800 hover:border-carbon-700 hover:bg-carbon-850';
+                    return 'bg-white dark:bg-carbon-900 border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-carbon-700 hover:bg-slate-50 dark:hover:bg-carbon-850 text-slate-800 dark:text-slate-200';
                 },
 
                 matchesFilter(id) {

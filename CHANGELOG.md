@@ -6,6 +6,13 @@ bukan per-commit (untuk itu lihat `git log`).
 
 ## [Unreleased]
 
+### Fixed
+- Kontras & Keterbacaan Halaman Roadmap Publik (Guest Mode) pada Mode Terang (`roadmap/index.blade.php`):
+  - Memperbaiki kontras kartu topik pada alur timeline Roadmap (desktop dan mobile): materi berstatus `finished` kini berlatar `bg-emerald-50/90` dengan border `border-emerald-300` dan teks judul tegas `text-emerald-900` (mode terang), sedangkan `in_progress` berlatar `bg-amber-50/90` dengan border `border-amber-300` dan teks `text-amber-900`.
+  - Memperbaiki pill filter status toolbar (`Semua`, `Finished / Clear`, `In Progress`, `Planned`): tombol filter aktif kini memiliki warna latar solid tegas dengan teks kontras tinggi (emerald-100/emerald-900 dan amber-100/amber-900 di mode terang) sehingga status filter terpilih sangat jelas terlihat.
+  - Memperbaiki lencana status pada drawer detail materi (sidebar pop-up): teks `Done / Clear` dan `Learning / In Progress` kini menggunakan border tebal dan tipografi tebal (`font-bold`) yang bebas dari efek samar atau bentrok latar belakang.
+  - Menyelaraskan teks ringkasan status di bawah progress bar (`text-emerald-700` dan `text-amber-700 font-semibold`) agar angka dan label status terbaca kontras di atas latar putih.
+
 ### Added
 - Tab Spesialisasi Roadmap Multi-Track di Dashboard Admin (`roadmap_it_support/index.blade.php`, `create.blade.php`, `edit.blade.php`, `RoadmapItSupportController.php`, `RoadmapSeeder.php`):
   - Mengintegrasikan antarmuka tab responsif di Dashboard Roadmap yang memisahkan kurikulum menjadi 2 pilar spesialisasi utama: **IT Support & Systems** (14 materi/checkpoints berbasis Cisco CCNA & hardware/OS in-house) dan **Cloud Engineer AWS** (13 materi/checkpoints berbasis arsitektur AWS EC2, S3, IAM, VPC, Docker, Nginx, dan CI/CD).
