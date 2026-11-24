@@ -6,6 +6,11 @@ bukan per-commit (untuk itu lihat `git log`).
 
 ## [Unreleased]
 
+### Changed
+- Penyesuaian Kontras Tombol Tautan Verifikasi Kredensial Mode Light (`resources/views/components/journey-section.blade.php`):
+  - Memperhalus kontras tombol tautan verifikasi pada card Journey di mode terang (light mode) dari warna merah terang neon (`text-vermilion-600 bg-vermilion-500/10`) menjadi nuansa rose yang lebih lembut dan nyaman di mata (`text-rose-800 bg-rose-50/80 border-rose-200/70 hover:bg-rose-100/90 hover:text-rose-950`).
+  - Menjaga kejelasan teks dan hierarki visual tanpa menimbulkan efek terlalu mencolok/pedas di mata pengguna.
+
 ### Fixed
 - Konversi Action URL Modal Hapus ke Skema Relatif di Seluruh Modul CMS (`journey/index.blade.php`, `projects/index.blade.php`, `learning-log/index.blade.php`, `tech-stack/index.blade.php`, `work-experience/index.blade.php`):
   - Mengubah pemanggilan `route('*.destroy', $item)` menjadi `route('*.destroy', $item, false)` (URL relatif seperti `/journey/1`) pada seluruh tombol pemicu modal konfirmasi hapus.

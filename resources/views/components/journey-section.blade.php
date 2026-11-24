@@ -184,9 +184,9 @@
                             @endif
 
                             @if(!empty($entry->verification_url))
-                                <a href="{{ $entry->verification_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-vermilion-600 dark:text-vermilion-400 bg-vermilion-500/10 border border-vermilion-500/20 hover:bg-vermilion-500/20 hover:text-vermilion-700 dark:hover:text-vermilion-300 transition-colors ml-auto font-mono">
+                                <a href="{{ $entry->verification_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-rose-800 dark:text-vermilion-400 bg-rose-50/80 hover:bg-rose-100/90 dark:bg-vermilion-500/10 dark:hover:bg-vermilion-500/20 border border-rose-200/70 dark:border-vermilion-500/20 hover:text-rose-950 dark:hover:text-vermilion-300 transition-colors ml-auto font-mono">
                                     <span>{{ __('journey.verify') }}</span>
-                                    <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <svg class="w-3 h-3 text-rose-600 dark:text-vermilion-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                     </svg>
                                 </a>
