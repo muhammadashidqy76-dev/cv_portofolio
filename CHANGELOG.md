@@ -7,6 +7,11 @@ bukan per-commit (untuk itu lihat `git log`).
 ## [Unreleased]
 
 ### Fixed
+- Keterbacaan & Kontras Teks Navlink Aktif pada Mode Mobile & Tablet (`components/navbar.blade.php`, `components/responsive-nav-link.blade.php`, `layouts/navigation.blade.php`):
+  - Memperbaiki keterbacaan teks judul navlink aktif di mode terang (light mode): teks kini menggunakan kelas `text-rose-950 dark:text-rose-200 font-extrabold` dan pembungkus judul `font-semibold text-slate-900 dark:text-white` di atas latar pastel kontras `bg-rose-100/90 dark:bg-rose-500/20` dengan border tebal `border-s-4 border-rose-600`.
+  - Mempertegas teks judul menu dropdown navbar publik (`navbar.blade.php`): tautan mobile aktif kini bertuliskan `text-rose-900 dark:text-rose-300 font-extrabold` dengan border `border-rose-600` dan latar `bg-rose-100/90`, menghilangkan efek pudar atau teks samar di layar smartphone dan tablet.
+
+### Fixed
 - Keterbacaan & Kontras Navlink Anchor Aktif pada Navbar Beranda (`components/navbar.blade.php`):
   - Memperbaiki tautan navigasi desktop (`#projects`, `#tech-stack`, `#experience`): saat tautan berstatus aktif melalui scrollspy, kelas teks dan latar belakang di mode terang kini menggunakan `text-rose-700 bg-rose-50 border-rose-300 font-bold shadow-sm` (dan `dark:text-vermilion-400 dark:bg-vermilion-500/10` di mode gelap), sedangkan tautan inaktif menggunakan `text-slate-600 dark:text-slate-300`.
   - Memperbaiki menu dropdown seluler: tautan anchor aktif kini memiliki border samping tebal `border-l-4 border-rose-600`, teks tegas `text-rose-800 font-bold`, latar `bg-rose-50`, serta nomor urut (`01`, `02`, `03`) yang dibungkus badge pil solid merah pekat `bg-rose-600 text-white font-bold shadow-sm` sehingga kontras dan tajam terbaca di mode terang.

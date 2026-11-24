@@ -126,37 +126,37 @@
         <div class="pt-2.5 pb-3.5 space-y-1.5 px-3">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('dashboard') ? 'bg-rose-600 text-white dark:bg-rose-500 dark:text-white shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">00</span>
-                <span>{{ __('Overview') }}</span>
+                <span class="font-semibold text-slate-900 dark:text-white">{{ __('Overview') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.*')">
                 <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('projects.*') ? 'bg-rose-600 text-white dark:bg-rose-500 dark:text-white shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">01</span>
-                <span>{{ __('Featured Projects') }}</span>
+                <span class="font-semibold text-slate-900 dark:text-white">{{ __('Featured Projects') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('tech-stack.index')" :active="request()->routeIs('tech-stack.*')">
                 <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('tech-stack.*') ? 'bg-rose-600 text-white dark:bg-rose-500 dark:text-white shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">02</span>
-                <span>{{ __('Tech Stack') }}</span>
+                <span class="font-semibold text-slate-900 dark:text-white">{{ __('Tech Stack') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('work-experience.index')" :active="request()->routeIs('work-experience.*')">
                 <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('work-experience.*') ? 'bg-rose-600 text-white dark:bg-rose-500 dark:text-white shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">03</span>
-                <span>{{ __('Work Experience') }}</span>
+                <span class="font-semibold text-slate-900 dark:text-white">{{ __('Work Experience') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('journey.index')" :active="request()->routeIs('journey.*')">
                 <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('journey.*') ? 'bg-rose-600 text-white dark:bg-rose-500 dark:text-white shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">04</span>
-                <span>{{ __('Journey & Kredensial') }}</span>
+                <span class="font-semibold text-slate-900 dark:text-white">{{ __('Journey & Kredensial') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('learning-log.index')" :active="request()->routeIs('learning-log.*')">
                 <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('learning-log.*') ? 'bg-rose-600 text-white dark:bg-rose-500 dark:text-white shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">05</span>
-                <span>{{ __('Notes & Tech Logs') }}</span>
+                <span class="font-semibold text-slate-900 dark:text-white">{{ __('Notes & Tech Logs') }}</span>
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('roadmap-it-support.index')" :active="request()->routeIs('roadmap-it-support.*')">
                 <span class="px-1.5 py-0.5 rounded font-mono text-[11px] font-bold {{ request()->routeIs('roadmap-it-support.*') ? 'bg-rose-600 text-white dark:bg-rose-500 dark:text-white shadow-sm' : 'bg-slate-200 dark:bg-carbon-800 text-slate-700 dark:text-slate-300' }}">06</span>
-                <span>{{ __('Roadmap IT Support') }}</span>
+                <span class="font-semibold text-slate-900 dark:text-white">{{ __('Roadmap IT Support') }}</span>
             </x-responsive-nav-link>
         </div>
 
