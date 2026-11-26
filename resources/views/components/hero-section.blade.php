@@ -393,28 +393,40 @@
                     </h3>
                 </div>
                 <!-- Action Buttons -->
-                <div class="space-y-2.5 pt-1">
-                    <!-- Line 1: Primary Action - Download CV -->
-                    <a href="{{ asset('cv/Ashidqy_CV_Laravel_Backend.pdf') }}"
-                        download="Ashidqy_CV_Laravel_Backend.pdf"
-                        class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-vermilion-600 hover:bg-vermilion-500 active:bg-vermilion-700 text-white font-semibold text-sm transition-all duration-150 shadow-md shadow-vermilion-600/20 cursor-pointer">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <span>{{ __('cv.download') }}</span>
-                    </a>
+                <div class="space-y-2.5 pt-1 font-mono">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <!-- Line 1a: Primary Action - Lihat Dokumen CV (Preview Tab Baru) -->
+                        <a href="{{ asset('storage/cv/Ashidqy_CV_Laravel_Backend.pdf') }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="w-full flex items-center justify-center gap-2 py-3 px-3 rounded-lg bg-vermilion-600 hover:bg-vermilion-500 active:bg-vermilion-700 text-white font-semibold text-xs sm:text-sm transition-all duration-150 shadow-md shadow-vermilion-600/20 cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <span>{{ __('journey.doc') }} ↗</span>
+                        </a>
 
-                    <!-- Line 2: Secondary Action - Copy Portfolio Link -->
+                        <!-- Line 1b: Secondary Action - Download CV -->
+                        <a href="{{ asset('storage/cv/Ashidqy_CV_Laravel_Backend.pdf') }}"
+                            download="Ashidqy_CV_Laravel_Backend.pdf"
+                            class="w-full flex items-center justify-center gap-2 py-3 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-carbon-950 dark:hover:bg-carbon-850 text-slate-800 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-slate-300 dark:border-carbon-800 transition-all duration-150 cursor-pointer">
+                            <svg class="w-4 h-4 text-slate-600 dark:text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span>{{ __('cv.download') }}</span>
+                        </a>
+                    </div>
+
+                    <!-- Line 2: Copy Portfolio Link -->
                     <button type="button" @click="copyPortfolioUrl()"
-                        class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-carbon-950 hover:bg-carbon-850 active:bg-carbon-950 text-slate-200 hover:text-white text-xs font-semibold border border-carbon-800 hover:border-slate-700 transition-colors cursor-pointer">
-                        <svg x-show="!copied" class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24"
+                        class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-carbon-950 dark:hover:bg-carbon-850 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-xs font-semibold border border-slate-200 dark:border-carbon-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors cursor-pointer">
+                        <svg x-show="!copied" class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
-                        <svg x-show="copied" class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24"
+                        <svg x-show="copied" class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>

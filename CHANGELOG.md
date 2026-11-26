@@ -6,6 +6,12 @@ bukan per-commit (untuk itu lihat `git log`).
 
 ## [Unreleased]
 
+### Added
+- Penambahan Tombol Lihat Dokumen (Preview Online) pada Modal CV Hero Section (`resources/views/components/hero-section.blade.php`):
+  - Memperbaiki path file CV dari `asset('cv/...')` menjadi `asset('storage/cv/Ashidqy_CV_Laravel_Backend.pdf')` agar sesuai dengan lokasi penyimpanan file `public/storage/cv/`.
+  - Menambahkan tombol "Lihat Dokumen ↗" (`target="_blank" rel="noopener noreferrer"`) persis seperti pada Journey Section sehingga pengguna/recruiter dapat mem-preview dokumen CV langsung di browser tanpa harus mengunduhnya terlebih dahulu.
+  - Mempertahankan tombol sekunder "Unduh CV (PDF)" dan tombol "Salin Link Portofolio" dengan tata letak grid responsif.
+
 ### Fixed
 - Perbaikan Keterbacaan Teks Tombol Verifikasi pada Mode Light (`resources/css/app.css`, `journey/index.blade.php`, `components/journey-section.blade.php`):
   - Memperbaiki aturan CSS global di `app.css` (`html.light a[class*="bg-vermilion-5"] * { color: #ffffff !important; }`) yang secara tidak sengaja memutihkan teks link dengan latar transparan/opacity (seperti `bg-vermilion-500/10` dan `dark:bg-vermilion-500/10`), dengan menambahkan `:not([class*="/"])` agar hanya berlaku untuk tombol solid.
